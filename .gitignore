@@ -1,4 +1,10 @@
-.zip
+# Shuh I'm not done with this! >:3
+Content/Mods/_TannerMod/StatNumbersReal/*
+# I ame very smart girl i will not include sbz stuff so sbz doesnt sue me yess c:
+Content/UI/*
+!Content/UI/Widgets/PlayerAndParty/WBP_UI_Widget_RoomStatus.uasset
+
+*.zip
 
 # Visual Studio 2015 user specific files
 .vs/
