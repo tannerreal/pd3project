@@ -1,18 +1,15 @@
 #include "SBZFriendListEntry.h"
 
 FSBZFriendListEntry::FSBZFriendListEntry() {
-    this->PortGame = 0;
-    this->PortBeacon = 0;
-    this->LevelIdx = 0;
+    this->FirstPartyPlatform = ESBZFirstPartyPlatform::Unknown;
     this->FriendStatus = EFriendStatus::Offline;
-    this->JoinType = ESBZOnlineJoinType::Debug;
+    this->LevelIdx = 0;
+    this->InfamyLevel = 0;
+    this->RenownLevel = 0;
     this->bPlatformBlocked = false;
     this->bPlatformPlayer = false;
     this->PlatformIcon = NULL;
     this->NebulaIcon = NULL;
-    this->bCrossPlayEnabled = false;
-    this->bInCrossPlayLobby = false;
-    this->bCrossPlayAllowed = false;
     this->bCanCommunicateWith = false;
 }
 

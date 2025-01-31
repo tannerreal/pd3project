@@ -1,14 +1,11 @@
 #include "SBZMicroCamera.h"
 #include "AkComponent.h"
-#include "SBZToolSkeletalMeshComponent.h"
 #include "Components/BoxComponent.h"
 
 ASBZMicroCamera::ASBZMicroCamera(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->RotationSpeed = 100.00f;
     this->BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
-    this->BoxComponent->SetupAttachment(SkeletalMesh);
     this->ExplosionInstigator = NULL;
-    this->MicroCameraTasedEffectClass = NULL;
     this->MicroCameraTasedEffectClass = NULL;
     this->MicroCameraExplodedEvent = NULL;
     this->DetonationEffect = NULL;
@@ -22,11 +19,8 @@ ASBZMicroCamera::ASBZMicroCamera(const FObjectInitializer& ObjectInitializer) : 
     this->ArmedEvent = NULL;
     this->OverloadSoundDuration = 1.50f;
     this->AkComponent = CreateDefaultSubobject<UAkComponent>(TEXT("AkComponent"));
-    this->AkComponent->SetupAttachment(SkeletalMesh);
-    FProperty* p_bReplicateMovement = GetClass()->FindPropertyByName("bReplicateMovement");
-    *p_bReplicateMovement->ContainerPtrToValuePtr<uint8>(this) = true;
-    FProperty* p_bActorEnableCollision = GetClass()->FindPropertyByName("bActorEnableCollision");
-    *p_bActorEnableCollision->ContainerPtrToValuePtr<uint8>(this) = true;
+    this->AkComponent->SetupAttachment(RootComponent);
+    this->BoxComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZMicroCamera::OnAICharacterKilled(APawn* InAIPawn) {

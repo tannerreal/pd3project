@@ -15,7 +15,5 @@ FSBZPawnSpawnRequestHandle ASBZPawnSpawnPredefined::SpawnPredefined() {
     return FSBZPawnSpawnRequestHandle{};
 }
 
-void ASBZPawnSpawnPredefined::OnSpawnedPawnKilled(APawn* Pawn) {
-}
 
 

@@ -1,8 +1,8 @@
 #include "SBZSkillTransporterPowerLifter.h"
 
 USBZSkillTransporterPowerLifter::USBZSkillTransporterPowerLifter() {
-    FProperty* p_NativeClass = GetClass()->FindPropertyByName("NativeClass");
-    *p_NativeClass->ContainerPtrToValuePtr<UClass*>(this) = USBZSkillTransporterPowerLifter::StaticClass();
+    this->FloatArray.AddDefaulted(1);
+    this->IntArray.AddDefaulted(1);
 }
 
 

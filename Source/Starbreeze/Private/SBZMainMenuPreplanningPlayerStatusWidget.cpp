@@ -17,8 +17,15 @@ USBZMainMenuPreplanningPlayerStatusWidget::USBZMainMenuPreplanningPlayerStatusWi
 void USBZMainMenuPreplanningPlayerStatusWidget::SetEmpty() {
 }
 
+void USBZMainMenuPreplanningPlayerStatusWidget::OpenPlayerProfile() {
+}
+
 
 void USBZMainMenuPreplanningPlayerStatusWidget::OnLoadoutChanged(const TArray<FSBZLobbyCharacterInfoUi>& LobbyInfoArray) {
+}
+
+bool USBZMainMenuPreplanningPlayerStatusWidget::CanOpenPlayerProfile() {
+    return false;
 }
 
 

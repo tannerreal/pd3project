@@ -1,8 +1,7 @@
 #include "SBZSecuredBagVisualizeComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZSecuredBagVisualizeComponent::USBZSecuredBagVisualizeComponent() {
-    
+USBZSecuredBagVisualizeComponent::USBZSecuredBagVisualizeComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZSecuredBagVisualizeComponent::OnRep_BagTypes() {

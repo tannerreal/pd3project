@@ -1,9 +1,9 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "Templates/SubclassOf.h"
 #include "SBZModularPartApplier.generated.h"
 
-class UClass;
 class USBZModularPartConfig;
 class USBZModularPartDataAsset;
 
@@ -17,7 +17,7 @@ public:
     bool NeedConfig() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    TArray<UClass*> GetExpectedParts(const USBZModularPartDataAsset* PartAsset) const;
+    TArray<TSubclassOf<USBZModularPartDataAsset>> GetExpectedParts(const USBZModularPartDataAsset* PartAsset) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     bool DoesConfigNeedParts() const;

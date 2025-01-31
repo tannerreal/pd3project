@@ -1,6 +1,7 @@
 #include "SBZActorPoolManager.h"
+#include "Templates/SubclassOf.h"
 
-USBZActorPoolManager::USBZActorPoolManager() {
+USBZActorPoolManager::USBZActorPoolManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZActorPoolManager::ReturnActor(AActor* Actor, float Delay) {
@@ -12,10 +13,10 @@ void USBZActorPoolManager::OnExitedActionPhase() {
 void USBZActorPoolManager::OnActorDestroyed(AActor* DestroyedActor) {
 }
 
-void USBZActorPoolManager::InitPool(UWorld* World, UClass* ActorClass, int32 Count) {
+void USBZActorPoolManager::InitPool(UWorld* World, TSubclassOf<AActor> ActorClass, int32 Count) {
 }
 
-AActor* USBZActorPoolManager::GetActor(UWorld* World, UClass* ActorClass) {
+AActor* USBZActorPoolManager::GetActor(UWorld* World, TSubclassOf<AActor> ActorClass) {
     return NULL;
 }
 

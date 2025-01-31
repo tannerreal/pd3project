@@ -3,6 +3,7 @@
 #include "UObject/NoExportTypes.h"
 #include "SBZCoinStoreItem.h"
 #include "SBZGloveStoreItem.h"
+#include "SBZHeistStoreItem.h"
 #include "SBZInventorySlotStoreItem.h"
 #include "SBZItemBundleStoreItem.h"
 #include "SBZLoadoutSlotStoreItem.h"
@@ -11,12 +12,14 @@
 #include "SBZMaskPreconfigStoreItem.h"
 #include "SBZMaskPresetStoreItem.h"
 #include "SBZMaskVFXStoreItem.h"
+#include "SBZPlayerCharacterStoreItem.h"
 #include "SBZPreplanningAssetStoreItem.h"
 #include "SBZSprayCanStoreItem.h"
 #include "SBZSuitBaseStoreItem.h"
 #include "SBZSuitMaterialStoreItem.h"
 #include "SBZSuitPatternStoreItem.h"
 #include "SBZSuitPresetStoreItem.h"
+#include "SBZVendorPermissionStoreItem.h"
 #include "SBZWatchStoreItem.h"
 #include "SBZWeaponCharmStoreItem.h"
 #include "SBZWeaponPatternStoreItem.h"
@@ -112,6 +115,15 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FGuid, FSBZItemBundleStoreItem> ItemBundleMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZHeistStoreItem> HeistMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZVendorPermissionStoreItem> VendorPermissionMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FGuid, FSBZPlayerCharacterStoreItem> PlayerCharacterMap;
     
     STARBREEZE_API FSBZPlayerStoreItemData();
 };

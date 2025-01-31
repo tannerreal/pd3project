@@ -1,9 +1,10 @@
 #include "SBZWaitStateMachineStateCallbackProxy.h"
 
 USBZWaitStateMachineStateCallbackProxy::USBZWaitStateMachineStateCallbackProxy() {
+    this->WorldContextObject = NULL;
 }
 
-USBZWaitStateMachineStateCallbackProxy* USBZWaitStateMachineStateCallbackProxy::WaitGameStateMachineState(UObject* WorldContextObject, const TEnumAsByte<ESBZGameStateMachineState>& StateToWait) {
+USBZWaitStateMachineStateCallbackProxy* USBZWaitStateMachineStateCallbackProxy::WaitGameStateMachineState(UObject* NewWorldContextObject, const TEnumAsByte<ESBZGameStateMachineState>& StateToWait) {
     return NULL;
 }
 

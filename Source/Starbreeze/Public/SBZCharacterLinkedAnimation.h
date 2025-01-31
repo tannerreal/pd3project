@@ -4,7 +4,7 @@
 #include "SBZCharacterLinkedAnimation.generated.h"
 
 class ASBZCharacter;
-class UClass;
+class ASBZEquippable;
 class USBZCharacterAnimationCollection;
 
 UCLASS(Blueprintable, NonTransient)
@@ -16,7 +16,7 @@ protected:
     ASBZCharacter* Character;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    TSoftClassPtr<UClass> CurrentEquippableClass;
+    TSoftClassPtr<ASBZEquippable> CurrentEquippableClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZCharacterAnimationCollection* CurrentAnimationCollection;

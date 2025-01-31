@@ -1,13 +1,7 @@
 #include "SBZInteractableComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZInteractableComponent::USBZInteractableComponent() {
-    this->OnStart2DAudioEvent = NULL;
-    this->OnFinish2DAudioEvent = NULL;
-    this->OnCancel2DAudioEvent = NULL;
-    this->OnStart3DAudioEvent = NULL;
-    this->OnFinish3DAudioEvent = NULL;
-    this->OnCancel3DAudioEvent = NULL;
+USBZInteractableComponent::USBZInteractableComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->LoopingAkComponent = NULL;
     this->GameplayInteractionQuery = NULL;
     this->SharedKeyItemQuery = NULL;
@@ -18,13 +12,10 @@ USBZInteractableComponent::USBZInteractableComponent() {
     this->bLocalEnabled = true;
     this->bPredictLocalEnd = false;
     this->bSyncInteracting = true;
-    this->bSyncAbortEvent = false;
     this->bRepeatable = false;
     this->bClearInteractorsOnComplete = true;
     this->bIsAllowedInCasing = false;
     this->bIsIllegal = true;
-    this->CompletedComment = NULL;
-    
 }
 
 void USBZInteractableComponent::Stop3DSound(UAkAudioEvent* AudioEvent) {

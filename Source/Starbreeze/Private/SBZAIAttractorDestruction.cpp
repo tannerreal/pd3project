@@ -4,13 +4,25 @@
 #include "SBZPropDamageComponent.h"
 
 ASBZAIAttractorDestruction::ASBZAIAttractorDestruction(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->PropDamage = CreateDefaultSubobject<USBZPropDamageComponent>(TEXT("SBZPropDamageComponent"));
-    this->SoundRange = 1500.00f;
-    this->AttractorComponent = CreateDefaultSubobject<USBZAIAttractorComponent>(TEXT("SBZAIAttractorComponent"));
     this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
     this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
+    this->PropDamage = CreateDefaultSubobject<USBZPropDamageComponent>(TEXT("SBZPropDamageComponent"));
+    this->AttractorComponent = CreateDefaultSubobject<USBZAIAttractorComponent>(TEXT("SBZAIAttractorComponent"));
+    this->bIsAirNavOnDestruction = false;
+}
+
+void ASBZAIAttractorDestruction::OnPropDamageHits(UActorComponent* PoolComponent, int32 Hits, bool bDoCosmetics, const FSBZPropDamageContext& DamageContext) {
+}
+
+void ASBZAIAttractorDestruction::OnPropDamageHealth(UActorComponent* PoolComponent, float Health, bool bDoCosmetics, const FSBZPropDamageContext& DamageContext) {
+}
+
+void ASBZAIAttractorDestruction::Multicast_BreakDestructionAttractor_Implementation() {
+}
+
+void ASBZAIAttractorDestruction::BreakDestructionAttractor() {
 }
 
 

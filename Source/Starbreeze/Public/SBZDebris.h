@@ -1,36 +1,20 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "UObject/NoExportTypes.h"
-#include "Engine/EngineTypes.h"
-#include "Engine/StaticMeshActor.h"
+#include "SBZBaseDebris.h"
 #include "SBZDebris.generated.h"
 
-class AActor;
-class UPhysicalMaterial;
-class UPrimitiveComponent;
 class UStaticMeshComponent;
 
 UCLASS(Blueprintable)
-class ASBZDebris : public AStaticMeshActor {
+class ASBZDebris : public ASBZBaseDebris {
     GENERATED_BODY()
 public:
+protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    UStaticMeshComponent* MeshComponent;
+    UStaticMeshComponent* StaticMeshComponent;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float MinimumImpactForce;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UPhysicalMaterial* PhysicalMaterial;
-    
+public:
     ASBZDebris(const FObjectInitializer& ObjectInitializer);
 
-protected:
-    UFUNCTION(BlueprintCallable)
-    void OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit);
-    
-    UFUNCTION(BlueprintCallable)
-    void CreateImpactPoint(const FHitResult& Hit);
-    
 };
 

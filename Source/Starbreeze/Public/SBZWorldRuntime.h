@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "SBZWorldRuntimeBase.h"
+#include "SBZActiveGlobalCommentPermissionArray.h"
 #include "SBZWorldRuntime.generated.h"
 
 class ASBZDebugDrawingManager;
@@ -11,6 +12,7 @@ class USBZImpactManager;
 class USBZObjectContainer;
 class USBZObservableActorContainer;
 class USBZSignificanceManager;
+class USBZVoiceCommentDataAsset;
 class USBZWorldRuntime;
 
 UCLASS(Blueprintable, NonTransient, Config=Starbreeze)
@@ -19,6 +21,9 @@ class STARBREEZE_API USBZWorldRuntime : public USBZWorldRuntimeBase {
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZActorContainer* AllPawns;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    USBZActorContainer* AllAlivePawns;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZObservableActorContainer* AllPlayerCharacters;
@@ -34,6 +39,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZActorContainer* AllAliveAIGuards;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    USBZActorContainer* AllAliveAIStreetCops;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZActorContainer* AllAliveAIDrones;
@@ -57,7 +65,7 @@ public:
     USBZActorContainer* AllDespawnVolumes;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
-    USBZActorContainer* AllArmedGrenades;
+    USBZActorContainer* AllArmedPlayerGrenades;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZActorContainer* AllRoomVolumes;
@@ -107,6 +115,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZObjectContainer* AllAIObjectives;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    USBZActorContainer* AllBrainslugs;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZImpactManager* ImpactManager;
     
@@ -134,6 +145,14 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZObjectContainer* AllCrewAILifeActionComponents;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    USBZObjectContainer* AllAITowerHideLifeActionObjects;
+    
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TMap<USBZVoiceCommentDataAsset*, FSBZActiveGlobalCommentPermissionArray> GlobalCommentCooldown;
+    
+public:
     USBZWorldRuntime();
 
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))

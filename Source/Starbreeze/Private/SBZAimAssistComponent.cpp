@@ -1,6 +1,6 @@
 #include "SBZAimAssistComponent.h"
 
-USBZAimAssistComponent::USBZAimAssistComponent() {
+USBZAimAssistComponent::USBZAimAssistComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->PlayerCharacter = NULL;
     this->CurrentTarget = NULL;
     this->LastTarget = NULL;

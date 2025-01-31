@@ -8,6 +8,11 @@
 #include "SBZLifeActionSlot.h"
 
 ASBZLure::ASBZLure(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bGenerateOverlapEventsDuringLevelStreaming = true;
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->LureRange = 1000.00f;
     this->LureNoiseStartEvent = NULL;
     this->LureNoiseStopEvent = NULL;
@@ -20,18 +25,13 @@ ASBZLure::ASBZLure(const FObjectInitializer& ObjectInitializer) : Super(ObjectIn
     this->InteractableComponent = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("SBZInteractableComponent"));
     this->LifeActionComponent = CreateDefaultSubobject<USBZLifeActionComponent>(TEXT("SBZLifeActionComponent"));
     this->LifeActionInstance = CreateDefaultSubobject<USBZLifeActionInstance>(TEXT("SBZLifeActionInstance"));
-    this->LifeActionInstance->SetupAttachment(RootComponent);
     this->LifeActionSlot = CreateDefaultSubobject<USBZLifeActionSlot>(TEXT("SBZLifeActionSlot"));
-    this->LifeActionSlot->SetupAttachment(LifeActionInstance);
     this->CurrentInvestigator = NULL;
     this->LureSoundComponent = NULL;
     this->EffectComponent = NULL;
     this->bIsPlayingEffects = false;
-    this->bGenerateOverlapEventsDuringLevelStreaming = true;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->LifeActionInstance->SetupAttachment(RootComponent);
+    this->LifeActionSlot->SetupAttachment(LifeActionInstance);
 }
 
 void ASBZLure::OnServerCompleteInteraction(USBZBaseInteractableComponent* Interactable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {

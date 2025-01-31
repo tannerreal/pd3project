@@ -3,8 +3,6 @@
 #include "BehaviorTree/BTTaskNode.h"
 #include "SBZBTTask_DozerTaunt.generated.h"
 
-class UAnimMontage;
-class UBehaviorTreeComponent;
 class USBZVoiceCommentDataAsset;
 
 UCLASS(Blueprintable)
@@ -18,9 +16,5 @@ private:
 public:
     USBZBTTask_DozerTaunt();
 
-private:
-    UFUNCTION(BlueprintCallable)
-    void OnMontageEnded(UAnimMontage* Montage, bool bIsInterrupted, UBehaviorTreeComponent* OwnerComp);
-    
 };
 

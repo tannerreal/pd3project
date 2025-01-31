@@ -61,7 +61,7 @@ public:
     void UpdateLoadoutConfigFromIndex(int32 InLoadoutIndex);
     
     UFUNCTION(BlueprintCallable)
-    void UpdateLoadoutConfig(const FSBZPlayerLoadoutConfig& PlayerLoadoutConfig);
+    void UpdateLoadoutConfig(const FSBZPlayerLoadoutConfig& PlayerLoadoutConfig, int32 InLoadoutIndex);
     
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnNewConfigUpdated(const FSBZPlayerLoadoutConfig& PlayerLoadoutConfig);

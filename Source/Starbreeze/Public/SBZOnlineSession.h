@@ -24,6 +24,7 @@ class USBZBlockedPlayerManager;
 class USBZChat;
 class USBZFriendManager;
 class USBZGameRecordsManager;
+class USBZGameSessionManager;
 class USBZGlobalLobby;
 class USBZInvites;
 class USBZKickingManager;
@@ -40,9 +41,10 @@ class USBZOnlineVoip;
 class USBZP2PSession;
 class USBZParty;
 class USBZPartyManager;
+class USBZRecentPlayersManager;
 class USBZVotingManager;
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZOnlineSession : public UOnlineSession {
     GENERATED_BODY()
 public:
@@ -141,6 +143,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZPartyManager* PartyManager;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZGameSessionManager* GameSessionManager;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZRecentPlayersManager* RecentPlayersManager;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZOnlineSessionSettingsManager* OnlineSessionSettingManager;

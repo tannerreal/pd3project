@@ -5,12 +5,16 @@
 
 class APawn;
 class USBZOutlineAsset;
+class USBZVoiceCommentDataAsset;
 
 UCLASS(Blueprintable, EditInlineNew)
 class USBZAIOrder_Rescue : public USBZAIOrder_TacticalMoveTo {
     GENERATED_BODY()
 public:
 protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZVoiceCommentDataAsset* RescueHostageComment;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZOutlineAsset* RescueTargetOutline;
     

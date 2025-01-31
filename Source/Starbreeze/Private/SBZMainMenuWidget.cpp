@@ -18,18 +18,25 @@ USBZMainMenuWidget::USBZMainMenuWidget() {
     this->Widget_FullscreenVideo = NULL;
     this->Widget_MainMenuNavbar = NULL;
     this->CosmeticItemButtonClass = NULL;
-    this->CosmeticItemButtonClass = NULL;
     this->CrossplayPopupWidgetClass = NULL;
-    this->CrossplayPopupWidgetClass = NULL;
-    this->TutorialPopupWidgetClass = NULL;
     this->TutorialPopupWidgetClass = NULL;
     this->PopUpBody = NULL;
+    this->LoadoutChangePopupWidgetClass = NULL;
+    this->LoadoutChangePopupHeaderText = FText::FromString(TEXT("WARNING"));
+    this->LoadoutChangePopupDescriptionText = FText::FromString(TEXT("Skill changes caused the following skills to unequip:\n"));
+    this->LoadoutChangePopupListText = FText::FromString(TEXT("{PreviousMessage}\n* {NewMessage}"));
     this->VendorTypeToOpen = ESBZBlackMarketVendorType::None;
 }
 
 void USBZMainMenuWidget::ShowTutorialPopup() {
 }
 
+void USBZMainMenuWidget::ShowTelemetryPopup() {
+}
+
+
+void USBZMainMenuWidget::ShowGameSensePopup() {
+}
 
 void USBZMainMenuWidget::ShowCrossplayPopup() {
 }
@@ -42,6 +49,18 @@ void USBZMainMenuWidget::RequestRemoveBackgroundBlur() {
 
 
 void USBZMainMenuWidget::OnTutorialPopUpClosed(FName ClosingActionName) {
+}
+
+void USBZMainMenuWidget::OnTelemetryPopUpClosed(FName ClosingActionName) {
+}
+
+void USBZMainMenuWidget::OnMainMenuInitializeComplete() {
+}
+
+void USBZMainMenuWidget::OnLoadoutChangePopupClosed(FName ClosingActionName) {
+}
+
+void USBZMainMenuWidget::OnGameSensePopUpClosed(FName ClosingActionName) {
 }
 
 void USBZMainMenuWidget::OnCrossplayPopUpClosed(FName ClosingActionName) {

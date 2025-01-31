@@ -36,7 +36,7 @@ private:
     float ExplosionChance;
     
 public:
-    USBZCosmeticDestructionComponent();
+    USBZCosmeticDestructionComponent(const FObjectInitializer& ObjectInitializer);
 
 private:
     UFUNCTION(BlueprintCallable)

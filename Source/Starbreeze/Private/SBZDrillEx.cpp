@@ -5,6 +5,9 @@
 #include "SBZOutlineComponent.h"
 
 ASBZDrillEx::ASBZDrillEx(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
     this->Duration = 60.00f;
     this->TransitionProgressMultiplier = 1.00f;
     this->TransitionHeatAddition = 0.00f;
@@ -17,9 +20,6 @@ ASBZDrillEx::ASBZDrillEx(const FObjectInitializer& ObjectInitializer) : Super(Ob
     this->OutlineComponent = CreateDefaultSubobject<USBZOutlineComponent>(TEXT("OutlineComponent"));
     this->OutlineAsset = NULL;
     this->AttractorComponent = CreateDefaultSubobject<USBZAIAttractorComponent>(TEXT("SBZAIAttractorComponent"));
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
 }
 
 bool ASBZDrillEx::UnjamDrill() {

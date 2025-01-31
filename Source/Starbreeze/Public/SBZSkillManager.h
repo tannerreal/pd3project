@@ -20,6 +20,11 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnSkillLineRequestResultDelegate ResearchMarkerResultDelegate;
     
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZSkillLine* ModifyingSkillLine;
+    
+public:
     USBZSkillManager();
 
     UFUNCTION(BlueprintCallable)
@@ -57,9 +62,6 @@ public:
     
     UFUNCTION(BlueprintCallable)
     USBZSkillLine* GetPlayerSkillLine(const FName& AccelByteSkuNo);
-    
-    UFUNCTION(BlueprintCallable, BlueprintPure)
-    int32 GetMaxSkillPoints() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     float GetMaxProgressLevel(const USBZSkillLineData* SkillLine) const;

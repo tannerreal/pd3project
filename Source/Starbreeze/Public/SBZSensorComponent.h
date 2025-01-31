@@ -12,7 +12,7 @@ protected:
     bool bIsBlueMode;
     
 public:
-    USBZSensorComponent();
+    USBZSensorComponent(const FObjectInitializer& ObjectInitializer);
 
 };
 

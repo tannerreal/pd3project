@@ -3,7 +3,6 @@
 UPD3HUDRoomStatusWidget::UPD3HUDRoomStatusWidget() {
     this->RoomType = ESBZRoomType::None;
     this->InFeedbackClass = NULL;
-    this->InFeedbackClass = NULL;
     this->bHasGoneLoud = false;
 }
 

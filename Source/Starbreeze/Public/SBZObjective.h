@@ -32,6 +32,9 @@ public:
     bool bUIUseProgressBar;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bReverseProgressBar;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bUIReverseTimer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -86,11 +89,14 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_Progress, meta=(AllowPrivateAccess=true))
     int32 Progress;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
     int32 MaxProgress;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 MaxProgressPerDifficulty[4];
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bCanEverReplicateMaxProgress;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     float StartTimeSeconds;
@@ -121,6 +127,9 @@ protected:
     
     UFUNCTION(BlueprintCallable)
     void OnRep_Progress();
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetMaxProgress(float InMaxProgress);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_OnStateChanged(ESBZObjectiveState NewState);

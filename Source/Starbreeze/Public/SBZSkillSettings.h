@@ -4,7 +4,7 @@
 #include "SBZSkillSettingData.h"
 #include "SBZSkillSettings.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class USBZSkillSettings : public USBZDeveloperSettings {
     GENERATED_BODY()
 public:

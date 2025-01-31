@@ -14,6 +14,7 @@
 #include "SBZGateNavAgentInterface.h"
 #include "SBZRappellingRopeInterface.h"
 #include "SBZSensorInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAIBaseCharacter.generated.h"
 
 class AActor;
@@ -21,7 +22,7 @@ class ASBZAIBaseCharacter;
 class ASBZRappellingRope;
 class ASBZWheeledVehicle;
 class UAnimMontage;
-class UClass;
+class UNavigationQueryFilter;
 class USBZAICharacterAttributeSet;
 class USBZAICharacterMovementComponent;
 class USBZAIInteractorComponent;
@@ -47,13 +48,13 @@ protected:
     FGameplayTagContainer InvalidTargetTags;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* NavFilters[4];
+    TSubclassOf<UNavigationQueryFilter> NavFilters[4];
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USBZAbilitySystemComponent* AbilitySystemComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* AttributeSetClass;
+    TSubclassOf<USBZAICharacterAttributeSet> AttributeSetClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZAICharacterAttributeSet* AttributeSet;
@@ -137,6 +138,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FFloatRange AvoidanceRandomWeight;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsAvoidanceEnabled;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     UAnimMontage* PlayingAgilityMontage;
     
@@ -147,10 +151,10 @@ private:
     bool bCanDoEvades;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* MarkedGameplayEffectClass;
+    float AdditiveBaseEyeHeightTickRate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    float AdditiveBaseEyeHeightTickRate;
+    float CivilianNearRange;
     
 public:
     ASBZAIBaseCharacter(const FObjectInitializer& ObjectInitializer);
@@ -199,10 +203,5 @@ public:
     
 
     // Fix for true pure virtual functions not being implemented
-
-    virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override
-    {
-        return AbilitySystem;
-    }
 };
 

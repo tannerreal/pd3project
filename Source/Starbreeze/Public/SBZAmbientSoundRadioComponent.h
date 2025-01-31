@@ -18,7 +18,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 RadioPlayingChance;
     
-    USBZAmbientSoundRadioComponent();
+    USBZAmbientSoundRadioComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void PlayRadioSoundRand(bool bValue);

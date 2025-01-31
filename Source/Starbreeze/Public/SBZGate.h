@@ -19,12 +19,14 @@
 #include "SBZGateStateChangedDelegateDelegate.h"
 #include "SBZHurtReactionDataInterface.h"
 #include "SBZToolSnapInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZGate.generated.h"
 
 class APawn;
 class ASBZAIBaseCharacter;
 class ASBZAkAcousticPortal;
 class UAkAudioEvent;
+class UNavArea;
 class USBZAIAttractorComponent;
 class USBZGateNavLinkAgilityComponent;
 class USBZGateNavLinkComponent;
@@ -78,6 +80,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 NavLinkCount;
     
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint16 NavlinkEnabledMask;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<USBZGateNavLinkComponent*> NavLinkComponentArray;
     
@@ -92,9 +97,6 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     uint8 bIsOpenFromFrontAllowed: 1;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    uint8 bIsOnlyTraversedWhenAlerted: 1;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     uint8 bIsLinkMoveFinishedStateSet: 1;
@@ -142,6 +144,9 @@ protected:
     FGameplayTag BreachSoundTag;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<UNavArea> NavAreaClass;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZToolSnapData* ToolSnapData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -159,9 +164,21 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float RightNavlinkOffset;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint8 TraversableBehaviorCategoryBitmask;
+    
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     ESBZGateSoundReduction ClosedGateSoundReduction;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool bIsServerRestoringState;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    APawn* PendingMoveIgnorePawn;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    uint8 bIsNavigationLinksEnabled: 1;
     
 public:
     ASBZGate(const FObjectInitializer& ObjectInitializer);
@@ -180,6 +197,11 @@ protected:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SetAttractorInstigator(APawn* InInstigator);
     
+public:
+    UFUNCTION(BlueprintCallable)
+    void SetAllowPortalStateChange(bool bValue);
+    
+protected:
     UFUNCTION(BlueprintCallable)
     void OnStateDone();
     
@@ -201,9 +223,12 @@ protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_OnUnlockingLinkMoveEnded();
     
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_OnAddIgnoreMoveActor(APawn* InPawn);
+    
 public:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_HandleAgilityTagEvent(const FGameplayTag& TagEvent, ASBZAIBaseCharacter* AICharacterInstigator);
+    void Multicast_HandleAgilityTagEvent(const FGameplayTag& TagEvent, ASBZAIBaseCharacter* AICharacterInstigator, const FVector& InstigatorLocation);
     
 protected:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, BlueprintPure)
@@ -215,6 +240,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     ASBZAkAcousticPortal* GetPortalObject() const;
+    
+    UFUNCTION(BlueprintCallable)
+    bool GetAllowPortalStateChange();
     
 
     // Fix for true pure virtual functions not being implemented

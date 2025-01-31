@@ -6,7 +6,7 @@
 
 class USBZStateMachineDataWaitActionPhase;
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZStateMachineStateWaitingActionPhaseBase : public USBZClientStateMachineState {
     GENERATED_BODY()
 public:

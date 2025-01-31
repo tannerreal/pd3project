@@ -6,19 +6,23 @@
 #include "Engine/EngineTypes.h"
 #include "Curves/CurveFloat.h"
 #include "Engine/NetSerialization.h"
+#include "Engine/NetSerialization.h"
 #include "SBZExplosionResult.h"
 #include "SBZExplosive.h"
 #include "SBZExplosivePhysicsEffectData.h"
 #include "SBZProjectileInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZGrenadeProjectile.generated.h"
 
 class ASBZCharacter;
 class UAkAudioEvent;
-class UClass;
+class UGameplayEffect;
 class UMeshComponent;
 class UNiagaraSystem;
 class UPrimitiveComponent;
 class UProjectileMovementComponent;
+class USBZDamageType;
+class USBZLocalPlayerFeedback;
 class USBZMarkerDataAsset;
 class USBZRangedWeaponData;
 class USBZWeaponFireData;
@@ -69,13 +73,16 @@ protected:
     UNiagaraSystem* DetonationEffect;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* DamageGameplayEffectClass;
+    TSubclassOf<UGameplayEffect> DamageGameplayEffectClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* DamageTypeClass;
+    TSubclassOf<USBZDamageType> DamageTypeClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* LocalplayerFeedback;
+    TSubclassOf<USBZLocalPlayerFeedback> LocalPlayerFeedback;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<USBZLocalPlayerFeedback> LocalPlayerInstigatorFeedback;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FRuntimeFloatCurve PlayerFeedbackCurve;
@@ -147,10 +154,10 @@ protected:
     void Multicast_ReplicateExplosion(const FSBZExplosionResult& Result);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_DestroyBreakable(const FHitResult& InBreakableHitResult);
+    void Multicast_OnServerCollision(const FVector_NetQuantize& InLocation);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_CollisionExplosion();
+    void Multicast_DestroyBreakable(const FHitResult& InBreakableHitResult);
     
 
     // Fix for true pure virtual functions not being implemented

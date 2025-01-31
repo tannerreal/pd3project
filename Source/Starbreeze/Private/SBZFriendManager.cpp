@@ -6,9 +6,6 @@ USBZFriendManager::USBZFriendManager() {
 void USBZFriendManager::OnUnblockPlayerComplete(bool bResult, FSBZFriendListEntry PlayerEntry) {
 }
 
-void USBZFriendManager::OnQueryBlockedPlayersDone() {
-}
-
 void USBZFriendManager::OnPlatformUserInitialized() {
 }
 
@@ -27,6 +24,9 @@ bool USBZFriendManager::IsCrossplayAllowed() const {
 }
 
 void USBZFriendManager::HandleUIStackChanged(FSBZUIStackChangedEvent Event) {
+}
+
+void USBZFriendManager::HandleStateEntered(FName StateName) {
 }
 
 TMap<FString, FSBZFriendListEntry> USBZFriendManager::GetUserSearchEntries() {

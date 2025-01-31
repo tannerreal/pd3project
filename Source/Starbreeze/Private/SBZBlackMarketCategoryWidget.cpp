@@ -5,7 +5,7 @@ USBZBlackMarketCategoryWidget::USBZBlackMarketCategoryWidget() {
 }
 
 
-FText USBZBlackMarketCategoryWidget::GetCategoryStringTextFromCategoryEnum(ESBZStoreItemUICategory InCategory) {
+FText USBZBlackMarketCategoryWidget::GetCategoryStringTextFromCategoryEnum(ESBZStoreItemDefaultUICategory InCategory) {
     return FText::GetEmpty();
 }
 

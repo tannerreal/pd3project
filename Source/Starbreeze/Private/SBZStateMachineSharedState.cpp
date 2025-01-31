@@ -1,9 +1,8 @@
 #include "SBZStateMachineSharedState.h"
 #include "Net/UnrealNetwork.h"
 
-USBZStateMachineSharedState::USBZStateMachineSharedState() {
+USBZStateMachineSharedState::USBZStateMachineSharedState(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->OnlineSessionPhase = ESBZOnlineSessionPhase::Undefined;
-    
 }
 
 void USBZStateMachineSharedState::NotifyServerInActionPhase_Implementation() {

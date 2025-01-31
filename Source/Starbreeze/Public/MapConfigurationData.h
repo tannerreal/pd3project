@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "SBZCashRewardModifier.h"
+#include "SBZInfamyPointPayout.h"
 #include "SBZInstantLootValues.h"
 #include "SBZLootValueArray.h"
 #include "SBZPerformanceBonusArray.h"
@@ -18,7 +19,22 @@ public:
     int32 StealthBaseExperience;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 LoudBaseInfamyPointsOnFail;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 StealthBaseInfamyPointsOnFail;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<int32> LoudInfamyPointsOnSurvivingOneAssultDifficultyArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<int32> LoudInfamyPointsOnSurvivingFinalAssultDifficultyArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<float> DifficultyExperienceModifierArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<float> DifficultyInfamyPointsOnFailModifierArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<FSBZCashRewardModifier> StealthDifficultyCashRewardModifierArray;
@@ -45,6 +61,12 @@ public:
     TMap<FString, float> StealthMilestoneToExperienceRewardMap;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FString, float> LoudMilestoneToInfamyPointsOnFailRewardMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FString, float> StealthMilestoneToInfamyPointsOnFailRewardMap;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FString, FSBZPerformanceBonusArray> PerformanceBonusMap;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -55,6 +77,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FString, FSBZPlayerStatisticArray> StealthLevelCompletedStatistics;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZInfamyPointPayout> InfamyPointPayoutArray;
     
     STARBREEZE_API FMapConfigurationData();
 };

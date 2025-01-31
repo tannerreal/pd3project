@@ -7,17 +7,13 @@
 #include "SBZPlayerStateRemovedEvent.h"
 #include "SBZStateMachineStateDsActionPhase.generated.h"
 
-class USBZActionPhaseBaseWidget;
 class USBZStateMachineDataActionPhase;
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZStateMachineStateDsActionPhase : public USBZDsStateMachineState {
     GENERATED_BODY()
 public:
 private:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
-    USBZActionPhaseBaseWidget* ActionPhaseWidget;
-    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZStateMachineDataActionPhase* ActionPhaseData;
     

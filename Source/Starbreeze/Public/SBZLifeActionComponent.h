@@ -43,7 +43,7 @@ protected:
     TArray<ASkeletalMeshActor*> PreviewSkeletals;
     
 public:
-    USBZLifeActionComponent();
+    USBZLifeActionComponent(const FObjectInitializer& ObjectInitializer);
 
 protected:
     UFUNCTION(BlueprintCallable)

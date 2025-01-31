@@ -1,16 +1,16 @@
 #include "SBZMainMenuChallengesWidget.h"
 
 USBZMainMenuChallengesWidget::USBZMainMenuChallengesWidget() {
+    this->StackValue = TEXT("Default__SBZMainMenuChallengesWidget");
     this->Panel_ChallengeButtons = NULL;
     this->Widget_Loading = NULL;
-    this->ChallengeButtonClass = NULL;
     this->ChallengeButtonClass = NULL;
     this->ChallengesDisplayedPerPage = 8;
     this->CategoryCurrent = NULL;
     this->AllStatuses = true;
     this->PagesTotalCount = 1;
     this->PageCurrent = 1;
-    this->StackValue = TEXT("Default__SBZMainMenuChallengesWidget");
+    this->FocusedChallengeButton = NULL;
 }
 
 void USBZMainMenuChallengesWidget::ToggleFilterStatus(EChallengeStatusEnum Status, bool ForceSingleOrNone) {

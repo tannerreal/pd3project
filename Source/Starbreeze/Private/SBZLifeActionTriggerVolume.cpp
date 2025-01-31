@@ -2,6 +2,7 @@
 #include "SBZActorFilterComponent.h"
 
 ASBZLifeActionTriggerVolume::ASBZLifeActionTriggerVolume(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bNetLoadOnClient = false;
     this->bShouldStartEnabled = true;
     this->bDisableOnLifeActionReserved = false;
     this->bDisableOnLifeActionExiting = false;
@@ -10,7 +11,6 @@ ASBZLifeActionTriggerVolume::ASBZLifeActionTriggerVolume(const FObjectInitialize
     this->bTriggeredByHumanShield = false;
     this->bAutoTrigger = false;
     this->Action = NULL;
-    this->bNetLoadOnClient = false;
 }
 
 void ASBZLifeActionTriggerVolume::SetVolumeEnabled(bool bEnabled) {

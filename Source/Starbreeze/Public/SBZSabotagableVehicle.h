@@ -3,17 +3,20 @@
 #include "UObject/NoExportTypes.h"
 #include "Engine/EngineTypes.h"
 #include "GameplayTagContainer.h"
+#include "ESBZVehicleDoorState.h"
 #include "SBZOnVehicleEscortChangedDelegate.h"
 #include "SBZOnVehicleSabotageChangedDelegate.h"
 #include "SBZWheeledVehicle.h"
+#include "Templates/SubclassOf.h"
 #include "SBZSabotagableVehicle.generated.h"
 
 class AActor;
 class ASBZSabotagePoint;
+class UBoxComponent;
 class UCapsuleComponent;
-class UClass;
 class UPrimitiveComponent;
 class USBZPredefinedBoxNavModifierComponent;
+class USceneComponent;
 
 UCLASS(Blueprintable)
 class ASBZSabotagableVehicle : public ASBZWheeledVehicle {
@@ -27,7 +30,7 @@ public:
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SabotagePointClass;
+    TSubclassOf<ASBZSabotagePoint> SabotagePointClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USBZPredefinedBoxNavModifierComponent* MovingNavModifier;
@@ -62,6 +65,12 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float EscortCapsulePreplanningHalfHeight;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    UBoxComponent* InsideTruckVolume;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    USceneComponent* InsideTruckTeleportLocation;
+    
 public:
     ASBZSabotagableVehicle(const FObjectInitializer& ObjectInitializer);
 
@@ -75,6 +84,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void SpawnSabotagePoint();
     
+protected:
+    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
+    void SetRearDoorsState(ESBZVehicleDoorState NewState);
+    
+public:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void SetEscortModeEnabled(bool bEnabled);
     
@@ -92,6 +106,9 @@ private:
     void OnRep_EscortModeEnabled();
     
     UFUNCTION(BlueprintCallable)
+    void OnPlayerInsideTruckBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    
+    UFUNCTION(BlueprintCallable)
     void OnPathEnded();
     
     UFUNCTION(BlueprintCallable)
@@ -99,6 +116,9 @@ private:
     
     UFUNCTION(BlueprintCallable)
     void OnEscortCapsuleBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetRearDoorsState(ESBZVehicleDoorState NewState);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetEscortModeEnabled(bool bEnabled);

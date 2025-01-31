@@ -17,10 +17,13 @@
 #include "SBZPendingUsingSpawnedCarryData.h"
 #include "SBZSpawnedCarryData.h"
 #include "SBZTrafficControl.h"
+#include "Templates/SubclassOf.h"
 #include "PD3HeistGameState.generated.h"
 
 class AActor;
-class UClass;
+class ASBZAICrewCharacter;
+class ASBZPlaceableCharges;
+class ASBZPlaceableWeapon;
 class UMaterialParameterCollection;
 class UMaterialParameterCollectionInstance;
 class UNiagaraParameterCollection;
@@ -100,13 +103,13 @@ private:
     FPD3PagerHeistData PagerHeistDataArray[4];
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* DefaultWeaponBoxClass;
+    TSubclassOf<ASBZPlaceableWeapon> DefaultWeaponBoxClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 MaxCrewCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSet<UClass*> AICrewCharacterClassSet;
+    TSet<TSubclassOf<ASBZAICrewCharacter>> AICrewCharacterClassSet;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     UMaterialParameterCollection* GlobalMaterialParameterCollection;
@@ -139,13 +142,19 @@ private:
     bool bIsAICrewSpawned;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    bool bEscalated;
+    bool bIsAssaultStarted;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     float SavedCustodyTime;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    int32 HostageDemandReduction;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_NegotiationTradeType, meta=(AllowPrivateAccess=true))
     ESBZNegotiationTradeType NegotiationTradeType;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<TSubclassOf<ASBZPlaceableCharges>> TradeHostagePickupAssetArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_ECMCountData, meta=(AllowPrivateAccess=true))
     FSBZECMCountData ECMCountData;

@@ -1,7 +1,7 @@
 #include "SBZMarkerComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZMarkerComponent::USBZMarkerComponent() {
+USBZMarkerComponent::USBZMarkerComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->MarkerAssets[0] = NULL;
     this->MarkerAssets[1] = NULL;
     this->MarkerAssets[2] = NULL;
@@ -24,7 +24,6 @@ USBZMarkerComponent::USBZMarkerComponent() {
     this->MarkerPriority[9] = 0;
     this->MarkerState = ESBZMarkerState::None;
     this->AttachComponent = NULL;
-    
 }
 
 void USBZMarkerComponent::OnRep_MarkerState() {

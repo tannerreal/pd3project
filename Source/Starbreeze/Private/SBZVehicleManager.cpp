@@ -1,6 +1,6 @@
 #include "SBZVehicleManager.h"
 
-USBZVehicleManager::USBZVehicleManager() {
+USBZVehicleManager::USBZVehicleManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZVehicleManager::OnExitedActionPhase() {

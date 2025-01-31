@@ -1,8 +1,8 @@
 #include "SBZMainMenuWeaponVendorWidget.h"
 
 USBZMainMenuWeaponVendorWidget::USBZMainMenuWeaponVendorWidget() {
-    this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
     this->StackValue = TEXT("Default__SBZMainMenuWeaponVendorWidget");
+    this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
 }
 
 void USBZMainMenuWeaponVendorWidget::TryBuyWeaponPreset(const FSBZWeaponPresetStoreItem& WeaponPresetStoreItem) {

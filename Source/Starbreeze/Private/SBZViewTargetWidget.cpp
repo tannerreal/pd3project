@@ -5,7 +5,11 @@ USBZViewTargetWidget::USBZViewTargetWidget() {
 }
 
 
+
 void USBZViewTargetWidget::OnSecurityCameraStateChanged(ESBZCameraState OldState, ESBZCameraState NewState) {
+}
+
+void USBZViewTargetWidget::OnSecurityCameraRuntimeStateChanged(uint8 NewState) {
 }
 
 

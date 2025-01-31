@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
 #include "UObject/Object.h"
 #include "SBZTimeEventManager.generated.h"
 
@@ -16,6 +17,9 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     float GetNextResetTime();
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FDateTime GetLastKnownServerTime() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static USBZTimeEventManager* Get(const UObject* WorldContextObject);

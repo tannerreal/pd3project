@@ -16,7 +16,7 @@ protected:
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    USBZCarryType* CurrentCarryType;
+    TArray<USBZCarryType*> CurrentCarryTypeArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     int32 CurrentControlsReferenceID;

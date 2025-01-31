@@ -21,7 +21,7 @@ protected:
     USBZAgilityTraversalQueryParams* QueryParams;
     
 public:
-    USBZNavLinkTraversalComponent();
+    USBZNavLinkTraversalComponent(const FObjectInitializer& ObjectInitializer);
 
 };
 

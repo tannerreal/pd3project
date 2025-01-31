@@ -2,7 +2,7 @@
 #include "NiagaraComponent.h"
 #include "SBZAmbientSoundComponent.h"
 
-USBZNiagaraWwiseComponent::USBZNiagaraWwiseComponent() {
+USBZNiagaraWwiseComponent::USBZNiagaraWwiseComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->EventToPlayOneShot = NULL;
     this->EventToPlay = NULL;
     this->EventToStopPlay = NULL;

@@ -1,11 +1,10 @@
 #include "SBZMainMenuPrePlanningItemSelectionWidget.h"
 
 USBZMainMenuPrePlanningItemSelectionWidget::USBZMainMenuPrePlanningItemSelectionWidget() {
+    this->StackValue = TEXT("Default__SBZMainMenuPrePlanningItemSelectionWidget");
     this->Panel_ButtonList = NULL;
     this->PreplanningItemButtonClass = NULL;
-    this->PreplanningItemButtonClass = NULL;
     this->CachedPlayerInventory = NULL;
-    this->StackValue = TEXT("Default__SBZMainMenuPrePlanningItemSelectionWidget");
 }
 
 void USBZMainMenuPrePlanningItemSelectionWidget::UpdateAvailablePrePlanningAssetList() {

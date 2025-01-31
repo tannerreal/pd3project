@@ -2,8 +2,8 @@
 #include "Components/SlateWrapperTypes.h"
 
 UPD3DefeatTimerWidget::UPD3DefeatTimerWidget() {
-    this->TimerText = NULL;
     this->Visibility = ESlateVisibility::Hidden;
+    this->TimerText = NULL;
 }
 
 void UPD3DefeatTimerWidget::OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState) {

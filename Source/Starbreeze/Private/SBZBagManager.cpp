@@ -1,8 +1,7 @@
 #include "SBZBagManager.h"
 #include "Net/UnrealNetwork.h"
 
-USBZBagManager::USBZBagManager() : UActorComponent(FObjectInitializer::Get()) {
-    
+USBZBagManager::USBZBagManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 bool USBZBagManager::TryRemoveClaim(FSBZBagHandle Handle, AActor* Actor) {
@@ -17,6 +16,9 @@ bool USBZBagManager::RemoveClaim(FSBZBagHandle Handle, AActor* Actor) {
     return false;
 }
 
+void USBZBagManager::OnRep_Bags() {
+}
+
 void USBZBagManager::Multicast_SecureBag_Implementation(const int32 BagId, const bool bClearClaim) {
 }
 
@@ -24,6 +26,9 @@ void USBZBagManager::Multicast_RemoveClaim_Implementation(const int32 BagId) {
 }
 
 void USBZBagManager::Multicast_RemoveBag_Implementation(const int32 BagId) {
+}
+
+void USBZBagManager::Multicast_CreateBagArray_Implementation(const int32 FirstBagId, const USBZBagType* BagType, const int32 NumberOfBags) {
 }
 
 void USBZBagManager::Multicast_CreateBag_Implementation(const int32 BagId, const USBZBagType* BagType) {
@@ -40,7 +45,7 @@ FSBZBagPersistentData USBZBagManager::GetValidBagData(FSBZBagHandle Handle) cons
     return FSBZBagPersistentData{};
 }
 
-USBZBagManager* USBZBagManager::Get(UObject* WorldContextObject) {
+USBZBagManager* USBZBagManager::Get(const UObject* WorldContextObject) {
     return NULL;
 }
 

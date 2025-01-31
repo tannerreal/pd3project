@@ -2,10 +2,10 @@
 #include "Components/SlateWrapperTypes.h"
 
 UPD3CustodyTimerWidget::UPD3CustodyTimerWidget() {
-    this->PlayerState = NULL;
-    this->TitleText = NULL;
-    this->TimerText = NULL;
     this->Visibility = ESlateVisibility::Hidden;
+    this->TitleText = NULL;
+    this->PlayerState = NULL;
+    this->TimerText = NULL;
 }
 
 

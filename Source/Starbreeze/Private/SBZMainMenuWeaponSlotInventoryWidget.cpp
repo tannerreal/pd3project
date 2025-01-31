@@ -2,7 +2,6 @@
 
 USBZMainMenuWeaponSlotInventoryWidget::USBZMainMenuWeaponSlotInventoryWidget() {
     this->WeaponSlotButtonClass = NULL;
-    this->WeaponSlotButtonClass = NULL;
     this->Panel_WeaponSlotButtons = NULL;
     this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
     this->ActiveWeaponSlotIndex = -1;

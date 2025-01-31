@@ -1,16 +1,17 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "SBZEquippablePartCustomData.h"
+#include "Templates/SubclassOf.h"
 #include "SBZEquippableGadgetData.generated.h"
 
-class UClass;
+class ASBZGadget;
 
 UCLASS(Blueprintable)
 class USBZEquippableGadgetData : public USBZEquippablePartCustomData {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* GadgetClass;
+    TSubclassOf<ASBZGadget> GadgetClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName SpawnSocket;

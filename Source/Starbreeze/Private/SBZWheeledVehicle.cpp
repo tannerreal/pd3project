@@ -10,23 +10,25 @@
 #include "SBZWheeledVehicleSkeletalMeshComponent.h"
 
 ASBZWheeledVehicle::ASBZWheeledVehicle(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZWheeledVehicleSkeletalMeshComponent>(TEXT("VehicleMesh")).SetDefaultSubobjectClass<USBZWheeledVehicleMovementComponent>(TEXT("MovementComp"))) {
+    this->Tags.AddDefaulted(1);
+    this->AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+    this->AIControllerClass = AAIController::StaticClass();
+    const FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
+    (*p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent*>(this)) = (USkeletalMeshComponent*)RootComponent;
     this->AudioComponent = CreateDefaultSubobject<USBZWheeledVehicleAudioComponent>(TEXT("Sound System Component"));
-    this->AudioComponent->SetupAttachment(GetMesh());
     this->RadioComponent = CreateDefaultSubobject<USBZAmbientSoundRadioComponent>(TEXT("Radio Component"));
-    this->RadioComponent->SetupAttachment(GetMesh());
     this->ActiveLightsBitmask = 0;
     this->AnimationCollection = NULL;
     this->VariationSetData = NULL;
     this->NavModifierComponent = CreateDefaultSubobject<USBZWheeledVehicleNavModifierComponent>(TEXT("SBZWheeledVehicleNavModifierComponent"));
     this->SplineFollowingComponent = CreateDefaultSubobject<USBZVehicleSplineFollowingComponent>(TEXT("SBZVehicleSplineFollowingComponent"));
+    this->bEjectCharactersWhenDriving = false;
+    this->EjectionCharacterVelocityFactor = 2.00f;
+    this->MaxEjectCharacterVelocity = 800.00f;
     this->ObstacleCheckInterval = 0.04f;
     this->Seed = -1;
-    this->AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
-    this->AIControllerClass = AAIController::StaticClass();
-    FProperty* p_bReplicateMovement = GetClass()->FindPropertyByName("bReplicateMovement");
-    *p_bReplicateMovement->ContainerPtrToValuePtr<uint8>(this) = false;
-    FProperty* p_Mesh_Prior = GetClass()->FindPropertyByName("Mesh");
-    this->RootComponent = *p_Mesh_Prior->ContainerPtrToValuePtr<USBZWheeledVehicleSkeletalMeshComponent*>(this);
+    this->AudioComponent->SetupAttachment(RootComponent);
+    this->RadioComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZWheeledVehicle::SetLightType(ESBZVehicleLightType LightType, bool bIsOn) {
@@ -65,10 +67,16 @@ void ASBZWheeledVehicle::OnRep_DoorStatesPerType() {
 void ASBZWheeledVehicle::OnPathEndReachedCallback() {
 }
 
+void ASBZWheeledVehicle::OnEjectionVolumeBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult) {
+}
+
 void ASBZWheeledVehicle::OnBeginStopCallback() {
 }
 
 void ASBZWheeledVehicle::Multicast_SetDoorState_Implementation(ESBZVehicleDoorType DoorType, ESBZVehicleDoorState DoorState) {
+}
+
+void ASBZWheeledVehicle::Multicast_EjectOverlappingCharacters_Implementation(ACharacter* Character, const FVector& EjectionVelocity) {
 }
 
 USBZVehicleSplineFollowingComponent* ASBZWheeledVehicle::GetVehicleSplineFollowingComponent() const {
@@ -77,6 +85,9 @@ USBZVehicleSplineFollowingComponent* ASBZWheeledVehicle::GetVehicleSplineFollowi
 
 ESBZVehicleDoorState ASBZWheeledVehicle::GetDoorState(ESBZVehicleDoorType DoorType) const {
     return ESBZVehicleDoorState::Opened;
+}
+
+void ASBZWheeledVehicle::AddEjectionVolume(UBoxComponent* EjectionVolume) {
 }
 
 void ASBZWheeledVehicle::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

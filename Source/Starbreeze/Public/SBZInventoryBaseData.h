@@ -33,6 +33,9 @@ public:
     FText DescriptionText;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FText ShortDescriptionText;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FText TypeClassText;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -46,6 +49,9 @@ public:
     
     USBZInventoryBaseData();
 
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    FText GetFormattedDescriptionText() const;
+    
     UFUNCTION(BlueprintCallable, BlueprintPure)
     void GetDisplayName(FText& OutDisplayName, bool& OutHasText) const;
     

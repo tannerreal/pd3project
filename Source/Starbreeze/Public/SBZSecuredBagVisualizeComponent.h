@@ -23,7 +23,7 @@ protected:
     TArray<FSBZComponentSelector> SpawnLocationArray;
     
 public:
-    USBZSecuredBagVisualizeComponent();
+    USBZSecuredBagVisualizeComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

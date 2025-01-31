@@ -67,8 +67,5 @@ public:
     UFUNCTION(BlueprintCallable)
     bool CustomizeSkillsForPlayerLoadoutIndex(int32 InLoadoutIndex);
     
-    UFUNCTION(BlueprintCallable)
-    bool CustomizeSkillsForPlayerLoadout(const FSBZPlayerLoadoutConfig& InLoadoutToConfig);
-    
 };
 

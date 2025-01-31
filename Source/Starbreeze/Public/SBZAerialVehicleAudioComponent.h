@@ -51,7 +51,7 @@ protected:
     float TyreSoundMultiplicationValue;
     
 public:
-    USBZAerialVehicleAudioComponent();
+    USBZAerialVehicleAudioComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void StopEngineSound();

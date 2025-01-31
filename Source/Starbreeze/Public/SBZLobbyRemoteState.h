@@ -5,7 +5,7 @@
 #include "SBZLobbyCharacterInfo.h"
 #include "SBZLobbyRemoteState.generated.h"
 
-UCLASS(Blueprintable, NotPlaceable, Transient)
+UCLASS(Blueprintable, NotPlaceable, Transient, Config=Engine)
 class STARBREEZE_API ASBZLobbyRemoteState : public AInfo {
     GENERATED_BODY()
 public:

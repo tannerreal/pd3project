@@ -29,7 +29,7 @@ protected:
     TArray<FSBZPropDamagePool> DamagePools;
     
 public:
-    USBZPropDamageComponent();
+    USBZPropDamageComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

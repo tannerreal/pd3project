@@ -4,6 +4,9 @@ USBZStateMachineStateABPreMatch::USBZStateMachineStateABPreMatch() {
     this->MatchmakingData = NULL;
 }
 
+void USBZStateMachineStateABPreMatch::OnPlayerReadyStatusUpdated(bool bIsReady) {
+}
+
 void USBZStateMachineStateABPreMatch::HandleReceivedPlayerReadyAck() {
 }
 

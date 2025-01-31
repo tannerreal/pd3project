@@ -1,6 +1,6 @@
 #include "SBZLifeActionManager.h"
 
-USBZLifeActionManager::USBZLifeActionManager() {
+USBZLifeActionManager::USBZLifeActionManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZLifeActionManager::StopActionForCharacter(ASBZCharacter* Character, USBZLifeActionSlot* Slot, ESBZLifeActionStopReason StopReason) {

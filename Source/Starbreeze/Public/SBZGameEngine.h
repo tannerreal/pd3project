@@ -9,5 +9,9 @@ class USBZGameEngine : public UGameEngine {
 public:
     USBZGameEngine();
 
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnResumingGamePopupClosed(FName ActionName);
+    
 };
 

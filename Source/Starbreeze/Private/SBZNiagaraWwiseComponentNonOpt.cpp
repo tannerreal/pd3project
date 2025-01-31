@@ -2,7 +2,7 @@
 #include "AkComponent.h"
 #include "NiagaraComponent.h"
 
-USBZNiagaraWwiseComponentNonOpt::USBZNiagaraWwiseComponentNonOpt() {
+USBZNiagaraWwiseComponentNonOpt::USBZNiagaraWwiseComponentNonOpt(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->EventToPlayOneShot = NULL;
     this->EventToPlay = NULL;
     this->EventToStopPlay = NULL;

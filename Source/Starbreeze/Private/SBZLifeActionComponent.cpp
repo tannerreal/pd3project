@@ -1,6 +1,6 @@
 #include "SBZLifeActionComponent.h"
 
-USBZLifeActionComponent::USBZLifeActionComponent() {
+USBZLifeActionComponent::USBZLifeActionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZLifeActionComponent::OnSlotStart(ASBZCharacter* Character, USBZLifeActionInstance* ActionInstance, USBZLifeActionSlot* ActionSlot) {

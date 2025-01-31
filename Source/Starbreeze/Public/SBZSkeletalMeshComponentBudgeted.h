@@ -14,7 +14,7 @@ protected:
     USBZCapsuleShadowingData* CapsuleShadowingData;
     
 public:
-    USBZSkeletalMeshComponentBudgeted();
+    USBZSkeletalMeshComponentBudgeted(const FObjectInitializer& ObjectInitializer);
 
 };
 

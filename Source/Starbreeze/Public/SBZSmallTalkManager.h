@@ -67,7 +67,7 @@ private:
     TMap<AActor*, USBZDialogDataAsset*> SoloCullingMap;
     
 public:
-    USBZSmallTalkManager();
+    USBZSmallTalkManager(const FObjectInitializer& ObjectInitializer);
 
 private:
     UFUNCTION(BlueprintCallable)

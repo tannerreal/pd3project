@@ -37,7 +37,7 @@ private:
     USceneComponent* AttachComponent;
     
 public:
-    USBZMarkerComponent();
+    USBZMarkerComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

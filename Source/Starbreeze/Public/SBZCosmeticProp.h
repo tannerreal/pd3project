@@ -5,9 +5,16 @@
 #include "SBZPoolableActorInterface.h"
 #include "SBZCosmeticProp.generated.h"
 
+class UMeshComponent;
+
 UCLASS(Blueprintable)
 class ASBZCosmeticProp : public AActor, public ISBZPoolableActorInterface {
     GENERATED_BODY()
+public:
+protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    TArray<UMeshComponent*> MeshArray;
+    
 public:
     ASBZCosmeticProp(const FObjectInitializer& ObjectInitializer);
 

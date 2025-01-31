@@ -22,6 +22,9 @@ protected:
     UPD3HeistDataAsset* HeistData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    int32 HeistCollectionIndex;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     int32 HeistIndex;
     
 public:
@@ -29,6 +32,9 @@ public:
 
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnHeistDataInitialized();
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnFocusChanged(bool bIsFocused);
     
     UFUNCTION(BlueprintCallable)
     void InitializeHeistDataFromSoftObjectPath(const FSoftObjectPath& InHeistSoftObjectPath);

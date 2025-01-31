@@ -4,6 +4,7 @@
 #include "SBZSpawnCloset.generated.h"
 
 class APD3PawnSpawnGroup;
+class ASBZAICharacter;
 class ASBZRoomVolume;
 
 UCLASS(Blueprintable, MinimalAPI)
@@ -23,6 +24,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bStayOpenDuringStealth;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float ReactionDelay;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     int32 NumberOfBlockingActors;
     
@@ -31,6 +35,9 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     bool bIsStealth;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TArray<ASBZAICharacter*> CiviliansInVolume;
     
 public:
     ASBZSpawnCloset(const FObjectInitializer& ObjectInitializer);

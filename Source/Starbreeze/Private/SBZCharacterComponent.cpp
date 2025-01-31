@@ -1,9 +1,7 @@
 #include "SBZCharacterComponent.h"
 
-USBZCharacterComponent::USBZCharacterComponent() {
-}
-
-void USBZCharacterComponent::NativeOnSkeletalMeshLoaded(USkeletalMesh* NewSkeletalMesh) {
+USBZCharacterComponent::USBZCharacterComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->MeshComponent = NULL;
 }
 
 

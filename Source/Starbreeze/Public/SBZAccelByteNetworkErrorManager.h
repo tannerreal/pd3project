@@ -24,6 +24,9 @@ private:
     UFUNCTION(BlueprintCallable)
     void PollAccelTimeService();
     
+    UFUNCTION(BlueprintCallable)
+    void OnPopUpWaitToReconnectClosed(FName ActionName);
+    
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
     static USBZAccelByteNetworkErrorManager* Get(const UObject* WorldContextObject);

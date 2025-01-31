@@ -1,6 +1,6 @@
 #include "SBZVehicleAudioComponent.h"
 
-USBZVehicleAudioComponent::USBZVehicleAudioComponent() {
+USBZVehicleAudioComponent::USBZVehicleAudioComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->EngineSoundEvent = NULL;
     this->EngineStopSoundEvent = NULL;
     this->TyreFrictionSoundEvent = NULL;

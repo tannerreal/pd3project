@@ -7,6 +7,8 @@
 #include "SBZChallengeProgressStat.h"
 #include "SBZOnCompletedAchievementRequestDoneDelegateDelegate.h"
 #include "SBZOnCompletedChallengeRequestDoneDelegateDelegate.h"
+#include "SBZOnDailyChallengesUpdatedDelegateDelegate.h"
+#include "SBZRecommendedChallenges.h"
 #include "SBZStatData.h"
 #include "SBZChallengeManager.generated.h"
 
@@ -24,6 +26,9 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSBZOnCompletedAchievementRequestDoneDelegate OnCompletedAchievement;
     
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZOnDailyChallengesUpdatedDelegate OnDailyChallengesUpdated;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZChallengeLocalizationOverrides* LocalizationOverrides;
     
@@ -32,10 +37,10 @@ protected:
     FString InfamyPointRewardStatID;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UStringTable* ChallengesStringTable;
+    TArray<UStringTable*> ChallengesStringTables;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UStringTable* ChallengesStatsStringTable;
+    TArray<UStringTable*> ChallengesStatsStringTables;
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -63,6 +68,9 @@ public:
     USBZChallengeManager();
 
     UFUNCTION(BlueprintCallable)
+    void RefreshDailySlot(int32 SlotIndex);
+    
+    UFUNCTION(BlueprintCallable)
     void RefreshChallengeRecordCache();
     
 private:
@@ -75,6 +83,15 @@ private:
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     int32 GetStatProgress(const FName& InStatID);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetRerollAvailable() const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool GetRecommendedChallenges(const FString& ScreenName, FSBZRecommendedChallenges& RecommendedChallengesOut) const;
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    TArray<FSBZChallengeData> GetDailyChallengesArray() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     TArray<FSBZChallengeData> GetCompletedChallengesDuringMission() const;

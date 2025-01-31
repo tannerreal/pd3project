@@ -1,6 +1,7 @@
 #include "SBZAIOrder_Rescue.h"
 
 USBZAIOrder_Rescue::USBZAIOrder_Rescue() {
+    this->RescueHostageComment = NULL;
     this->RescueTargetOutline = NULL;
 }
 

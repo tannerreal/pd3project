@@ -2,16 +2,16 @@
 #include "Components/SlateWrapperTypes.h"
 
 UPD3ActionNotificationWidget::UPD3ActionNotificationWidget() {
+    this->Visibility = ESlateVisibility::Collapsed;
     this->Text_ActionText = NULL;
     this->FadeOutAnimation = NULL;
-    this->Visibility = ESlateVisibility::Collapsed;
 }
 
 void UPD3ActionNotificationWidget::OnRevive(const FSBZReviveEvent& ReviveEventData) {
 }
 
 
-void UPD3ActionNotificationWidget::HandleTakenDamageEvent(const FSBZDamageEvent& DamageEventData) {
+void UPD3ActionNotificationWidget::OnAICharacterKilled(ASBZCharacter* Character) {
 }
 
 

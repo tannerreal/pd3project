@@ -9,7 +9,7 @@
 #include "SBZWeaponBaseAttackData.h"
 #include "SBZWeaponFireData.generated.h"
 
-class UClass;
+class ASBZGrenadeProjectile;
 
 UCLASS(Blueprintable)
 class STARBREEZE_API USBZWeaponFireData : public USBZWeaponBaseAttackData {
@@ -28,6 +28,9 @@ public:
     uint32 ProjectilesPerFiredRound;
     
     UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
+    uint32 BurstRoundCount;
+    
+    UPROPERTY(EditAnywhere, meta=(AllowPrivateAccess=true))
     uint32 MaximumPenetrationCount;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -43,6 +46,9 @@ public:
     float AdditionalPlayerRange;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float OverHealDamageMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ArmorPenetration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -52,7 +58,7 @@ public:
     ESBZWeaponAmmoVisibilityType AmmoVisibilityType;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TSoftClassPtr<UClass> GrenadeProjectileClass;
+    TSoftClassPtr<ASBZGrenadeProjectile> GrenadeProjectileClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ArmorPenetrationProjectile;
@@ -82,6 +88,9 @@ public:
     int32 AmmoVisibleMax;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    int32 AmmoVisibleMaxPreviewOverride;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsEmptyAmmoEjected;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -92,6 +101,21 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsChamberRotatedEachReloadedRound;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsUsingRemoveMagazineCycle;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsUsingInsertMagazine;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsUsingInsertMagazineCycle;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsUsingInsertAmmoCycle1;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsUsingInsertAmmoCycle2;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))

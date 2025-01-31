@@ -52,7 +52,7 @@ private:
     float AttenuationSquared;
     
 public:
-    USBZAmbientSoundComponent();
+    USBZAmbientSoundComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void SetSwitchState(const UAkSwitchValue* SwitchValue, const FString& InSwitchGroup, const FString& InSwitchState);

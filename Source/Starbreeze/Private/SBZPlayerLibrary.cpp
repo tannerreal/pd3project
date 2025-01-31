@@ -1,4 +1,5 @@
 #include "SBZPlayerLibrary.h"
+#include "Templates/SubclassOf.h"
 
 USBZPlayerLibrary::USBZPlayerLibrary() {
 }
@@ -23,7 +24,7 @@ int32 USBZPlayerLibrary::GetNumAlivePlayers(const UObject* WorldContextObject) {
     return 0;
 }
 
-APlayerState* USBZPlayerLibrary::GetLocalPlayerState(const UObject* WorldContextObject) {
+ASBZPlayerState* USBZPlayerLibrary::GetLocalPlayerState(const UObject* WorldContextObject) {
     return NULL;
 }
 
@@ -43,6 +44,10 @@ void USBZPlayerLibrary::GetClosestPlayerToActor(const UObject* WorldContextObjec
 
 TArray<ASBZPlayerCharacter*> USBZPlayerLibrary::GetAllSBZPlayerCharacters(const UObject* WorldContextObject) {
     return TArray<ASBZPlayerCharacter*>();
+}
+
+int32 USBZPlayerLibrary::ApplyCameraFeedbackToLocalPlayer(const UObject* WorldContextObject, const TSubclassOf<USBZLocalPlayerFeedback>& FeedbackClass, const FVector& Origin, const int32 Range) {
+    return 0;
 }
 
 

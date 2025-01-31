@@ -2,16 +2,13 @@
 #include "Components/StaticMeshComponent.h"
 
 ASBZSmallCosmeticDestruction::ASBZSmallCosmeticDestruction(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<UStaticMeshComponent>(TEXT("StaticMeshComponent0"))) {
+    this->Tags.AddDefaulted(1);
     this->bMoveToDebris = true;
     this->bDestroyWhenActivated = false;
     this->bCanBeActivatedByPlayerOverlap = true;
     this->bReceivesDamageFromMelee = true;
     this->MinimumImpactForce = 10.00f;
     this->PhysicalMaterial = NULL;
-    FProperty* p_bCanBeDamaged = GetClass()->FindPropertyByName("bCanBeDamaged");
-    *p_bCanBeDamaged->ContainerPtrToValuePtr<uint8>(this) = true;
-    this->Tags.AddDefaulted(1);
-    /*this->bWantsDetailedDamageEvents = true;*/
 }
 
 void ASBZSmallCosmeticDestruction::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit) {

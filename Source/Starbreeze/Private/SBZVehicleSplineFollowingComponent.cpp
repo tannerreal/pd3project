@@ -1,7 +1,7 @@
 #include "SBZVehicleSplineFollowingComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZVehicleSplineFollowingComponent::USBZVehicleSplineFollowingComponent() {
+USBZVehicleSplineFollowingComponent::USBZVehicleSplineFollowingComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->VehicleManager = NULL;
     this->TargetSpeed = 0.00f;
     this->Speed = 0.00f;
@@ -16,7 +16,6 @@ USBZVehicleSplineFollowingComponent::USBZVehicleSplineFollowingComponent() {
     this->Deceleration = -1500.00f;
     this->bIsStopping = false;
     this->bIsStopRequestedByUser = false;
-    
 }
 
 void USBZVehicleSplineFollowingComponent::Stop() {

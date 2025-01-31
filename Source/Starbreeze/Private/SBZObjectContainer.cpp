@@ -3,7 +3,6 @@
 USBZObjectContainer::USBZObjectContainer() {
     this->RestrictedObjectClass = UObject::StaticClass();
     this->RestrictedInterfaceType = NULL;
-    this->RestrictedInterfaceType = NULL;
     this->bAllowDuplicates = false;
     this->bKeepSorted = false;
 }

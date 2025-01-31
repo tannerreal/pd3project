@@ -21,6 +21,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName SightSocket;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float PitchLookEaseTime;
+    
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ASBZPlayerCharacter* OwningCharacter;
@@ -41,7 +44,7 @@ private:
     TArray<UMeshComponent*> TargetingHideMeshArray;
     
 public:
-    USBZFirstPersonCameraAttachment();
+    USBZFirstPersonCameraAttachment(const FObjectInitializer& ObjectInitializer);
 
 };
 

@@ -4,7 +4,11 @@
 #include "SBZInteractableComponent.h"
 
 ASBZThermite::ASBZThermite(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->BagOverlapBoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+    this->BagOverlapBoxComponent = (UBoxComponent*)RootComponent;
     this->IgnitionInteractableComponent = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("SBZInteractableComponent"));
     this->BurnDuration = 360.00f;
     this->ExplosionChance = 0.50f;
@@ -19,10 +23,6 @@ ASBZThermite::ASBZThermite(const FObjectInitializer& ObjectInitializer) : Super(
     this->BurnModifier = 1.00f;
     this->TimeSinceLastExplosionCheck = 0.00f;
     this->InitialSeed = -1;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = BagOverlapBoxComponent;
 }
 
 void ASBZThermite::SetOutsideInterferenceActive(const bool bInActive) {

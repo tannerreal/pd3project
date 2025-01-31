@@ -2,8 +2,8 @@
 #include "Components/SlateWrapperTypes.h"
 
 UPD3MaskOnNotificationWidget::UPD3MaskOnNotificationWidget() {
-    this->bIsPuttingOnMask = false;
     this->Visibility = ESlateVisibility::Collapsed;
+    this->bIsPuttingOnMask = false;
 }
 
 

@@ -2,10 +2,12 @@
 #include "CoreMinimal.h"
 #include "SBZPlayerReadyInfo.h"
 #include "SBZWidgetBase.h"
+#include "Templates/SubclassOf.h"
 #include "SBZJobOverviewBaseWidget.generated.h"
 
-class UClass;
+class ASBZPlayerState;
 class UPanelWidget;
+class USBZJobOverviewPlayerStatusWidget;
 
 UCLASS(Blueprintable, EditInlineNew)
 class USBZJobOverviewBaseWidget : public USBZWidgetBase {
@@ -13,7 +15,7 @@ class USBZJobOverviewBaseWidget : public USBZWidgetBase {
 public:
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* PlayerStatusWidgetClass;
+    TSubclassOf<USBZJobOverviewPlayerStatusWidget> PlayerStatusWidgetClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UPanelWidget* Panel_PartyWidgetContainer;
@@ -25,13 +27,15 @@ private:
     UFUNCTION(BlueprintCallable)
     void OnPlayerReadyStatusUpdated(const TArray<FSBZPlayerReadyInfo>& PlayerReadyStatus);
     
-public:
+protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
-    void IntroSequenceStarted();
+    void BP_OnPlayerStateSkipIntroSequenceChanged(ASBZPlayerState* PlayerState);
     
-private:
-    UFUNCTION(BlueprintCallable)
-    void HandleIntroSequenceStarted();
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void BP_OnPlayerStateCountChanged(ASBZPlayerState* PlayerState);
+    
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void BP_OnIntroSequenceChanged(bool bIsStarted);
     
 };
 

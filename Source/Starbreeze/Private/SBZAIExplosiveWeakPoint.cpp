@@ -1,7 +1,6 @@
 #include "SBZAIExplosiveWeakPoint.h"
 
-USBZAIExplosiveWeakPoint::USBZAIExplosiveWeakPoint() {
-    this->GameplayEffectClass = NULL;
+USBZAIExplosiveWeakPoint::USBZAIExplosiveWeakPoint(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->GameplayEffectClass = NULL;
     this->AIExplosionRange = 500.00f;
     this->PlayerExplosionRange = 300.00f;

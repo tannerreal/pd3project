@@ -15,7 +15,7 @@ private:
     TArray<FSBZRagdollInfo> Ragdolls;
     
 public:
-    USBZRagdollSyncManager();
+    USBZRagdollSyncManager(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

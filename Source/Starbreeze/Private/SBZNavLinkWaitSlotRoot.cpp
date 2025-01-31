@@ -1,6 +1,6 @@
 #include "SBZNavLinkWaitSlotRoot.h"
 
-USBZNavLinkWaitSlotRoot::USBZNavLinkWaitSlotRoot() {
+USBZNavLinkWaitSlotRoot::USBZNavLinkWaitSlotRoot(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 

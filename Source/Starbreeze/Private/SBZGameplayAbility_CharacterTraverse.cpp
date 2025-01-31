@@ -2,10 +2,10 @@
 #include "ESBZAbilityInput.h"
 
 USBZGameplayAbility_CharacterTraverse::USBZGameplayAbility_CharacterTraverse() {
+    this->InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
+    this->Input = ESBZAbilityInput::Jump;
     this->bComputeTrajectoryOnActivationAttempt = true;
     this->MovementComponent = NULL;
-    this->Input = ESBZAbilityInput::Jump;
-    this->InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 }
 
 

@@ -7,6 +7,7 @@
 #include "SBZAIVisibilityLeafNode.h"
 #include "SBZAIVisibilityRelevant.h"
 #include "SBZAIVisibilitySerializablePayload.h"
+#include "SBZCoverShootingPointAiVisibilityInfo.h"
 #include "SBZCoverShootingPoints.h"
 #include "SBZRoomVolumeInterface.h"
 #include "SBZCoverPoint.generated.h"
@@ -43,6 +44,15 @@ protected:
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float LinkRadius;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TSet<AActor*> BlockingActors;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TSet<AActor*> OverlappingActors;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TArray<FSBZCoverShootingPointAiVisibilityInfo> ShootingPointsVisibilityInfo;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ASBZRoomVolume* CurrentRoom;

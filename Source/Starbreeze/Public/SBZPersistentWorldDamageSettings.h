@@ -3,7 +3,7 @@
 #include "SBZDeveloperSettings.h"
 #include "SBZPersistentWorldDamageSettings.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class USBZPersistentWorldDamageSettings : public USBZDeveloperSettings {
     GENERATED_BODY()
 public:

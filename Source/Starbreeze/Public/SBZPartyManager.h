@@ -84,7 +84,7 @@ public:
     USBZPartyManager();
 
     UFUNCTION(BlueprintCallable)
-    void SetLobbyType(ESBZOnlineJoinType InLobbyType);
+    void SetLobbyType(ESBZOnlineJoinType InLobbyType, bool bIsSaved);
     
     UFUNCTION(BlueprintCallable)
     FString SendPublicMessage(const FString& Message);
@@ -105,7 +105,7 @@ public:
     int32 GetPartyPlayersNumber() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
-    static USBZPartyManager* GetPartyManager(UObject* WorldContextObject);
+    static USBZPartyManager* GetPartyManager(const UObject* WorldContextObject);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     FSBZPartyMember GetPartyLeader() const;

@@ -9,6 +9,7 @@
 
 class USBZPlayerStatisticsData;
 class USBZPlayerStatisticsManager;
+class USBZServerStatBatcher;
 
 UCLASS(Blueprintable)
 class STARBREEZE_API USBZPlayerStatisticsManager : public UObject, public ISBZPlayerStatisticsManagerInterface {
@@ -20,6 +21,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<FUniqueNetIdRepl, USBZPlayerStatisticsData*> ServerPlayerStatisticsData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZServerStatBatcher* ServerStatBatcher;
     
 public:
     USBZPlayerStatisticsManager();

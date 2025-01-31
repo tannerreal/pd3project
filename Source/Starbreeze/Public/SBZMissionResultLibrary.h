@@ -16,6 +16,9 @@ public:
     USBZMissionResultLibrary();
 
     UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 GetTotalNumberOfSecuredBags(const FSBZEndMissionResultData& Resultdata);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
     static FSBZPlayerEndMissionResultData GetPlayerData(const FSBZEndMissionResultData& ResultData, int32 PlayerId);
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
@@ -32,6 +35,12 @@ public:
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static int32 GetAllPlayersHaveKilledCount(const FSBZEndMissionResultData& ResultData);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 GetAllPlayersHaveGuardKilledCount(const FSBZEndMissionResultData& ResultData);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    static int32 GetAllPlayersHaveCivilianKilledCount(const FSBZEndMissionResultData& ResultData);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static float GetAllPlayersEquippableAccuracy(const FSBZEndMissionResultData& ResultData, int32 EquippableIndex);

@@ -54,7 +54,7 @@ protected:
     float RtpcInterpolationTimerMS;
     
 public:
-    USBZNiagaraWwiseComponent();
+    USBZNiagaraWwiseComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void UpdateRtpc(float RtpcValue, float RtpcInterpolationValue);

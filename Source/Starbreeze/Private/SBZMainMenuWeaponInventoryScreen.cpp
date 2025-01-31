@@ -1,7 +1,7 @@
 #include "SBZMainMenuWeaponInventoryScreen.h"
 
 USBZMainMenuWeaponInventoryScreen::USBZMainMenuWeaponInventoryScreen() {
-    this->WeaponSlotButtonClass = NULL;
+    this->StackValue = TEXT("Default__SBZMainMenuWeaponInventoryScreen");
     this->WeaponSlotButtonClass = NULL;
     this->Panel_WeaponSlotButtons = NULL;
     this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
@@ -12,13 +12,14 @@ USBZMainMenuWeaponInventoryScreen::USBZMainMenuWeaponInventoryScreen() {
     this->WeaponSlotCount = 0;
     this->Button_WeaponSlotStoreItem = NULL;
     this->DiscardWeaponPopUpBodyWidgetClass = NULL;
-    this->DiscardWeaponPopUpBodyWidgetClass = NULL;
     this->WeaponToDiscardIndex = -1;
     this->DiscardWeaponPopUpBody = NULL;
-    this->StackValue = TEXT("Default__SBZMainMenuWeaponInventoryScreen");
 }
 
 
+
+void USBZMainMenuWeaponInventoryScreen::UpdateWeaponSlotButtons() {
+}
 
 void USBZMainMenuWeaponInventoryScreen::UpdateActiveWeaponSlotIndex(int32 InNewIndex) {
 }

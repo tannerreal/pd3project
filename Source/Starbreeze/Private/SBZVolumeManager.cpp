@@ -1,6 +1,8 @@
 #include "SBZVolumeManager.h"
 
 USBZVolumeManager::USBZVolumeManager() {
+    this->PauseEvent = NULL;
+    this->ResumeEvent = NULL;
 }
 
 USBZVolumeManager* USBZVolumeManager::GetVolumeManager(UObject* WorldContextObject) {

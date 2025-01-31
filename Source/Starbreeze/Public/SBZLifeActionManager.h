@@ -31,7 +31,7 @@ protected:
     TArray<TSoftObjectPtr<UAnimMontage>> LoadingMontages;
     
 public:
-    USBZLifeActionManager();
+    USBZLifeActionManager(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void StopActionForCharacter(ASBZCharacter* Character, USBZLifeActionSlot* Slot, ESBZLifeActionStopReason StopReason);

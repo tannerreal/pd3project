@@ -2,7 +2,6 @@
 
 USBZAIUtilityScorer_HasBBValue::USBZAIUtilityScorer_HasBBValue() {
     this->KeyType = NULL;
-    this->KeyType = NULL;
 }
 
 

@@ -3,4 +3,7 @@
 USBZMetaDataLoader::USBZMetaDataLoader() {
 }
 
+void USBZMetaDataLoader::OnRetryGetUserEntitlements() {
+}
+
 

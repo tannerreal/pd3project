@@ -1,9 +1,10 @@
 #include "SBZSkillAmmoSpecialistHighGrain.h"
+#include "SBZAmmoSpecialistHighGrainCrewEffect.h"
 
 USBZSkillAmmoSpecialistHighGrain::USBZSkillAmmoSpecialistHighGrain() {
+    this->CrewEffect = USBZAmmoSpecialistHighGrainCrewEffect::StaticClass();
     this->FloatArray.AddDefaulted(2);
-    FProperty* p_NativeClass = GetClass()->FindPropertyByName("NativeClass");
-    *p_NativeClass->ContainerPtrToValuePtr<UClass*>(this) = USBZSkillAmmoSpecialistHighGrain::StaticClass();
+    this->IntArray.AddDefaulted(1);
 }
 
 

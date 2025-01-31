@@ -1,6 +1,6 @@
 #include "SBZRenderTargetWidgetComponent.h"
 
-USBZRenderTargetWidgetComponent::USBZRenderTargetWidgetComponent() {
+USBZRenderTargetWidgetComponent::USBZRenderTargetWidgetComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZRenderTargetWidgetComponent::SetWidgetAsTextureParameter(UMaterialInstanceDynamic* Target, const FName& ParameterName) {

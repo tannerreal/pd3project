@@ -1,7 +1,7 @@
 #include "SBZLaserSightComponent.h"
 #include "NiagaraComponent.h"
 
-USBZLaserSightComponent::USBZLaserSightComponent() {
+USBZLaserSightComponent::USBZLaserSightComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->LaserEffectComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
     this->FocusTime = 1.00f;
     this->MaxHorizontalOffset = 200.00f;

@@ -3,6 +3,8 @@
 USBZOnlineSession::USBZOnlineSession() {
     this->Party = NULL;
     this->PartyManager = NULL;
+    this->GameSessionManager = NULL;
+    this->RecentPlayersManager = NULL;
     this->OnlineSessionSettingManager = NULL;
     this->Lobby = NULL;
     this->Chat = NULL;

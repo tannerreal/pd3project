@@ -1,6 +1,6 @@
 #include "SBZAICharacterVoiceComponent.h"
 
-USBZAICharacterVoiceComponent::USBZAICharacterVoiceComponent() {
+USBZAICharacterVoiceComponent::USBZAICharacterVoiceComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZAICharacterVoiceComponent::HandleOnHostageStateChanged(uint8 HostageState) {

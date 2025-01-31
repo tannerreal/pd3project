@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "Engine/EngineTypes.h"
 #include "GameplayTagContainer.h"
 #include "SBZCarriedHackableKeyDelegateDelegate.h"
 #include "SBZCarriedStaticInteractionActor.h"
@@ -53,6 +54,9 @@ public:
 protected:
     UFUNCTION(BlueprintCallable)
     void OnInteractionEnabledStateChanged(const USBZBaseInteractableComponent* InteractableComponent, bool bInNewState);
+    
+    UFUNCTION(BlueprintCallable)
+    void OnHackerEndPlay(AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_OnHackComplete();

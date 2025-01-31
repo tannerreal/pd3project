@@ -1,6 +1,6 @@
 #include "SBZPlayerMovementComponent.h"
 
-USBZPlayerMovementComponent::USBZPlayerMovementComponent() {
+USBZPlayerMovementComponent::USBZPlayerMovementComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bAutoComputeTrajectory = false;
     this->AutoComputeTrajectoryInterval = 0.35f;
     this->MinSpeedToSprintAccelerating = 105.00f;
@@ -17,7 +17,6 @@ USBZPlayerMovementComponent::USBZPlayerMovementComponent() {
     this->MinLoadoutTierIndex = 1;
     this->SkillSprintModifier = 0.00f;
     this->SkillWalkHumanShieldModifier = 0.00f;
-    /*this->bSkipImpulseFromPhysicsInteraction = true;*/
 }
 
 void USBZPlayerMovementComponent::Server_SetWantToSprint_Implementation(bool bInWantToSprint) {

@@ -7,6 +7,7 @@
 
 class AActor;
 class UObject;
+class USBZBagManager;
 class USBZBagType;
 
 UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
@@ -14,11 +15,11 @@ class USBZBagManager : public UActorComponent {
     GENERATED_BODY()
 public:
 protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_Bags, meta=(AllowPrivateAccess=true))
     TArray<FSBZBagPersistentData> Bags;
     
 public:
-    USBZBagManager();
+    USBZBagManager(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
@@ -32,6 +33,9 @@ public:
     bool RemoveClaim(FSBZBagHandle Handle, AActor* Actor);
     
 protected:
+    UFUNCTION(BlueprintCallable)
+    void OnRep_Bags();
+    
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SecureBag(const int32 BagId, const bool bClearClaim);
     
@@ -40,6 +44,9 @@ protected:
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_RemoveBag(const int32 BagId);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_CreateBagArray(const int32 FirstBagId, const USBZBagType* BagType, const int32 NumberOfBags);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_CreateBag(const int32 BagId, const USBZBagType* BagType);
@@ -55,7 +62,7 @@ public:
     FSBZBagPersistentData GetValidBagData(FSBZBagHandle Handle) const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure, meta=(WorldContext="WorldContextObject"))
-    static USBZBagManager* Get(UObject* WorldContextObject);
+    static USBZBagManager* Get(const UObject* WorldContextObject);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     FSBZBagHandle CreateBag(const USBZBagType* BagType);

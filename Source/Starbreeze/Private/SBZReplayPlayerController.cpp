@@ -1,9 +1,9 @@
 #include "SBZReplayPlayerController.h"
 
 ASBZReplayPlayerController::ASBZReplayPlayerController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->ClickEventKeys.AddDefaulted(1);
     this->ReplayManager = NULL;
     this->ReplayWidget = NULL;
-    this->ClickEventKeys.AddDefaulted(1);
 }
 
 USBZReplayManager* ASBZReplayPlayerController::GetReplayManager() const {

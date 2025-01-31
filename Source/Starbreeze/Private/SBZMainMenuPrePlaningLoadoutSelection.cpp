@@ -1,8 +1,12 @@
 #include "SBZMainMenuPrePlaningLoadoutSelection.h"
 
 USBZMainMenuPrePlaningLoadoutSelection::USBZMainMenuPrePlaningLoadoutSelection() {
+    this->bShouldUseActionBindings = true;
     this->FocusedPlayerLoadoutIndex = -1;
     this->bIsValidLoadout = false;
+}
+
+void USBZMainMenuPrePlaningLoadoutSelection::UnbindGamepadActions() {
 }
 
 void USBZMainMenuPrePlaningLoadoutSelection::SetFocusedPlayerLoadoutIndex(int32 NewFocusedPlayerLoadoutIndex) {
@@ -10,6 +14,9 @@ void USBZMainMenuPrePlaningLoadoutSelection::SetFocusedPlayerLoadoutIndex(int32 
 
 void USBZMainMenuPrePlaningLoadoutSelection::OnLocalLoadoutUpdated(const FSBZPlayerLoadoutConfig& InPlayerLoadout, int32 ModifiedPlayerLoadoutIndex) {
 }
+
+
+
 
 void USBZMainMenuPrePlaningLoadoutSelection::NativeOnFocusedPlayerLoadoutConfigChanged(const FSBZPlayerLoadoutConfig& NewPlayerLoadout) {
 }
@@ -25,6 +32,9 @@ int32 USBZMainMenuPrePlaningLoadoutSelection::GetFocusedPlayerLoadoutIndex() con
     return 0;
 }
 
+
+void USBZMainMenuPrePlaningLoadoutSelection::BindGamepadActions() {
+}
 
 
 

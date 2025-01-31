@@ -1,9 +1,15 @@
 #include "SBZGate.h"
 #include "Components/SceneComponent.h"
+#include "NavAreas/NavArea_Null.h"
 #include "Net/UnrealNetwork.h"
 #include "SBZAIAttractorComponent.h"
 
 ASBZGate::ASBZGate(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
+    this->Tags.AddDefaulted(1);
     this->InitialState = ESBZGateState::Closed;
     this->State = ESBZGateState::Closed;
     this->LinkMoveFinishedState = ESBZGateState::Closed;
@@ -11,11 +17,11 @@ ASBZGate::ASBZGate(const FObjectInitializer& ObjectInitializer) : Super(ObjectIn
     this->ExplosionInstigator = NULL;
     this->bIsNavigationLinkCalculated = true;
     this->NavLinkCount = 1;
+    this->NavlinkEnabledMask = 65535;
     this->NavLinkComponentArray.AddDefaulted(1);
     this->bIsOpenForward = true;
     this->bIsOpenBackwardAllowed = true;
     this->bIsOpenFromFrontAllowed = true;
-    this->bIsOnlyTraversedWhenAlerted = false;
     this->bIsLinkMoveFinishedStateSet = false;
     this->bIsUnlockingLinkMove = false;
     this->bIsUnlockingLinkMoveCooldown = false;
@@ -30,18 +36,18 @@ ASBZGate::ASBZGate(const FObjectInitializer& ObjectInitializer) : Super(ObjectIn
     this->UnlockSound = NULL;
     this->PortalObject = NULL;
     this->bUseBreachPOIandSound = false;
+    this->NavAreaClass = UNavArea_Null::StaticClass();
     this->ToolSnapData = NULL;
     this->SoundRange = 1500.00f;
     this->SoundRangeSlammedOpen = 1500.00f;
     this->AttractorComponent = CreateDefaultSubobject<USBZAIAttractorComponent>(TEXT("SBZAIAttractorComponent"));
     this->LeftNavlinkOffset = 75.00f;
     this->RightNavlinkOffset = 75.00f;
+    this->TraversableBehaviorCategoryBitmask = 14;
     this->ClosedGateSoundReduction = ESBZGateSoundReduction::Medium;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponent"));
-    this->Tags.AddDefaulted(1);
+    this->bIsServerRestoringState = false;
+    this->PendingMoveIgnorePawn = NULL;
+    this->bIsNavigationLinksEnabled = true;
 }
 
 void ASBZGate::SetYaw(USceneComponent* Mesh, float InYaw) {
@@ -52,6 +58,9 @@ bool ASBZGate::SetState(ESBZGateState InState) {
 }
 
 void ASBZGate::SetAttractorInstigator(APawn* InInstigator) {
+}
+
+void ASBZGate::SetAllowPortalStateChange(bool bValue) {
 }
 
 void ASBZGate::OnStateDone() {
@@ -73,7 +82,10 @@ void ASBZGate::Multicast_OnUnlockingLinkMoveStarted_Implementation() {
 void ASBZGate::Multicast_OnUnlockingLinkMoveEnded_Implementation() {
 }
 
-void ASBZGate::Multicast_HandleAgilityTagEvent_Implementation(const FGameplayTag& TagEvent, ASBZAIBaseCharacter* AICharacterInstigator) {
+void ASBZGate::Multicast_OnAddIgnoreMoveActor_Implementation(APawn* InPawn) {
+}
+
+void ASBZGate::Multicast_HandleAgilityTagEvent_Implementation(const FGameplayTag& TagEvent, ASBZAIBaseCharacter* AICharacterInstigator, const FVector& InstigatorLocation) {
 }
 
 bool ASBZGate::IsOpenForwardFromLocation(const FVector& Location) const {
@@ -86,6 +98,10 @@ bool ASBZGate::IsOpenForwardFromDirection(const FVector& Direction) const {
 
 ASBZAkAcousticPortal* ASBZGate::GetPortalObject() const {
     return NULL;
+}
+
+bool ASBZGate::GetAllowPortalStateChange() {
+    return false;
 }
 
 void ASBZGate::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

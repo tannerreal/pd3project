@@ -2,11 +2,14 @@
 #include "Perception/AISense_Sight.h"
 #include "SBZAttractorPredicate_IsPerceived.h"
 
-USBZAIAttractorComponent::USBZAIAttractorComponent() {
+USBZAIAttractorComponent::USBZAIAttractorComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->DefaultSense = UAISense_Sight::StaticClass();
     this->MaxHeistStateToBeEnabled = EPD3HeistState::PointOfNoReturn;
+    this->AttractorDataAssetDefault = NULL;
+    this->AttractorDataAsset = NULL;
     this->Priority = ESBZAIAttractorPriority::VeryLow;
     this->Radius = 800.00f;
+    this->bUseMaxConcurrentUsers = true;
     this->MaxConcurrentUsers = 1;
     this->MaxUses = 1;
     this->bDestroyOnComplete = false;

@@ -34,7 +34,7 @@ public:
     static void PrintSubtitle(const UObject* WorldContextObject, const FString& StringToPrint, FLinearColor Colour, float TimeToDisplay);
     
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static int32 Play2DSound(const UObject* WorldContextObject, UAkAudioEvent* AudioEvent);
+    static int32 Play2DSound(const UObject* WorldContextObject, const UAkAudioEvent* AudioEvent);
     
     UFUNCTION(BlueprintCallable)
     static void LogUiVerbose(const FString& LogText);

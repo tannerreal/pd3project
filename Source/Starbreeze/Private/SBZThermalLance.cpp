@@ -2,6 +2,7 @@
 #include "SBZInteractableComponent.h"
 
 ASBZThermalLance::ASBZThermalLance(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->Tags.AddDefaulted(1);
     this->IgnitionInteraction = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("IgnitionInteraction"));
     this->RemoveCanisterInteraction = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("RemoveCanisterInteraction"));
     this->AddCanisterInteraction = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("AddCanisterInteraction"));
@@ -15,7 +16,6 @@ ASBZThermalLance::ASBZThermalLance(const FObjectInitializer& ObjectInitializer) 
     this->BoltedEvent = NULL;
     this->RemoveCannisterEvent = NULL;
     this->AddCannisterEvent = NULL;
-    this->Tags.AddDefaulted(1);
 }
 
 void ASBZThermalLance::OnServerRemovedCanister(USBZBaseInteractableComponent* Interactable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {

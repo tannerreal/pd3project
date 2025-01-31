@@ -15,9 +15,10 @@
 #include "SBZPlayerMovementComponent.h"
 #include "SBZRecoilComponent.h"
 #include "SBZShoutoutComponent.h"
-#include "Components/CapsuleComponent.h"
 
-ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZPlayerInteractableComponent>(TEXT("SBZInteractableComponent")).SetDefaultSubobjectClass<USBZModularCharacterComponent>(TEXT("CharacterMesh0")).SetDefaultSubobjectClass<USBZPlayerMovementComponent>(TEXT("CharMoveComp"))) {
+ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZModularCharacterComponent>(TEXT("CharacterMesh0")).SetDefaultSubobjectClass<USBZPlayerMovementComponent>(TEXT("CharMoveComp")).SetDefaultSubobjectClass<USBZPlayerInteractableComponent>(TEXT("SBZInteractableComponent"))) {
+    this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    this->AutoPossessAI = EAutoPossessAI::Disabled;
     this->VisualDetectionMultiplierSprinting = 1.00f;
     this->VisualDetectionMultiplierCrouched = 0.33f;
     this->VisualDetectionMultiplierStanding = 1.00f;
@@ -32,20 +33,16 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->ShoutDownTime = 20.00f;
     this->ShoutDownRange = 3000.00f;
     this->IntimidationRange = 3000.00f;
+    this->OverkillWeaponVODelay = 5.00f;
+    this->OverkillWeaponVORate = 5.00f;
     this->FPCameraAttachment = CreateDefaultSubobject<USBZFirstPersonCameraAttachment>(TEXT("FirstPersonCameraAttachment"));
-    FProperty* p_CapsuleComponent_Parent = GetClass()->FindPropertyByName("CapsuleComponent");
-    this->FPCameraAttachment->SetupAttachment(*p_CapsuleComponent_Parent->ContainerPtrToValuePtr<UCapsuleComponent*>(this));
     this->RecoilComponent = CreateDefaultSubobject<USBZRecoilComponent>(TEXT("RecoilComponent"));
     this->AimAssistComponent = CreateDefaultSubobject<USBZAimAssistComponent>(TEXT("SBZAimAssistComponent"));
     this->CharacterComponent = CreateDefaultSubobject<USBZCharacterComponent>(TEXT("CharacterComponent"));
     this->Mesh1P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("PawnMesh1P"));
-    this->Mesh1P->SetupAttachment(FPCameraAttachment);
     this->Mesh1PBody = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("PawnMesh1PBody"));
-    this->Mesh1PBody->SetupAttachment(Mesh1P);
     this->Mesh1PSuit = CreateDefaultSubobject<USBZCustomizableSuitMeshComponent>(TEXT("PawnMesh1PSuit"));
-    this->Mesh1PSuit->SetupAttachment(Mesh1P);
     this->Mesh1PGloves = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("PawnMesh1PGloves"));
-    this->Mesh1PGloves->SetupAttachment(Mesh1P);
     this->Interactor = CreateDefaultSubobject<USBZPlayerInteractorComponent>(TEXT("Interactor"));
     this->DefaultAnimationCollectionFPP = NULL;
     this->AnimationCollectionFPP = NULL;
@@ -56,39 +53,28 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->SlideEyeHeight = 5.50f;
     this->CarryTiltSpeed = 120.00f;
     this->CarryTiltDegrees = -4.00f;
-    this->WhizzbyActorClass = NULL;
+    this->CarryAdditionalTiltDegrees = 0.00f;
     this->WhizzbyActorClass = NULL;
     this->WhizzbyActor = NULL;
     this->LandedFeedback = NULL;
-    this->LandedFeedback = NULL;
-    this->JumpedFeedback = NULL;
     this->JumpedFeedback = NULL;
     this->ArmorDepletedFeedback = NULL;
-    this->ArmorDepletedFeedback = NULL;
-    this->ArmorReplenishedFeedback = NULL;
     this->ArmorReplenishedFeedback = NULL;
     this->ArmorDamageFeedback = NULL;
-    this->ArmorDamageFeedback = NULL;
-    this->DodgeDepletedFeedback = NULL;
     this->DodgeDepletedFeedback = NULL;
     this->DodgeReplenishedFeedback = NULL;
-    this->DodgeReplenishedFeedback = NULL;
-    this->DodgeDamageFeedback = NULL;
     this->DodgeDamageFeedback = NULL;
     this->HealthDamageFeedback = NULL;
-    this->HealthDamageFeedback = NULL;
-    this->SubduedDamageFeedback = NULL;
     this->SubduedDamageFeedback = NULL;
     this->DefeatFeedback = NULL;
-    this->DefeatFeedback = NULL;
-    this->SlideFeedback = NULL;
     this->SlideFeedback = NULL;
     this->HumanShieldReachSlotFeedBack = NULL;
-    this->HumanShieldReachSlotFeedBack = NULL;
-    this->TraverseFeedback = NULL;
     this->TraverseFeedback = NULL;
     this->RunFeedback = NULL;
-    this->RunFeedback = NULL;
+    this->OverHealDamageFeedback = NULL;
+    this->OverHealGainedFeedback = NULL;
+    this->OverHealRestoredFeedback = NULL;
+    this->ShieldFlashFeedback = NULL;
     this->RevivedComment = NULL;
     this->UncuffedComment = NULL;
     this->StealthMaskOnComment = NULL;
@@ -107,7 +93,7 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->EscortCircleEffect = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
     this->UnequippedWeaponData = NULL;
     this->FPZiplineMotorClass = NULL;
-    this->FPZiplineMotorClass = NULL;
+    this->EmoteData = NULL;
     this->PlayerAbilitySystem = NULL;
     this->OnTopBaseFOV = 55.00f;
     this->VisualDetectionData.AddDefaulted(4);
@@ -140,15 +126,16 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->BleedOutPitchDegrees = 35.00f;
     this->ReviveTiltSpeed = 200.00f;
     this->RequestOverkillWeaponAnimationTime = 1.50f;
+    this->FirstAidKitOverHealAmount = 0.50f;
     this->FallingStartHeight = 0.00f;
     this->bHasTriggeredCoupDeGraceSkill = false;
-    this->CurrentFollower = NULL;
     this->MiniGameDetectionMultiplier = 1.00f;
     this->CuttingToolDetectionMultiplier = 0.50f;
     this->GadgetDetectionMultiplier = 0.25f;
     this->bIsGadgetPlacingIllegal = true;
     this->bIsCurrentNavLocationValid = false;
     this->NavLocationSaveInterval = 1.00f;
+    this->NavigationZAxisLocationOffset = 20.00f;
     this->ModifiedToolDataArray.AddDefaulted(2);
     this->PrimaryTool = NULL;
     this->CuttingTool = NULL;
@@ -158,14 +145,29 @@ ASBZPlayerCharacter::ASBZPlayerCharacter(const FObjectInitializer& ObjectInitial
     this->TasedData = NULL;
     this->PlayerMicroCameraSocketName = TEXT("RightArm");
     this->MiniGameComponent = CreateDefaultSubobject<USBZMiniGameComponent>(TEXT("SBZMiniGameComponent"));
+    this->CurrentMiniGameComponent = NULL;
     this->bIsLocalKillingHumanShield = false;
     this->HumanShieldStartTime = -1.00f;
     this->DefeatControlsReferenceID = -1;
     this->MinLandingSlideWalkToRunLerp = 0.40f;
-    FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
-    p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent>(this)->SetupAttachment(*p_CapsuleComponent_Parent->ContainerPtrToValuePtr<UCapsuleComponent*>(this));
-    this->AutoPossessAI = EAutoPossessAI::Disabled;
-    this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+    this->LastCuttableActor = NULL;
+    this->LastHackedActor = NULL;
+    this->ReflectorShieldMaxBlindedDuration = 4.00f;
+    this->ReflectorShieldCooldownTime = 5.00f;
+    const FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
+    (*p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent*>(this))->SetupAttachment(RootComponent);
+    this->FPCameraAttachment->SetupAttachment(RootComponent);
+    this->Mesh1P->SetupAttachment(FPCameraAttachment);
+    this->Mesh1PBody->SetupAttachment(Mesh1P);
+    this->Mesh1PSuit->SetupAttachment(Mesh1P);
+    this->Mesh1PGloves->SetupAttachment(Mesh1P);
+}
+
+void ASBZPlayerCharacter::StartEmote(const FText& EmoteText) {
+}
+
+bool ASBZPlayerCharacter::StartCurrentEquippableInspect() {
+    return false;
 }
 
 bool ASBZPlayerCharacter::SetCameraFeedbackIntensity(int32 CameraFeedbackID, float Intensity) {
@@ -175,25 +177,16 @@ bool ASBZPlayerCharacter::SetCameraFeedbackIntensity(int32 CameraFeedbackID, flo
 void ASBZPlayerCharacter::ServerStartEquipOverkillWeapon_Implementation() {
 }
 
+void ASBZPlayerCharacter::Server_StopCurrentEmoteMontage_Implementation(float BlendOutTime) {
+}
+
 void ASBZPlayerCharacter::Server_SetPhoneInteractionFlow_Implementation(bool bInPhoneInteractionFlow) {
 }
 
-void ASBZPlayerCharacter::Server_PickupAmmo_Implementation(uint32 ID, bool bIsSimulatedPickup) {
+void ASBZPlayerCharacter::Server_PlayEmoteMontage_Implementation(const FGameplayTag& MontageTag) {
 }
 
 void ASBZPlayerCharacter::Server_OnMaskInputAbilityComplete_Implementation() {
-}
-
-void ASBZPlayerCharacter::Server_HackingSyncSucceeded_Implementation(UObject* InHackable) {
-}
-
-void ASBZPlayerCharacter::Server_HackingSyncStarted_Implementation(UObject* InHackable) {
-}
-
-void ASBZPlayerCharacter::Server_HackingSyncCompleted_Implementation(UObject* InHackable, bool bInSyncedOnEquipped) {
-}
-
-void ASBZPlayerCharacter::Server_HackingSyncAborted_Implementation(UObject* InHackable, bool bInIsSynchedAlready) {
 }
 
 bool ASBZPlayerCharacter::RemoveCameraFeedback(int32 RemoveID) {
@@ -230,6 +223,9 @@ void ASBZPlayerCharacter::OnRep_DefeatTime() {
 void ASBZPlayerCharacter::OnPlayerStateDestroyed(AActor* DestroyedActor) {
 }
 
+void ASBZPlayerCharacter::OnPlayersInEscapeChanged(const FSBZPlayerInEscapeChangedEvent& PlayerInEscapeChangedEventData) {
+}
+
 void ASBZPlayerCharacter::OnOwnMiniGameStateChanged(EPD3MiniGameState OldState, EPD3MiniGameState NewState, bool bInIsLocallyControlled) {
 }
 
@@ -237,6 +233,9 @@ void ASBZPlayerCharacter::OnDefeatTimerDone() {
 }
 
 void ASBZPlayerCharacter::OnAckCompleteInteraction(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* InInteractor, bool bInIsLocallyControlled) {
+}
+
+void ASBZPlayerCharacter::Multicast_StopCurrentEmoteMontage_Implementation(float BlendOutTime) {
 }
 
 void ASBZPlayerCharacter::Multicast_SetDefeatTime_Implementation(float InDefeatTime) {
@@ -251,19 +250,10 @@ void ASBZPlayerCharacter::Multicast_ResumeDefeatTime_Implementation(float InDefe
 void ASBZPlayerCharacter::Multicast_PlayRequestOverkillAnimation_Implementation() {
 }
 
+void ASBZPlayerCharacter::Multicast_PlayEmoteMontage_Implementation(const FGameplayTag& MontageTag) {
+}
+
 void ASBZPlayerCharacter::Multicast_PauseDefeatTime_Implementation() {
-}
-
-void ASBZPlayerCharacter::Multicast_HackingSyncSucceeded_Implementation(UObject* InHackable) {
-}
-
-void ASBZPlayerCharacter::Multicast_HackingSyncStarted_Implementation(UObject* InHackable) {
-}
-
-void ASBZPlayerCharacter::Multicast_HackingSyncCompleted_Implementation(UObject* InHackable, bool bInSyncedOnEquipped) {
-}
-
-void ASBZPlayerCharacter::Multicast_HackingSyncAborted_Implementation(UObject* InHackable, bool bInIsSynchedAlready) {
 }
 
 void ASBZPlayerCharacter::Multicast_AbortPhoneInteraction_Implementation(bool bWasCompleted) {
@@ -279,6 +269,10 @@ bool ASBZPlayerCharacter::GetHealthAttributes(const UObject* WorldContextObject,
 
 TArray<FSBZDetectionData> ASBZPlayerCharacter::GetDetectionData() const {
     return TArray<FSBZDetectionData>();
+}
+
+USBZMiniGameComponent* ASBZPlayerCharacter::GetCurrentMiniGameComponent() const {
+    return NULL;
 }
 
 bool ASBZPlayerCharacter::GetArmorAttributes(const UObject* WorldContextObject, float& Armor, float& MaxArmor) {
@@ -307,7 +301,10 @@ void ASBZPlayerCharacter::Client_SetDetector_Implementation(uint8 Index, AActor*
 void ASBZPlayerCharacter::Client_SetDetectionData_Implementation(uint32 PackedData) {
 }
 
-void ASBZPlayerCharacter::Client_PickupAmmo_Implementation(uint32 ID) {
+void ASBZPlayerCharacter::Client_PlayOverHealRestoredEffect_Implementation() {
+}
+
+void ASBZPlayerCharacter::Client_PlayOverHealGainedEffect_Implementation() {
 }
 
 int32 ASBZPlayerCharacter::ApplyCameraFeedback(FSBZLocalPlayerFeedbackParameters& Parameters) {

@@ -5,9 +5,9 @@ ASBZStandaloneWeaponDisplay::ASBZStandaloneWeaponDisplay(const FObjectInitialize
     this->bRespawnAlways = true;
     this->SpawnedWeapon = NULL;
     this->PivotPointToSpawn = NULL;
-    this->PivotPointToSpawn = NULL;
     this->bForceWithoutPivotPoint = false;
     this->FOVMultiplier = 0.85f;
+    this->SpawnedPivotPoint = NULL;
 }
 
 void ASBZStandaloneWeaponDisplay::SetupWeaponData(const USBZBaseWeaponData* InWeaponData) {

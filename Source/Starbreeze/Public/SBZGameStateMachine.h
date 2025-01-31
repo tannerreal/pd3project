@@ -97,13 +97,13 @@ public:
     void SetMatchmakingDifficultyIdx(uint8 InDifficultyIdx);
     
     UFUNCTION(BlueprintCallable)
-    void SetMatchmakingDifficulty(ESBZDifficulty InDifficulty);
+    void SetMatchmakingDifficulty(ESBZDifficulty InDifficulty, bool bIsSaved);
     
     UFUNCTION(BlueprintCallable)
     void SetIsMatchmakingQuickMatch(bool bInIsQuickMatch);
     
     UFUNCTION(BlueprintCallable)
-    void RequestSoloGame(int32 LevelIdx, int32 DifficultyIdx);
+    void RequestSoloGame(int32 LevelIdx, int32 DifficultyIdx, bool bSkipPreMatch);
     
     UFUNCTION(BlueprintCallable)
     void RequestReturnToMainMenu(ESBZReturnToMainMenuReason Reason);
@@ -200,6 +200,9 @@ public:
     
     UFUNCTION(BlueprintCallable, Exec)
     void DebugOnlineTravel(const FString& LevelUrl, bool bIsAbsolute);
+    
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+    bool CanRequestSoloGame() const;
     
     UFUNCTION(BlueprintCallable)
     void AddMatchmakingSecurityCompany(ESBZSecurityCompany InSecurityCompany);

@@ -18,7 +18,7 @@ void USBZUIStatics::SetUIInCinematicMode(const UObject* WorldContextObject) {
 void USBZUIStatics::PrintSubtitle(const UObject* WorldContextObject, const FString& StringToPrint, FLinearColor Colour, float TimeToDisplay) {
 }
 
-int32 USBZUIStatics::Play2DSound(const UObject* WorldContextObject, UAkAudioEvent* AudioEvent) {
+int32 USBZUIStatics::Play2DSound(const UObject* WorldContextObject, const UAkAudioEvent* AudioEvent) {
     return 0;
 }
 

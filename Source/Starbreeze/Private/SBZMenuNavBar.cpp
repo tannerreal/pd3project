@@ -2,7 +2,6 @@
 
 USBZMenuNavBar::USBZMenuNavBar() {
     this->NavigationButtonClass = NULL;
-    this->NavigationButtonClass = NULL;
     this->Panel_ButtonContainer = NULL;
     this->bIsAffectedByInstallProgress = false;
 }

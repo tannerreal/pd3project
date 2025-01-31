@@ -2,8 +2,8 @@
 #include "Components/SlateWrapperTypes.h"
 
 USBZShoutoutWidget::USBZShoutoutWidget() {
-    this->Widget_CallWidget = NULL;
     this->Visibility = ESlateVisibility::Collapsed;
+    this->Widget_CallWidget = NULL;
 }
 
 void USBZShoutoutWidget::OnShoutoutReleased() {

@@ -1,6 +1,6 @@
 #include "SBZShoutTargetComponent.h"
 
-USBZShoutTargetComponent::USBZShoutTargetComponent() {
+USBZShoutTargetComponent::USBZShoutTargetComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->BasePriority = 1.00f;
     this->DistModPriority = 1.00f;
     this->bUseDirectHits = true;

@@ -5,9 +5,9 @@
 #include "ESBZMetaRequestResult.h"
 #include "SBZInventorySlotStoreItem.h"
 #include "SBZMenuStackScreenWidget.h"
+#include "Templates/SubclassOf.h"
 #include "SBZMainMenuWeaponInventoryWidget.generated.h"
 
-class UClass;
 class UPanelWidget;
 class USBZMainMenuLoadoutWeaponSlotButton;
 class USBZMenuButton;
@@ -18,7 +18,7 @@ class USBZMainMenuWeaponInventoryWidget : public USBZMenuStackScreenWidget {
 public:
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* WeaponSlotButtonClass;
+    TSubclassOf<USBZMainMenuLoadoutWeaponSlotButton> WeaponSlotButtonClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UPanelWidget* Panel_WeaponSlotButtons;

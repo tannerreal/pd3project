@@ -3,9 +3,9 @@
 #include "ESBZItemLoadoutSlot.h"
 #include "ESBZMetaRequestResult.h"
 #include "SBZMenuStackScreenWidgetWithTutorial.h"
+#include "Templates/SubclassOf.h"
 #include "SBZMainMenuItemInventoryScreen.generated.h"
 
-class UClass;
 class UPanelWidget;
 class USBZInventoryBaseData;
 class USBZMainMenuInventoryItemSlotButton;
@@ -17,7 +17,7 @@ class USBZMainMenuItemInventoryScreen : public USBZMenuStackScreenWidgetWithTuto
 public:
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* ItemSlotButtonClass;
+    TSubclassOf<USBZMainMenuInventoryItemSlotButton> ItemSlotButtonClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     UPanelWidget* Panel_ItemSlotButtons;

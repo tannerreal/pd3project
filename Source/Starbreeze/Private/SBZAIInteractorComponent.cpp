@@ -1,6 +1,6 @@
 #include "SBZAIInteractorComponent.h"
 
-USBZAIInteractorComponent::USBZAIInteractorComponent() {
+USBZAIInteractorComponent::USBZAIInteractorComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 

@@ -34,7 +34,7 @@ protected:
     float ZiplineSoundMultiplicationValue;
     
 public:
-    USBZZiplineAudioController();
+    USBZZiplineAudioController(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void UpdateZiplineRtpc(float ZiplineVelocity);

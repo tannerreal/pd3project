@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "GameplayTagContainer.h"
+#include "GameplayTagContainer.h"
 #include "SBZAdditiveMoveData.h"
 #include "SBZCachedWeaponTargeting.h"
 #include "SBZEquippableData.h"
@@ -18,7 +19,9 @@ class USBZWeaponPartSlot;
 class USBZWeaponPatternAreaData;
 class USBZWeaponProgressionData;
 class USBZWeaponSwayData;
+class USBZWeaponTankingData;
 class USBZWeaponTargetingData;
+class USBZWeaponWallReactionData;
 
 UCLASS(Blueprintable)
 class STARBREEZE_API USBZBaseWeaponData : public USBZEquippableData {
@@ -88,6 +91,12 @@ public:
     float VaultLandADSAlpha;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZWeaponTankingData* TankingData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZWeaponWallReactionData* WallReactionData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float OverkillProgressionProgress;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -118,6 +127,9 @@ public:
     TMap<USBZWeaponPartSlot*, FSBZModularPartSlotConfiguration> ModularConfiguration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayTag Family;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsInaccurateWeapon;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
@@ -128,6 +140,9 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float WeaponDeselectionTimer;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bShouldApplyWeaponSwitchCooldown;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bCanAttackWhileMoving;

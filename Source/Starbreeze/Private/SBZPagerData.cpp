@@ -11,8 +11,6 @@ USBZPagerData::USBZPagerData() {
     this->StopAudioEvent = NULL;
     this->TimeoutAudioEvent = NULL;
     this->TimeoutFailAudioEvent = NULL;
-    FProperty* p_NativeClass = GetClass()->FindPropertyByName("NativeClass");
-    *p_NativeClass->ContainerPtrToValuePtr<UClass*>(this) = USBZPagerData::StaticClass();
 }
 
 

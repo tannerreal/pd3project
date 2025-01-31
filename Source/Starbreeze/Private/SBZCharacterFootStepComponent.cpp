@@ -1,6 +1,6 @@
 #include "SBZCharacterFootStepComponent.h"
 
-USBZCharacterFootStepComponent::USBZCharacterFootStepComponent() {
+USBZCharacterFootStepComponent::USBZCharacterFootStepComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->OverrideSoundEvent = NULL;
     this->FootStepRtpc = NULL;
     this->NormalStepDistance = 150.00f;

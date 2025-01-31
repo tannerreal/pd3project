@@ -2,6 +2,7 @@
 
 USBZStateMachineStateJobOverviewDropIn::USBZStateMachineStateJobOverviewDropIn() {
     this->JobOverviewWidget = NULL;
+    this->MissionState = NULL;
 }
 
 void USBZStateMachineStateJobOverviewDropIn::OnHandleBeginPlayState(ASBZPlayerController* PlayerController) {

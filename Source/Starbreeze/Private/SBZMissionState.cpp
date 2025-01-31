@@ -10,10 +10,11 @@
 #include "SBZSmallTalkManager.h"
 #include "SBZStateMachineSharedState.h"
 #include "SBZVehicleManager.h"
+#include "SBZWindManager.h"
 
 ASBZMissionState::ASBZMissionState(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->RandomSeed = -1;
-    this->ServerChangelist = 624677;
+    this->ServerChangelist = 705542;
     this->Difficulty = ESBZDifficulty::Default;
     this->PredictionTimeOutSeconds = 1.00f;
     this->ServerUnblockAbilityEarlierSeconds = 0.25f;
@@ -27,6 +28,7 @@ ASBZMissionState::ASBZMissionState(const FObjectInitializer& ObjectInitializer) 
     this->LifeActionManager = CreateDefaultSubobject<USBZLifeActionManager>(TEXT("SBZLifeActionManager"));
     this->ActorPoolManager = CreateDefaultSubobject<USBZActorPoolManager>(TEXT("SBZActorPoolManager"));
     this->SmallTalkManager = CreateDefaultSubobject<USBZSmallTalkManager>(TEXT("SBZSmallTalkManager"));
+    this->WindManager = CreateDefaultSubobject<USBZWindManager>(TEXT("SBZWindManager"));
     this->StateMachineSharedState = CreateDefaultSubobject<USBZStateMachineSharedState>(TEXT("SBZStateMachineSharedState"));
     this->bPlayerFriendlyFire = false;
     this->PlayersInEscapeVolume = 0;
@@ -35,8 +37,15 @@ ASBZMissionState::ASBZMissionState(const FObjectInitializer& ObjectInitializer) 
     this->KillingSpreeAmount = 5;
     this->DropKillingSpreeWaitTime = 2.00f;
     this->MaxQueuedCosmeticDestruction = 10;
+    this->SeasonalEventItemCount = 0;
+    this->DSChallengeManager = NULL;
     this->OverkillWeaponCooldown = 45.00f;
+    this->CurrentHeistData = NULL;
     this->TutorialPlayerCharacterData = NULL;
+    this->bIsAmmoSpecialistHighGrainSkillActive = false;
+    this->AmmoSpecialistHighGrainSkillTime = -1.00f;
+    this->bIsIntroSequenceSkipped = false;
+    this->WeaponArmorPenetrationModifier = 0.00f;
 }
 
 void ASBZMissionState::ServerPostOnTakenDamageEvent(const FSBZDamageEvent& DamageEventData) {
@@ -54,7 +63,16 @@ void ASBZMissionState::ResetPreplanningAssets() {
 void ASBZMissionState::RemovePreplanningAsset(const FUniqueNetIdRepl& InPlayerId) {
 }
 
+void ASBZMissionState::PlayerStateRemovedDuringEndMission(const FSBZPlayerStateRemovedEvent& Data) {
+}
+
 void ASBZMissionState::OnStandaloneNetIDEndPlay(AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason) {
+}
+
+void ASBZMissionState::OnServerPowerUpPickedUp(ASBZPowerUp* PowerUp) {
+}
+
+void ASBZMissionState::OnSecurityCompaniesChanged() {
 }
 
 void ASBZMissionState::OnRep_ServerChangelist() {
@@ -72,13 +90,22 @@ void ASBZMissionState::OnRep_PlayersRequiredInEscapeVolume() {
 void ASBZMissionState::OnRep_PlayersInEscapeVolume() {
 }
 
+void ASBZMissionState::OnRep_IsIntroSequenceSkipped() {
+}
+
 void ASBZMissionState::OnRep_EscapeTimeLeft() {
 }
 
 void ASBZMissionState::OnRep_Difficulty() {
 }
 
+void ASBZMissionState::OnRep_BlockedBagMarkers() {
+}
+
 void ASBZMissionState::OnBlackScreenStarted() {
+}
+
+void ASBZMissionState::OnAmmoSpecialistHighGrainSkillTimeChanged(float OldTime) {
 }
 
 void ASBZMissionState::OnActionPhaseStarted() {
@@ -90,16 +117,25 @@ void ASBZMissionState::OnActionPhaseExited() {
 void ASBZMissionState::NotifyClientPassedMilestone_Implementation(ESBZMilestoneType MilestoneType, const FString& MilestoneName) {
 }
 
-void ASBZMissionState::MulticastPreplanningAssetsApplied_Implementation() {
+void ASBZMissionState::Multicast_StartOverkillCooldown_Implementation() {
 }
 
-void ASBZMissionState::Multicast_StartOverkillCooldown_Implementation() {
+void ASBZMissionState::Multicast_SkipIntroSequence_Implementation() {
 }
 
 void ASBZMissionState::Multicast_SetEscapeVolumeData_Implementation(const uint8 InPlayersInVolume, const uint8 InTotal) {
 }
 
 void ASBZMissionState::Multicast_SetEscapeTimeLeft_Implementation(const int32 NewTime) {
+}
+
+void ASBZMissionState::Multicast_SetBlockedBagMarkers_Implementation(const FGameplayTagContainer& InBlockedBagMarkers) {
+}
+
+void ASBZMissionState::Multicast_OnAmmoSpecialistHighGrainSkillDeactivated_Implementation() {
+}
+
+void ASBZMissionState::Multicast_OnAmmoSpecialistHighGrainSkillActivated_Implementation() {
 }
 
 void ASBZMissionState::Multicast_MissionResult_Implementation(const FSBZEndMissionResultData& InMissionResultData) {
@@ -120,7 +156,7 @@ bool ASBZMissionState::HasSharedKeyItemTag(FGameplayTag InTag) const {
     return false;
 }
 
-bool ASBZMissionState::HasPreplanningTag(FGameplayTag InTag, const UObject* WorldContextObject) {
+bool ASBZMissionState::HasPreplanningTag(const FGameplayTag& InTag, const UObject* WorldContextObject) {
     return false;
 }
 
@@ -141,10 +177,6 @@ ASBZMissionState* ASBZMissionState::GetSBZMissionState(const UObject* WorldConte
 
 int32 ASBZMissionState::GetRandomSeed() const {
     return 0;
-}
-
-TArray<FGameplayTag> ASBZMissionState::GetPreplanningTags() {
-    return TArray<FGameplayTag>();
 }
 
 FRandomStream ASBZMissionState::GetMixedRandomStream(int32 MixSeed, const UObject* WorldContextObject) {
@@ -196,10 +228,13 @@ void ASBZMissionState::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out
     DOREPLIFETIME(ASBZMissionState, SecurityCompanies);
     DOREPLIFETIME(ASBZMissionState, ReplicatedSharedKeyItemTagCount);
     DOREPLIFETIME(ASBZMissionState, MissionStartTime);
+    DOREPLIFETIME(ASBZMissionState, BlockedBagMarkers);
     DOREPLIFETIME(ASBZMissionState, PlayersInEscapeVolume);
     DOREPLIFETIME(ASBZMissionState, PlayersRequiredInEscapeVolume);
     DOREPLIFETIME(ASBZMissionState, EscapeTimeLeft);
     DOREPLIFETIME(ASBZMissionState, PreplanningAssets);
+    DOREPLIFETIME(ASBZMissionState, AmmoSpecialistHighGrainSkillTime);
+    DOREPLIFETIME(ASBZMissionState, bIsIntroSequenceSkipped);
 }
 
 

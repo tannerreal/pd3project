@@ -22,10 +22,14 @@ enum class ESBZOnlineCode : uint8 {
     PartyFailedToJoinLobby,
     ServerVersionMismatch,
     LostConnectionToMatchMakingService,
+    MatchmakingRequestFailed,
     DataParsingError,
     PartyLeaderCancelledMatchmaking,
     JoinedCrossPlatformLobby,
     SessionIsFull,
+    SessionDoesNotExist,
     ReturnToIIS,
+    UserHasChanged,
+    SoloGameRequested,
 };
 

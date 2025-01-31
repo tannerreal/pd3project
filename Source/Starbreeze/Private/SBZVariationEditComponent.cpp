@@ -1,9 +1,11 @@
 #include "SBZVariationEditComponent.h"
 
-USBZVariationEditComponent::USBZVariationEditComponent() {
+USBZVariationEditComponent::USBZVariationEditComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bIsEditorOnly = true;
     this->VariationSet = NULL;
     this->CurrentVariationIdx = -1;
-    this->bIsEditorOnly = true;
+    this->SkeletalMeshComponent = NULL;
+    this->StaticMeshComponent = NULL;
 }
 
 

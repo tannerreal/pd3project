@@ -4,12 +4,19 @@
 #include "SBZAIInteractHandler.generated.h"
 
 class USBZBaseInteractableComponent;
+class USBZInteractableComponent;
 class USBZInteractorComponent;
 
 UCLASS(Blueprintable)
 class USBZAIInteractHandler : public UObject {
     GENERATED_BODY()
 public:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    USBZInteractableComponent* Interactable;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
+    USBZInteractorComponent* Interactor;
+    
     USBZAIInteractHandler();
 
     UFUNCTION(BlueprintCallable)

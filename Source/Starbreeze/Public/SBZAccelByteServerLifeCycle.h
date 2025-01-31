@@ -3,11 +3,20 @@
 #include "UObject/Object.h"
 #include "SBZAccelByteServerLifeCycle.generated.h"
 
-UCLASS(Blueprintable, Config=Engine, DefaultConfig, Config=Starbreeze)
+class USBZAccelByteDS;
+class USBZDsStateMachine;
+
+UCLASS(Blueprintable, DefaultConfig, Config=Starbreeze)
 class USBZAccelByteServerLifeCycle : public UObject {
     GENERATED_BODY()
 public:
 private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZDsStateMachine* StateMachine;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZAccelByteDS* AccelByteDs;
+    
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     float ShutdownTimeDsLoading;
     

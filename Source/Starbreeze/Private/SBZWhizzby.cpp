@@ -2,10 +2,9 @@
 #include "Components/SceneComponent.h"
 
 ASBZWhizzby::ASBZWhizzby(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->PlayerFeedback = NULL;
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->PlayerFeedback = NULL;
     this->PlayerCameraFeedbackComponent = NULL;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 }
 
 

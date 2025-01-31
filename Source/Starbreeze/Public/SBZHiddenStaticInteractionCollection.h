@@ -4,10 +4,10 @@
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
 #include "SBZSpawnStaticInteractionInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZHiddenStaticInteractionCollection.generated.h"
 
 class ASBZItemContainer;
-class UClass;
 class USBZBaseInteractableComponent;
 class USBZInteractorComponent;
 
@@ -32,7 +32,7 @@ protected:
     int32 Seed;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* ItemContainerClass;
+    TSubclassOf<ASBZItemContainer> ItemContainerClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<ASBZItemContainer*> ItemContainers;

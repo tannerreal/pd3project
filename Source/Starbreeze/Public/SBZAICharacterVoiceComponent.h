@@ -11,7 +11,7 @@ UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USBZAICharacterVoiceComponent : public USBZCharacterVoiceComponent {
     GENERATED_BODY()
 public:
-    USBZAICharacterVoiceComponent();
+    USBZAICharacterVoiceComponent(const FObjectInitializer& ObjectInitializer);
 
 private:
     UFUNCTION(BlueprintCallable)

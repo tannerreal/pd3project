@@ -1,9 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "Templates/SubclassOf.h"
 #include "SBZObjectContainer.generated.h"
 
-class UClass;
+class IInterface;
+class UInterface;
 
 UCLASS(Blueprintable, DefaultToInstanced)
 class USBZObjectContainer : public UObject {
@@ -17,7 +19,7 @@ protected:
     UClass* RestrictedObjectClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    UClass* RestrictedInterfaceType;
+    TSubclassOf<UInterface> RestrictedInterfaceType;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bAllowDuplicates;

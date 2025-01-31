@@ -41,11 +41,20 @@ public:
     UFUNCTION(BlueprintCallable, Exec)
     void UnlockCharacterForTutorial();
     
+    UFUNCTION(BlueprintCallable, Exec)
+    void SyncDLC();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void SimulateForeground();
+    
     UFUNCTION(Exec)
     void SetSecondaryWeaponLoadout(uint32 LoadoutIndex, uint32 ConfigSlotIndex);
     
     UFUNCTION(Exec)
     void SetPrimaryWeaponLoadout(uint32 LoadoutIndex, uint32 ConfigSlotIndex);
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void SetLoadoutName(const int32 LoadoutIndex, const FString& LoadoutName);
     
     UFUNCTION(Exec)
     void SetEquippiedSuitInventoryIndex(uint32 ConfigSlotIndex);
@@ -61,6 +70,9 @@ public:
     
     UFUNCTION(BlueprintCallable, Exec)
     void SendPartyMessage(const FString& Message);
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void SendLobbyMessage(const FString& Message);
     
     UFUNCTION(BlueprintCallable, Exec)
     void SelectCharacterIntoSlot(int32 SelectedCharacterIndex, int32 SlotIndex);
@@ -108,6 +120,9 @@ public:
     void GetWeaponProgressionForBarrelSlot(const FString& WeaponEntitlementIdString);
     
     UFUNCTION(BlueprintCallable, Exec)
+    void GetUserEntitlementsForAllItems();
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void GetPartyCode();
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -135,6 +150,12 @@ public:
     void DumpSelectablePlayerCharacters();
     
     UFUNCTION(BlueprintCallable, Exec)
+    void DumpRecommendedChallenges();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpReceipts() const;
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void DumpRealMoneyStoreItems();
     
     UFUNCTION(BlueprintCallable, Exec)
@@ -147,13 +168,40 @@ public:
     void DumpPlayerSkillPoints();
     
     UFUNCTION(BlueprintCallable, Exec)
+    void DumpOwnedHeists();
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void DumpNextResetTime();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpMaskOfTheWeek();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpLoadoutName(const int32 LoadoutIndex);
     
     UFUNCTION(BlueprintCallable, Exec)
     void DumpItemsProgressions();
     
     UFUNCTION(BlueprintCallable, Exec)
+    void DumpIsQuickPlayEnabled();
+    
+    UFUNCTION(BlueprintCallable, Exec)
     void DumpInventoryItems();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpGetProgressInfo();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpEntitlementSkuFromDLCButNotOwnedArray() const;
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpDLCRewards() const;
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpDailyChallenges();
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void DumpCurrentRenownLevel();
     
     UFUNCTION(BlueprintCallable, Exec)
     void DumpCosmeticsInventoryItemsForWeaponPatternSlot();
@@ -187,9 +235,6 @@ public:
     
     UFUNCTION(BlueprintCallable, Exec)
     void DumpAllSuitInventorySlots();
-    
-    UFUNCTION(BlueprintCallable, Exec)
-    void DumpAllPlayerStatistics();
     
     UFUNCTION(BlueprintCallable, Exec)
     void DumpAllMaskInventorySlots();
@@ -250,6 +295,9 @@ public:
     
     UFUNCTION(Exec)
     void AddUniquePartToWeaponConfig(uint32 SlotIndex, const FString& SlotName, const FString& WeaponPartName);
+    
+    UFUNCTION(BlueprintCallable, Exec)
+    void AddOwnedDLCAndPopulateEntitlementDisabledArray(const FString& DLCNameCommaList);
     
 };
 

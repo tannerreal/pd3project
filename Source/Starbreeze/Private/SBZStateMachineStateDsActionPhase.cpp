@@ -1,7 +1,6 @@
 #include "SBZStateMachineStateDsActionPhase.h"
 
 USBZStateMachineStateDsActionPhase::USBZStateMachineStateDsActionPhase() {
-    this->ActionPhaseWidget = NULL;
     this->ActionPhaseData = NULL;
     this->InitialLongTimeoutDelay = 0.00f;
 }

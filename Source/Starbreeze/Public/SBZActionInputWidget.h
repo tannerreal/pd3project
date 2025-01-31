@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "SBZOnActionChangedDelegate.h"
 #include "SBZWidgetBase.h"
 #include "SBZActionInputWidget.generated.h"
 
@@ -24,6 +25,12 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsIconVisibleForKeyboardAndMouse;
+    
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZOnActionChanged OnActionPressedEvent;
+    
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZOnActionChanged OnActionReleasedEvent;
     
 public:
     USBZActionInputWidget();

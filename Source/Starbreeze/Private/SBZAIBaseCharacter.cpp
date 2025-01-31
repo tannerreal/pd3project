@@ -5,14 +5,11 @@
 #include "SBZAICharacterAttributeSet.h"
 #include "SBZAICharacterMovementComponent.h"
 #include "SBZAIInteractorComponent.h"
-#include "SBZApplyMarkedTagEffect.h"
 
 ASBZAIBaseCharacter::ASBZAIBaseCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZAICharacterMovementComponent>(TEXT("CharMoveComp"))) {
+    this->bUseControllerRotationYaw = false;
+    this->AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
     this->CombatUtilityData = NULL;
-    this->NavFilters[0] = NULL;
-    this->NavFilters[1] = NULL;
-    this->NavFilters[2] = NULL;
-    this->NavFilters[3] = NULL;
     this->NavFilters[0] = NULL;
     this->NavFilters[1] = NULL;
     this->NavFilters[2] = NULL;
@@ -41,15 +38,12 @@ ASBZAIBaseCharacter::ASBZAIBaseCharacter(const FObjectInitializer& ObjectInitial
     this->AgentId = 0;
     this->AgentCharacterMovement = NULL;
     this->NeighbourDetectionRange = 200.00f;
+    this->bIsAvoidanceEnabled = true;
     this->PlayingAgilityMontage = NULL;
     this->bCanDoEvadeDuringPathing = true;
     this->bCanDoEvades = true;
-    this->MarkedGameplayEffectClass = USBZApplyMarkedTagEffect::StaticClass();
     this->AdditiveBaseEyeHeightTickRate = 0.10f;
-    this->bUseControllerRotationYaw = false;
-    this->AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
-    FProperty* p_bReplicateMovement = GetClass()->FindPropertyByName("bReplicateMovement");
-    *p_bReplicateMovement->ContainerPtrToValuePtr<uint8>(this) = false;
+    this->CivilianNearRange = 250.00f;
 }
 
 void ASBZAIBaseCharacter::OnRep_AgentId() {

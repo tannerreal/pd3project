@@ -111,6 +111,9 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName RootName;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    bool bActiveEngine;
+    
 public:
     ASBZAerialVehicle(const FObjectInitializer& ObjectInitializer);
 

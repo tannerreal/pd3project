@@ -2,9 +2,9 @@
 #include "SBZActorFilterComponent.h"
 
 ASBZFilteredTriggerVolume::ASBZFilteredTriggerVolume(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bNetLoadOnClient = false;
     this->ActorFilterComponent = CreateDefaultSubobject<USBZActorFilterComponent>(TEXT("ActorFilterComponent"));
     this->bShouldStartEnabled = true;
-    this->bNetLoadOnClient = false;
 }
 
 void ASBZFilteredTriggerVolume::SetVolumeEnabled(bool bEnabled) {

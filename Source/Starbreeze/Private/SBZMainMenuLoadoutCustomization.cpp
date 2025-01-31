@@ -1,8 +1,8 @@
 #include "SBZMainMenuLoadoutCustomization.h"
 
 USBZMainMenuLoadoutCustomization::USBZMainMenuLoadoutCustomization() {
-    this->LoadoutIndex = -1;
     this->StackValue = TEXT("Default__SBZMainMenuLoadoutCustomization");
+    this->LoadoutIndex = -1;
 }
 
 void USBZMainMenuLoadoutCustomization::SaveCachedLoadout() {

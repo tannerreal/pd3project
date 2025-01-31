@@ -2,18 +2,17 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZAICrewState::ASBZAICrewState(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->Character = NULL;
-    this->CharacterClass = NULL;
-    this->CharacterClass = NULL;
-    this->DefeatState = EPD3DefeatState::None;
-    this->OldDefeatState = EPD3DefeatState::None;
-    this->bIsMaskOn = false;
     this->bAlwaysRelevant = true;
     this->bNetLoadOnClient = false;
     this->bAllowTickBeforeBeginPlay = false;
     this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->Character = NULL;
+    this->CharacterClass = NULL;
+    this->DefeatState = EPD3DefeatState::None;
+    this->OldDefeatState = EPD3DefeatState::None;
+    this->bIsMaskOn = false;
 }
 
 void ASBZAICrewState::OnRep_IsMaskOn() {

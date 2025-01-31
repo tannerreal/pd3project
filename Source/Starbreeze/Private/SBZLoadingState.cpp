@@ -2,11 +2,11 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZLoadingState::ASBZLoadingState(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->LoadingProgress = 0.00f;
     this->bAlwaysRelevant = true;
     this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->LoadingProgress = 0.00f;
 }
 
 void ASBZLoadingState::ServerSetLoadingProgress_Implementation(float InLoadingProgress) {

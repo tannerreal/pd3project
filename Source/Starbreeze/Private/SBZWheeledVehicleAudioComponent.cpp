@@ -1,6 +1,6 @@
 #include "SBZWheeledVehicleAudioComponent.h"
 
-USBZWheeledVehicleAudioComponent::USBZWheeledVehicleAudioComponent() {
+USBZWheeledVehicleAudioComponent::USBZWheeledVehicleAudioComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->SirenAudioComponent = NULL;
     this->SirenSoundEvent = NULL;
     this->SirenStopSoundEvent = NULL;

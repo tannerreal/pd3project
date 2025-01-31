@@ -1,8 +1,8 @@
 #include "SBZSettingsCategoryScreenGamepad.h"
 
 USBZSettingsCategoryScreenGamepad::USBZSettingsCategoryScreenGamepad() {
-    this->MultipleChoiceButton_GamepadPreset = NULL;
     this->StackValue = TEXT("Default__SBZSettingsCategoryScreenGamepad");
+    this->MultipleChoiceButton_GamepadPreset = NULL;
 }
 
 

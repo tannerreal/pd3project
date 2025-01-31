@@ -6,9 +6,10 @@
 #include "SBZAerialVehicleSplineFollowingComponent.h"
 
 ASBZAerialVehicle::ASBZAerialVehicle(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("AerialVehicleMesh"));
+    this->AutoPossessAI = EAutoPossessAI::Disabled;
     this->AerialVehicleAudioComponent = CreateDefaultSubobject<USBZAerialVehicleAudioComponent>(TEXT("SBZAerialVehicleAudioComponent"));
-    this->Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("AerialVehicleMesh"));
-    this->AerialVehicleAudioComponent->SetupAttachment(Mesh);
+    this->Mesh = (USkeletalMeshComponent*)RootComponent;
     this->SplineFollowingComponent = CreateDefaultSubobject<USBZAerialVehicleSplineFollowingComponent>(TEXT("SBZVehicleSplineFollowingComponent"));
     this->StateMachine = NULL;
     this->DoorState = 0;
@@ -21,10 +22,8 @@ ASBZAerialVehicle::ASBZAerialVehicle(const FObjectInitializer& ObjectInitializer
     this->MainRotorName = TEXT("MainRotor");
     this->TailRotorName = TEXT("TailRotor");
     this->RootName = TEXT("Root");
-    this->AutoPossessAI = EAutoPossessAI::Disabled;
-    FProperty* p_bReplicateMovement = GetClass()->FindPropertyByName("bReplicateMovement");
-    *p_bReplicateMovement->ContainerPtrToValuePtr<uint8>(this) = false;
-    this->RootComponent = Mesh;
+    this->bActiveEngine = false;
+    this->AerialVehicleAudioComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZAerialVehicle::SetDoorState(uint8 NewState) {

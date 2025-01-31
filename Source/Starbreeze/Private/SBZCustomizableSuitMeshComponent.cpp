@@ -1,6 +1,6 @@
 #include "SBZCustomizableSuitMeshComponent.h"
 
-USBZCustomizableSuitMeshComponent::USBZCustomizableSuitMeshComponent() {
+USBZCustomizableSuitMeshComponent::USBZCustomizableSuitMeshComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->BodyMeshComponent = NULL;
     this->SizeCategory = EPlayerCharacterSizeCategory::MaleAverage;
     this->CapsuleShadowingData = NULL;

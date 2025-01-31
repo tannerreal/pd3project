@@ -2,8 +2,6 @@
 
 UPD3HUDPartyContainerWidget::UPD3HUDPartyContainerWidget() {
     this->PartyClientWidgetClass = NULL;
-    this->PartyClientWidgetClass = NULL;
-    this->PartyAICrewWidgetClass = NULL;
     this->PartyAICrewWidgetClass = NULL;
     this->Widget_SharedKeyItemContainer = NULL;
     this->Panel_PartyPlayerWidgetContainer = NULL;

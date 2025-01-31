@@ -41,6 +41,9 @@ public:
     USBZMainMenuCosmetic();
 
 protected:
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void RefreshOwnedItems();
+    
     UFUNCTION(BlueprintCallable)
     void PopulateStoreItems(ESBZItemCategory Category);
     

@@ -1,11 +1,10 @@
 #include "SBZMainMenuWeaponProgressionScreen.h"
 
 USBZMainMenuWeaponProgressionScreen::USBZMainMenuWeaponProgressionScreen() {
+    this->StackValue = TEXT("Default__SBZMainMenuWeaponProgressionScreen");
     this->Panel_WeaponProgressionPartButtons = NULL;
     this->Widget_WeaponProgressionDisplay = NULL;
     this->WeaponPartProgressionButtonClass = NULL;
-    this->WeaponPartProgressionButtonClass = NULL;
-    this->StackValue = TEXT("Default__SBZMainMenuWeaponProgressionScreen");
 }
 
 void USBZMainMenuWeaponProgressionScreen::OnWeaponPartProgressionButtonFocusedChanged(USBZMenuButton* InButton, bool bIsFocused) {

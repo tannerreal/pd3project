@@ -1,6 +1,6 @@
 #include "SBZAmbientSoundRadioComponent.h"
 
-USBZAmbientSoundRadioComponent::USBZAmbientSoundRadioComponent() {
+USBZAmbientSoundRadioComponent::USBZAmbientSoundRadioComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->RadioSoundEvent = NULL;
     this->RadioStopSoundEvent = NULL;
     this->RadioPlayingChance = 30;

@@ -5,14 +5,13 @@
 #include "SBZReplicationGraph.generated.h"
 
 class AActor;
-class UClass;
 class UReplicationGraphNode_ActorList;
 class UReplicationGraphNode_DynamicSpatialFrequency;
 class UReplicationGraphNode_GridSpatialization2D;
 class USBZReplicationGraphNode_InitialFrameReplication;
 class USBZReplicationGraphNode_PrototypingOnly;
 
-UCLASS(Blueprintable, NonTransient)
+UCLASS(Blueprintable, NonTransient, Config=Engine)
 class STARBREEZE_API USBZReplicationGraph : public UReplicationGraph {
     GENERATED_BODY()
 public:

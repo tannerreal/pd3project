@@ -2,6 +2,10 @@
 #include "Components/SlateWrapperTypes.h"
 
 USBZMenuButton::USBZMenuButton() {
+    this->bOverride_Cursor = true;
+    this->Cursor = EMouseCursor::Hand;
+    this->Visibility = ESlateVisibility::Visible;
+    this->bIsFocusable = true;
     this->SelectionActionName = TEXT("UI_Accept");
     this->AlternativeActionName = TEXT("UI_Special");
     this->FocusedAudioEvent = NULL;
@@ -10,10 +14,6 @@ USBZMenuButton::USBZMenuButton() {
     this->bAlternativeGivesFocus = false;
     this->bShouldTriggerLastFocused = true;
     this->bIsDisabled = false;
-    this->bIsFocusable = true;
-    this->bOverride_Cursor = true;
-    this->Cursor = EMouseCursor::Hand;
-    this->Visibility = ESlateVisibility::Visible;
 }
 
 void USBZMenuButton::SetButtonDisabled(bool bInIsDisabled) {

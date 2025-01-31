@@ -5,6 +5,10 @@ USBZMainMenuPrePlanningWidget::USBZMainMenuPrePlanningWidget() {
 }
 
 
+
+void USBZMainMenuPrePlanningWidget::NativeOnPlayerReadyStatusChanged(bool bInReadyStatus) {
+}
+
 bool USBZMainMenuPrePlanningWidget::IsAsyncLoadingDone() {
     return false;
 }

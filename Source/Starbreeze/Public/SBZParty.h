@@ -10,7 +10,7 @@
 class USBZPartyClient;
 class USBZPartyHost;
 
-UCLASS(Blueprintable, Config=Engine, DefaultConfig, NotPlaceable, Transient, Config=Starbreeze)
+UCLASS(Blueprintable, DefaultConfig, NotPlaceable, Transient, Config=Starbreeze)
 class STARBREEZE_API USBZParty : public UObject {
     GENERATED_BODY()
 public:

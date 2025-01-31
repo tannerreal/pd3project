@@ -28,7 +28,7 @@ protected:
     UBoxComponent* BoxComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    ASBZRoomVolume* Room;
+    TArray<ASBZRoomVolume*> RoomVolumes;
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))

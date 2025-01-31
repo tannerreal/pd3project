@@ -1,6 +1,9 @@
-# Shuh I'm not done with this! >:3
-Content/Mods/_TannerMod/StatNumbersReal/*
+
 # I ame very smart girl i will not include sbz stuff so sbz doesnt sue me yess c:
+Content/Mods/HeistJukebox # Literally just a clone of their project, sorry.
+Content/Characters/Masks
+Content/MasterMaterial
+Content/Weapons
 Content/UI/*
 !Content/UI/Widgets/PlayerAndParty/WBP_UI_Widget_RoomStatus.uasset
 

@@ -19,6 +19,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<USBZModularPartSlotBase*, FSBZWeaponPresetModularConfigItem> ModData;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FSBZEquippableConfig BuiltEquippableConfig;
+    
 public:
     USBZWeaponPresetConfigData();
 

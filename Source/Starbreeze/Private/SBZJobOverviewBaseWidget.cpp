@@ -2,7 +2,6 @@
 
 USBZJobOverviewBaseWidget::USBZJobOverviewBaseWidget() {
     this->PlayerStatusWidgetClass = NULL;
-    this->PlayerStatusWidgetClass = NULL;
     this->Panel_PartyWidgetContainer = NULL;
 }
 
@@ -10,7 +9,6 @@ void USBZJobOverviewBaseWidget::OnPlayerReadyStatusUpdated(const TArray<FSBZPlay
 }
 
 
-void USBZJobOverviewBaseWidget::HandleIntroSequenceStarted() {
-}
+
 
 

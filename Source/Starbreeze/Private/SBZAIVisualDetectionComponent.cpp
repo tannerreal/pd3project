@@ -1,8 +1,10 @@
 #include "SBZAIVisualDetectionComponent.h"
 
-USBZAIVisualDetectionComponent::USBZAIVisualDetectionComponent() {
+USBZAIVisualDetectionComponent::USBZAIVisualDetectionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->VisionDegradeSpeed = 0.40f;
     this->VisionDegradeDelay = 0.20f;
+    this->bUsePeripheralMultiplierCurve = false;
+    this->bUseMovementAdditiveCurve = false;
     this->bMarkAsCriminalOnSearch = true;
     this->bShouldDisplayDetectionBuildup = true;
     this->IllegalActionGracePeriod = 0.50f;

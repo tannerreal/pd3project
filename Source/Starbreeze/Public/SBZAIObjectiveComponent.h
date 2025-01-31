@@ -83,8 +83,9 @@ protected:
     UEnvQuery* MoveToPosEQSQuery;
     
 public:
-    USBZAIObjectiveComponent();
+    USBZAIObjectiveComponent(const FObjectInitializer& ObjectInitializer);
 
+protected:
     UFUNCTION(BlueprintCallable)
     void OnOrderCompleted(USBZAIOrder* Order, APawn* Owner, TEnumAsByte<EBTNodeResult::Type> OrderResult);
     
@@ -94,6 +95,7 @@ public:
     UFUNCTION(BlueprintCallable)
     void OnCollisionChanged(UPrimitiveComponent* ActorPrimitive);
     
+public:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     ASBZRoomVolume* GetLastKnownRoom() const;
     

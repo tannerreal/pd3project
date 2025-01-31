@@ -2,10 +2,11 @@
 #include "CoreMinimal.h"
 #include "ESBZDifficulty.h"
 #include "SBZAIExplosiveWeakPoint.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAIGrenadeBelt.generated.h"
 
-class UClass;
 class UCurveFloat;
+class UGameplayEffect;
 
 UCLASS(Blueprintable, EditInlineNew, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USBZAIGrenadeBelt : public USBZAIExplosiveWeakPoint {
@@ -13,7 +14,7 @@ class USBZAIGrenadeBelt : public USBZAIExplosiveWeakPoint {
 public:
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* PlayerGameplayEffectClass;
+    TSubclassOf<UGameplayEffect> PlayerGameplayEffectClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<ESBZDifficulty, float> AIExplosionDamage;
@@ -28,7 +29,7 @@ private:
     float PlayerStaggerDuration[4];
     
 public:
-    USBZAIGrenadeBelt();
+    USBZAIGrenadeBelt(const FObjectInitializer& ObjectInitializer);
 
 };
 

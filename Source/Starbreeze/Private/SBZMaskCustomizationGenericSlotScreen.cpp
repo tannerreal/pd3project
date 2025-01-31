@@ -1,10 +1,10 @@
 #include "SBZMaskCustomizationGenericSlotScreen.h"
 
 USBZMaskCustomizationGenericSlotScreen::USBZMaskCustomizationGenericSlotScreen() {
+    this->StackValue = TEXT("Default__SBZMaskCustomizationGenericSlotScreen");
     this->Cosmetic_Panel = NULL;
     this->CosmeticPartsSlot = NULL;
     this->SelectedAsset = NULL;
-    this->StackValue = TEXT("Default__SBZMaskCustomizationGenericSlotScreen");
 }
 
 bool USBZMaskCustomizationGenericSlotScreen::InitializePartsSlot(const USBZCosmeticsPartSlot* PartsSlot, FSBZCosmeticPanelDefaultParams DefaultButtonParams) {

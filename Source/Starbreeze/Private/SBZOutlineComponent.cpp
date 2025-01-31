@@ -1,12 +1,13 @@
 #include "SBZOutlineComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZOutlineComponent::USBZOutlineComponent() {
+USBZOutlineComponent::USBZOutlineComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->DefaultAsset = NULL;
     this->InteractableFocusAsset = NULL;
+    this->bIsHiddenManagedByInteractable = true;
+    this->ActiveAsset = NULL;
     this->ActiveReplicated = NULL;
     this->bIsReplicatedHidden = false;
-    
 }
 
 void USBZOutlineComponent::SetReplicatedHidden(bool bInIsReplicatedHidden) {

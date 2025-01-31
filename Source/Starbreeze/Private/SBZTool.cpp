@@ -2,8 +2,13 @@
 #include "Net/UnrealNetwork.h"
 #include "SBZToolSkeletalMeshComponent.h"
 
-ASBZTool::ASBZTool(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->SkeletalMesh = CreateDefaultSubobject<USBZToolSkeletalMeshComponent>(TEXT("MeshComponent"));
+ASBZTool::ASBZTool(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZToolSkeletalMeshComponent>(TEXT("MeshComponent"))) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->bIsInventory = false;
+    this->bReplicateRootAttachment = true;
+    this->SkeletalMesh = (USBZToolSkeletalMeshComponent*)RootComponent;
     this->Data = NULL;
     this->ToolState = ESBZToolState::Canceled;
     this->InstigatorCharacter = NULL;
@@ -23,21 +28,8 @@ ASBZTool::ASBZTool(const FObjectInitializer& ObjectInitializer) : Super(ObjectIn
     this->EquipPlayerController = NULL;
     this->ActiveUsingPlayerController = NULL;
     this->EquipPlayerFeedback = NULL;
-    this->EquipPlayerFeedback = NULL;
-    this->ActivePlayerFeedback = NULL;
     this->ActivePlayerFeedback = NULL;
     this->ActiveUsingPlayerFeedback = NULL;
-    this->ActiveUsingPlayerFeedback = NULL;
-    this->bIsInventory = false;
-    this->bReplicateRootAttachment = true;
-    FProperty* p_bHidden = GetClass()->FindPropertyByName("bHidden");
-    *p_bHidden->ContainerPtrToValuePtr<uint8>(this) = true;
-    this->bReplicates = true;
-    FProperty* p_bActorEnableCollision = GetClass()->FindPropertyByName("bActorEnableCollision");
-    *p_bActorEnableCollision->ContainerPtrToValuePtr<uint8>(this) = false;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = SkeletalMesh;
 }
 
 void ASBZTool::StopAllSounds() {

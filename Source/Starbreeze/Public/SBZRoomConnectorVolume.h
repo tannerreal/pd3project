@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "UObject/NoExportTypes.h"
 #include "Engine/TriggerVolume.h"
 #include "SBZRoomConnectorInterface.h"
 #include "SBZRoomConnectorVolume.generated.h"
@@ -28,6 +29,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector ConnectorLocation;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FRotator ConnectorRotation;
     
 public:
     ASBZRoomConnectorVolume(const FObjectInitializer& ObjectInitializer);

@@ -1,7 +1,7 @@
 #include "SBZMainMenuWeaponInventoryWidget.h"
 
 USBZMainMenuWeaponInventoryWidget::USBZMainMenuWeaponInventoryWidget() {
-    this->WeaponSlotButtonClass = NULL;
+    this->StackValue = TEXT("Default__SBZMainMenuWeaponInventoryWidget");
     this->WeaponSlotButtonClass = NULL;
     this->Panel_WeaponSlotButtons = NULL;
     this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
@@ -10,7 +10,6 @@ USBZMainMenuWeaponInventoryWidget::USBZMainMenuWeaponInventoryWidget() {
     this->ActiveWeaponSlotIndex = -1;
     this->LoadoutSlotIndex = -1;
     this->ActiveLoadoutActiveWeaponSlotIndex = -1;
-    this->StackValue = TEXT("Default__SBZMainMenuWeaponInventoryWidget");
 }
 
 void USBZMainMenuWeaponInventoryWidget::UpdateWeaponSlotButtons() {

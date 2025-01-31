@@ -78,6 +78,9 @@ void USBZPlayerAttributeSet::OnRep_PrimaryEquippableAmmoLoaded(const FGameplayAt
 void USBZPlayerAttributeSet::OnRep_PrimaryEquippableAmmoInventory(const FGameplayAttributeData& OldData) {
 }
 
+void USBZPlayerAttributeSet::OnRep_HealthTrauma(const FGameplayAttributeData& OldArmorTrauma) {
+}
+
 void USBZPlayerAttributeSet::OnRep_DownedCount(const FGameplayAttributeData& OldDownedCount) {
 }
 
@@ -144,6 +147,9 @@ void USBZPlayerAttributeSet::Multicast_SetPrimaryEquippableAmmoLoaded_Implementa
 void USBZPlayerAttributeSet::Multicast_SetPrimaryEquippableAmmoInventory_Implementation(float NewCurrentValue) {
 }
 
+void USBZPlayerAttributeSet::Multicast_SetHealthTrauma_Implementation(float NewCurrentValue) {
+}
+
 void USBZPlayerAttributeSet::Multicast_SetDownedCount_Implementation(float NewCurrentValue) {
 }
 
@@ -181,6 +187,7 @@ void USBZPlayerAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty
     DOREPLIFETIME(USBZPlayerAttributeSet, Dodge);
     DOREPLIFETIME(USBZPlayerAttributeSet, ArmorChunkCount);
     DOREPLIFETIME(USBZPlayerAttributeSet, ArmorTrauma);
+    DOREPLIFETIME(USBZPlayerAttributeSet, HealthTrauma);
 }
 
 

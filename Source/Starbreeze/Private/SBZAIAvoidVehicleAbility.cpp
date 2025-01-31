@@ -1,9 +1,9 @@
 #include "SBZAIAvoidVehicleAbility.h"
 
 USBZAIAvoidVehicleAbility::USBZAIAvoidVehicleAbility() {
+    this->InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
     this->AICharacter = NULL;
     this->CurrentVehicle = NULL;
-    this->InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
 }
 
 void USBZAIAvoidVehicleAbility::Tick(float DeltaSeconds) {

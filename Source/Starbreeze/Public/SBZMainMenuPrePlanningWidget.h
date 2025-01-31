@@ -10,9 +10,16 @@ class USBZMainMenuPrePlanningWidget : public USBZMenuStackWidget {
 public:
     USBZMainMenuPrePlanningWidget();
 
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnLobbyPlayerReadyStatusUpdatedEvent(bool bInReadyStatus);
+    
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnAsyncLoadingDone();
+    
+private:
+    UFUNCTION(BlueprintCallable)
+    void NativeOnPlayerReadyStatusChanged(bool bInReadyStatus);
     
 public:
     UFUNCTION(BlueprintCallable)

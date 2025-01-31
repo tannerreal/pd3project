@@ -18,7 +18,7 @@ private:
     TArray<FVector4> DamageZones;
     
 public:
-    USBZVehicleDamageComponent();
+    USBZVehicleDamageComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void HandleTakeRadialDamage(AActor* DamagedActor, float DamageAmount, const FRadialDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser);

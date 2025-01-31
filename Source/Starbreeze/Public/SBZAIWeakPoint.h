@@ -37,7 +37,7 @@ protected:
     TArray<FSBZWeakpointHideInfo> HideInfo;
     
 public:
-    USBZAIWeakPoint();
+    USBZAIWeakPoint(const FObjectInitializer& ObjectInitializer);
 
 protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)

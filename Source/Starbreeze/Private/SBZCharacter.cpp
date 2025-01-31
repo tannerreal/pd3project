@@ -1,6 +1,7 @@
 #include "SBZCharacter.h"
 #include "AkComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "SBZApplyMarkedTagEffect.h"
 #include "SBZCharacterFootStepComponent.h"
 #include "SBZCharacterInteractableComponent.h"
 #include "SBZCharacterMantlingComponent.h"
@@ -12,7 +13,6 @@
 #include "SBZOutlineComponent.h"
 #include "SBZSkeletalMeshComponentBudgeted.h"
 #include "SBZZiplineAudioController.h"
-#include "Components/CapsuleComponent.h"
 
 ASBZCharacter::ASBZCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZSkeletalMeshComponentBudgeted>(TEXT("CharacterMesh0"))) {
     this->MarkedVoiceComment = NULL;
@@ -21,29 +21,24 @@ ASBZCharacter::ASBZCharacter(const FObjectInitializer& ObjectInitializer) : Supe
     this->CarryType = NULL;
     this->HumanShieldCarryType = NULL;
     this->AudioComponent = CreateDefaultSubobject<UAkComponent>(TEXT("AkComponent"));
-    FProperty* p_CapsuleComponent_Parent = GetClass()->FindPropertyByName("CapsuleComponent");
-    this->AudioComponent->SetupAttachment(*p_CapsuleComponent_Parent->ContainerPtrToValuePtr<UCapsuleComponent*>(this));
     this->ZiplineAudioController = CreateDefaultSubobject<USBZZiplineAudioController>(TEXT("SBZZiplineAudioController"));
-    this->ZiplineMotorClass = NULL;
     this->ZiplineMotorClass = NULL;
     this->CurrentZiplineMotor = NULL;
     this->ZiplineAttachmentBone = TEXT("Hips");
     this->bRandomMeshScaleEnabled = false;
     this->EventReactionComponent = NULL;
-    this->CurrentBagActor = NULL;
-    this->CurrentCarriedType = NULL;
+    this->MaxCarryBagCount = 1;
     this->bIsAlive = true;
     this->bIsRagdolled = false;
     this->bIsLocallyControlled = false;
     this->bIsRunning = false;
     this->bIsJumping = false;
     this->bIsTargeting = false;
-    this->bIsHurtReactionScope = false;
-    this->bIsHurtReactionScopeStackAllowedOnce = false;
     this->bIsPlayReady = false;
     this->bIsCarried = false;
     this->bIsCarriedPredicted = false;
     this->bIsCarriedDropAnimation = false;
+    this->bIsDropAndCarryScope = false;
     this->bIsCarryChangedUsingInteraction = true;
     this->StartReloadState = ESBZReloadState::None;
     this->bIsCurrentAnimationMagazineRemoved = false;
@@ -65,7 +60,6 @@ ASBZCharacter::ASBZCharacter(const FObjectInitializer& ObjectInitializer) : Supe
     this->EquipState = ESBZEquipState::Unequipped;
     this->EquipStateAndIndex = 0;
     this->EquippableAttachementSocketName = TEXT("RootWeapon");
-    this->LinkedAnimationClass = NULL;
     this->LinkedAnimationClass = NULL;
     this->AnimationCollection = NULL;
     this->FacialAnimationCollection = NULL;
@@ -133,6 +127,7 @@ ASBZCharacter::ASBZCharacter(const FObjectInitializer& ObjectInitializer) : Supe
     this->CarryActorSocketName = TEXT("Spine");
     this->PhysicsAssetWhenCarried = NULL;
     this->PhysicsAssetWhenNotCarried = NULL;
+    this->AnimClassWhenCarriedDead = NULL;
     this->HumanShieldInstigatorState = ESBZHumanShieldInstigatorState::None;
     this->HumanShieldInstigatorAcceptableRadius = 5.00f;
     this->MeleeComment = NULL;
@@ -141,8 +136,10 @@ ASBZCharacter::ASBZCharacter(const FObjectInitializer& ObjectInitializer) : Supe
     this->Seed = -1;
     this->LastController = NULL;
     this->DialogBodyGesturesData = NULL;
+    this->ForcedFacialAnimaton = NULL;
     this->EquippedMask = NULL;
     this->DisplayIcon = NULL;
+    this->MarkedGameplayEffectClass = USBZApplyMarkedTagEffect::StaticClass();
     this->HurtReactionOffset[0] = 0;
     this->HurtReactionOffset[1] = 0;
     this->HurtReactionOffset[2] = 0;
@@ -177,15 +174,15 @@ ASBZCharacter::ASBZCharacter(const FObjectInitializer& ObjectInitializer) : Supe
     this->HeadBone = TEXT("Head");
     this->CarryWeightTierOffset = 1.00f;
     this->CurrentlyUsedThrowable = NULL;
-    FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
-    p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent>(this)->SetupAttachment(*p_CapsuleComponent_Parent->ContainerPtrToValuePtr<UCapsuleComponent*>(this));
-    /*this->bWantsDetailedDamageEvents = true;*/
+    const FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
+    (*p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent*>(this))->SetupAttachment(RootComponent);
+    this->AudioComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZCharacter::SetStance(ESBZCharacterStance InStance) {
 }
 
-void ASBZCharacter::Server_WantsToTranferBagFrom_Implementation(ASBZCharacter* FromCharacter) {
+void ASBZCharacter::Server_TransferBagFrom_Implementation(ASBZCharacter* ToCharacter) {
 }
 
 void ASBZCharacter::Server_SetEquipStateAndIndex_Implementation(uint8 InEquipStateAndIndex) {
@@ -257,7 +254,7 @@ void ASBZCharacter::OnRep_CurrentThrowableIndex(int32 OldThrowableIndex) {
 void ASBZCharacter::OnRep_CurrentPlaceableIndex(int32 OldPlaceableIndex) {
 }
 
-void ASBZCharacter::OnRep_CurrentBag() {
+void ASBZCharacter::OnRep_BagHandleArray(const TArray<FSBZBagHandle>& OldBagHandleArray) {
 }
 
 void ASBZCharacter::OnEquipStateTimerDone() {
@@ -285,6 +282,9 @@ void ASBZCharacter::Multicast_StartTargeting_Implementation() {
 }
 
 void ASBZCharacter::Multicast_SnapVictimOntoInstigator_Implementation(const FVector& SnapLocation, const ASBZCharacter* HSInstigator) {
+}
+
+void ASBZCharacter::Multicast_SetThrowBagAnimationActive_Implementation(bool bActive) {
 }
 
 void ASBZCharacter::Multicast_SetStance_Implementation(ESBZCharacterStance NewStance) {
@@ -344,9 +344,6 @@ void ASBZCharacter::Multicast_OnKill_Implementation() {
 void ASBZCharacter::Multicast_HumanShieldInstigatorSlotReached_Implementation() {
 }
 
-void ASBZCharacter::Multicast_ExplodedInHand_Implementation(int32 Index) {
-}
-
 void ASBZCharacter::Multicast_EnableThrowState_Implementation() {
 }
 
@@ -365,16 +362,20 @@ void ASBZCharacter::Multicast_ActivateMelee_Implementation() {
 void ASBZCharacter::HandleTakePointDamage(AActor* DamagedActor, float Damage, AController* InstigatedBy, FVector HitLocation, UPrimitiveComponent* HitComponent, FName BoneName, FVector ShotFromDirection, const UDamageType* DamageType, AActor* DamageCauser) {
 }
 
-bool ASBZCharacter::GiveBag(FSBZBagHandle Bag) {
-    return false;
-}
-
 int32 ASBZCharacter::GetSeed() const {
     return 0;
 }
 
 ASBZRoomVolume* ASBZCharacter::GetLastKnownRoom() const {
     return NULL;
+}
+
+USBZCarryType* ASBZCharacter::GetLastCurrentCarryType() const {
+    return NULL;
+}
+
+FSBZBagHandle ASBZCharacter::GetLastBagHandle() const {
+    return FSBZBagHandle{};
 }
 
 ASBZRoomVolume* ASBZCharacter::GetCurrentRoom_Implementation() const {
@@ -389,6 +390,9 @@ void ASBZCharacter::Client_OnPickupCarryActorFailed_Implementation(uint32 NetID)
 
 
 
+void ASBZCharacter::AddLooseGameplayTags(const FGameplayTagContainer& GameplayTags, int32 Count) {
+}
+
 void ASBZCharacter::AddLooseGameplayTag(const FGameplayTag& GameplayTag, int32 Count) {
 }
 
@@ -396,7 +400,7 @@ void ASBZCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLif
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
     DOREPLIFETIME(ASBZCharacter, bRandomMeshScaleEnabled);
-    DOREPLIFETIME(ASBZCharacter, CurrentBag);
+    DOREPLIFETIME(ASBZCharacter, BagHandleArray);
     DOREPLIFETIME(ASBZCharacter, ReplicatedMontage);
     DOREPLIFETIME(ASBZCharacter, bIsAlive);
     DOREPLIFETIME(ASBZCharacter, bIsTargeting);

@@ -19,7 +19,7 @@ USBZAIOrder::USBZAIOrder() {
 
 
 
-bool USBZAIOrder::ExecPredicate_Implementation(const ASBZAIController* AIController) const {
+bool USBZAIOrder::ExecPredicate_Implementation(const UObject* Owner) const {
     return false;
 }
 

@@ -7,6 +7,10 @@
 #include "SBZShoutTargetComponent.h"
 
 ASBZConnectedMaintenanceBox::ASBZConnectedMaintenanceBox(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->Objective = NULL;
     this->SequenceLength = 1;
     this->NumberOfSequences = 1;
@@ -18,15 +22,11 @@ ASBZConnectedMaintenanceBox::ASBZConnectedMaintenanceBox(const FObjectInitialize
     this->ShoutTargetComponent = CreateDefaultSubobject<USBZShoutTargetComponent>(TEXT("SBZShoutTargetComponent"));
     this->InteractableComponent = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("SBZInteractableComponent"));
     this->StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-    this->StaticMesh->SetupAttachment(RootComponent);
     this->CurrentState = ESBZMaintenanceBoxState::Off;
     this->CompletedCableBoxes = -1;
     this->bShouldUpdateCompletedCount = true;
     this->bHasTriggeredSearch = false;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->StaticMesh->SetupAttachment(RootComponent);
 }
 
 void ASBZConnectedMaintenanceBox::SetEnabled(bool bEnabled) {

@@ -1,6 +1,6 @@
 #include "SBZAIStimuliReactionComponent.h"
 
-USBZAIStimuliReactionComponent::USBZAIStimuliReactionComponent() {
+USBZAIStimuliReactionComponent::USBZAIStimuliReactionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->EscalationOrder = NULL;
     this->ReasonAssets[0] = NULL;
     this->ReasonAssets[1] = NULL;
@@ -15,6 +15,9 @@ USBZAIStimuliReactionComponent::USBZAIStimuliReactionComponent() {
     this->ReasonAssets[10] = NULL;
     this->ReasonAssets[11] = NULL;
     this->ReasonAssets[12] = NULL;
+    this->ReasonAssets[13] = NULL;
+    this->ReasonAssets[14] = NULL;
+    this->ReasonAssets[15] = NULL;
 }
 
 void USBZAIStimuliReactionComponent::HandleStimuli(AActor* Actor, FAIStimulus Stimulus) {

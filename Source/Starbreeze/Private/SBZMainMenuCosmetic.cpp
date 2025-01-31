@@ -1,11 +1,12 @@
 #include "SBZMainMenuCosmetic.h"
 
 USBZMainMenuCosmetic::USBZMainMenuCosmetic() {
+    this->StackValue = TEXT("Default__SBZMainMenuCosmetic");
     this->Type = ESBZMainMenuCosmeticType::Mask;
     this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
     this->Index = -1;
-    this->StackValue = TEXT("Default__SBZMainMenuCosmetic");
 }
+
 
 void USBZMainMenuCosmetic::PopulateStoreItems(ESBZItemCategory Category) {
 }

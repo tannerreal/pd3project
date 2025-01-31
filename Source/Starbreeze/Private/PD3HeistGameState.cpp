@@ -16,7 +16,6 @@ APD3HeistGameState::APD3HeistGameState(const FObjectInitializer& ObjectInitializ
     this->NrHostagesDemand = 0;
     this->AnswerPagerCount = 0;
     this->DefaultWeaponBoxClass = NULL;
-    this->DefaultWeaponBoxClass = NULL;
     this->MaxCrewCount = 4;
     this->GlobalMaterialParameterCollection = NULL;
     this->GlobalNiagaraParameterCollection = NULL;
@@ -28,8 +27,9 @@ APD3HeistGameState::APD3HeistGameState(const FObjectInitializer& ObjectInitializ
     this->GlobalMaterialCollectionInstance = NULL;
     this->GlobalNiagaraCollectionInstance = NULL;
     this->bIsAICrewSpawned = true;
-    this->bEscalated = false;
+    this->bIsAssaultStarted = false;
     this->SavedCustodyTime = 0.00f;
+    this->HostageDemandReduction = 0;
     this->NegotiationTradeType = ESBZNegotiationTradeType::None;
     this->JammerTimeSeconds = 15.00f;
     this->ECMJammerRadioBasePercentageIncrease = 0.20f;

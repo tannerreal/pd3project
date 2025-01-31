@@ -7,7 +7,7 @@
 #include "SBZPlayerStateRemovedEvent.h"
 #include "SBZStateMachineStateDsWaitingForPlayers.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZStateMachineStateDsWaitingForPlayers : public USBZDsStateMachineState {
     GENERATED_BODY()
 public:

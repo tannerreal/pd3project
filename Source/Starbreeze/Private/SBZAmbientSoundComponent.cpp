@@ -1,6 +1,6 @@
 #include "SBZAmbientSoundComponent.h"
 
-USBZAmbientSoundComponent::USBZAmbientSoundComponent() {
+USBZAmbientSoundComponent::USBZAmbientSoundComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->AkAudioEvent = NULL;
     this->AmbientAkComponent = NULL;
     this->bIsSoundComponentEnabled = true;

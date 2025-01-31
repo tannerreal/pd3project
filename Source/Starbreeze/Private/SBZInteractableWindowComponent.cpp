@@ -1,6 +1,6 @@
 #include "SBZInteractableWindowComponent.h"
 
-USBZInteractableWindowComponent::USBZInteractableWindowComponent() {
+USBZInteractableWindowComponent::USBZInteractableWindowComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 

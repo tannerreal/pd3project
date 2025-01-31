@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Perception/AISightTargetInterface.h"
+#include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
 #include "GameplayTagContainer.h"
 #include "GameplayTagAssetInterface.h"
@@ -58,10 +59,10 @@ protected:
     ESBZBreachingEquipmentState CurrentEquipmentState;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
-    float EstimatedCompleteTime;
+    float EstimatedDurationLeft;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Replicated, meta=(AllowPrivateAccess=true))
-    float ProgressMade;
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float UpdateEstimatedTimeInterval;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     USBZAIAttractorComponent* AttractorComponent;
@@ -106,13 +107,19 @@ public:
 
 protected:
     UFUNCTION(BlueprintCallable)
+    void UpdateMarker(USBZMarkerDataAsset* MarkerAsset, const FVector MarkerLocation);
+    
+    UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
+    void SetState(ESBZBreachingEquipmentState NewState, bool bDoCosmetics);
+    
+    UFUNCTION(BlueprintCallable)
     void OnRep_CurrentState(ESBZBreachingEquipmentState OldState);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetState(ESBZBreachingEquipmentState NewState);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
-    void Multicast_SetEstimatedCompleteTime(float InEstimatedCompleteTime);
+    void Multicast_SetEstimatedDurationLeft(float InDurationLeft);
     
 public:
     UFUNCTION(BlueprintCallable, BlueprintPure)

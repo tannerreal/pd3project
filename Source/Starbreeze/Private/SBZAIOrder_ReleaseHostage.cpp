@@ -2,8 +2,11 @@
 #include "ESBZAIBehaviorCategory.h"
 
 USBZAIOrder_ReleaseHostage::USBZAIOrder_ReleaseHostage() {
-    this->bWasTraded = true;
     this->Category = ESBZAIBehaviorCategory::Combat;
+    this->bWasTraded = true;
+}
+
+void USBZAIOrder_ReleaseHostage::OnTargetHostageStateChanged(uint8 NewHostageState) {
 }
 
 

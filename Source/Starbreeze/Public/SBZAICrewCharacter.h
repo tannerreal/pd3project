@@ -7,13 +7,14 @@
 #include "ESBZVoicePriority.h"
 #include "SBZAIBaseCharacter.h"
 #include "SBZAIVisualDetectionGeneratorInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAICrewCharacter.generated.h"
 
 class ASBZAICrewState;
 class ASBZCharacter;
 class ASBZPlayerCharacter;
 class ASBZSecurityCamera;
-class UClass;
+class UGameplayEffect;
 class USBZAICrewEquipmentData;
 class USBZBaseInteractableComponent;
 class USBZDialogDataAsset;
@@ -31,7 +32,7 @@ protected:
     USBZAICrewEquipmentData* EquipmentData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* HealthReplenishEffectClass;
+    TSubclassOf<UGameplayEffect> HealthReplenishEffectClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FGameplayTag, float> TargetPriority;
@@ -180,10 +181,5 @@ public:
     
 
     // Fix for true pure virtual functions not being implemented
-
-    virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override
-    {
-        return AbilitySystem;
-    }
 };
 

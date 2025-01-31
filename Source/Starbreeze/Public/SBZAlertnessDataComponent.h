@@ -32,7 +32,7 @@ private:
     FRuntimeFloatCurve SightDetectionCurve;
     
 public:
-    UDEPRECATED_SBZAlertnessDataComponent();
+    UDEPRECATED_SBZAlertnessDataComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

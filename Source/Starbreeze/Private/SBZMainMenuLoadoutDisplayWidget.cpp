@@ -13,7 +13,7 @@ USBZMainMenuLoadoutDisplayWidget::USBZMainMenuLoadoutDisplayWidget() {
 void USBZMainMenuLoadoutDisplayWidget::UpdateLoadoutConfigFromIndex(int32 InLoadoutIndex) {
 }
 
-void USBZMainMenuLoadoutDisplayWidget::UpdateLoadoutConfig(const FSBZPlayerLoadoutConfig& PlayerLoadoutConfig) {
+void USBZMainMenuLoadoutDisplayWidget::UpdateLoadoutConfig(const FSBZPlayerLoadoutConfig& PlayerLoadoutConfig, int32 InLoadoutIndex) {
 }
 
 

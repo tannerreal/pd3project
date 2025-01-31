@@ -11,6 +11,7 @@ USBZCircularInteractionWidget::USBZCircularInteractionWidget() {
     this->ActiveIndex = 0;
     this->bIsActive = false;
     this->bIsUsingController = false;
+    this->TimeToRememberActiveIndex = 0.50f;
 }
 
 void USBZCircularInteractionWidget::UpdateNumSlices(int32 InNumSlices) {

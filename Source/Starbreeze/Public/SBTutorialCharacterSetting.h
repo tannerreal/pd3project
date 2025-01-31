@@ -4,7 +4,7 @@
 #include "SBZDeveloperSettings.h"
 #include "SBTutorialCharacterSetting.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class USBTutorialCharacterSetting : public USBZDeveloperSettings {
     GENERATED_BODY()
 public:

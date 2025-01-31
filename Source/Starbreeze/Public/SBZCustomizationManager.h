@@ -4,14 +4,15 @@
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/Actor.h"
 #include "SBZMaskConfig.h"
+#include "Templates/SubclassOf.h"
 #include "SBZCustomizationManager.generated.h"
 
 class ASBZCustomizationManager;
 class ASBZMainMenuPlayerCharacter;
 class ASBZMask;
 class ASBZStandaloneWeaponDisplay;
-class UClass;
 class UObject;
+class USBZCustomizationRotateComponent;
 class USBZMaskData;
 
 UCLASS(Blueprintable)
@@ -28,7 +29,7 @@ public:
     FName MaskCustomizationCameraName;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* MaskRotationComponent;
+    TSubclassOf<USBZCustomizationRotateComponent> MaskRotationComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector SpawnOffsetForCameraFromMask;
@@ -37,13 +38,13 @@ public:
     FRotator StartRotationForMask;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* MannequinToSpawn;
+    TSubclassOf<AActor> MannequinToSpawn;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName SuitCustomizationCameraName;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SuitRotationComponent;
+    TSubclassOf<USBZCustomizationRotateComponent> SuitRotationComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector SpawnOffsetForCameraFromMannequin;
@@ -55,7 +56,7 @@ public:
     FName WeaponCustomizationCameraName;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* WeaponRotationComponent;
+    TSubclassOf<USBZCustomizationRotateComponent> WeaponRotationComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FVector SpawnOffsetForCameraFromWeapon;
@@ -73,11 +74,14 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     ASBZMainMenuPlayerCharacter* Mannequin;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FSBZMaskConfig MaskConfig;
+    
 public:
     ASBZCustomizationManager(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
-    void SpawnGlobalMaskWithConfig(const FSBZMaskConfig& MaskConfig);
+    void SpawnGlobalMaskWithConfig(const FSBZMaskConfig& InMaskConfig);
     
     UFUNCTION(BlueprintCallable)
     void SpawnGlobalMask(const USBZMaskData* MaskData);

@@ -2,12 +2,14 @@
 #include "CoreMinimal.h"
 #include "ESBZAntiAliasingMode.generated.h"
 
-UENUM(BlueprintType)
-enum class ESBZAntiAliasingMode : uint8 {
+UENUM()
+enum class ESBZAntiAliasingMode {
     Off,
     FXAA,
     Performance,
     Quality,
-    Invalid = 0xFF,
+    DLAA,
+    XeSS,
+    Invalid = -1,
 };
 

@@ -2,24 +2,17 @@
 
 USBZUIManager::USBZUIManager() {
     this->PopUpWidgetClass = NULL;
-    this->PopUpWidgetClass = NULL;
     this->PopUpWidget = NULL;
-    this->TutorialPopUpBodyWidgetClass = NULL;
     this->TutorialPopUpBodyWidgetClass = NULL;
     this->TutorialPopUpBody = NULL;
     this->FullscreenNotificationWidgetClass = NULL;
-    this->FullscreenNotificationWidgetClass = NULL;
     this->FullscreenNotificationWidget = NULL;
-    this->SideBarNotificationWidgetClass = NULL;
     this->SideBarNotificationWidgetClass = NULL;
     this->SideBarNotificationWidget = NULL;
     this->InfoPopupWidgetWidgetClass = NULL;
-    this->InfoPopupWidgetWidgetClass = NULL;
     this->InfoPopupWidget = NULL;
     this->DebugWidgetClass = NULL;
-    this->DebugWidgetClass = NULL;
     this->DebugWidget = NULL;
-    this->SubtitleWidgetClass = NULL;
     this->SubtitleWidgetClass = NULL;
     this->PlatformSprite_GenericPC = NULL;
     this->PlatformSprite_GenericConsole = NULL;
@@ -33,9 +26,9 @@ USBZUIManager::USBZUIManager() {
     this->PopUpStackString = TEXT("PopUp");
     this->SwitchingStackString = TEXT("Switching");
     this->BlackBackgroundWidgetClass = NULL;
-    this->BlackBackgroundWidgetClass = NULL;
     this->ActiveMenuWidget = NULL;
     this->ActiveLoginScreenWidget = NULL;
+    this->ActivePSOCompilationScreenWidget = NULL;
     this->LastFocusedWidget = NULL;
     this->LastUIStackUpdate = 0.00f;
     this->bSetFocusOnUnlock = false;
@@ -82,6 +75,9 @@ bool USBZUIManager::ShouldDisplayCursor() const {
 }
 
 void USBZUIManager::SetStartInHeistSelection() {
+}
+
+void USBZUIManager::SetOnePlayerMatchHook() {
 }
 
 void USBZUIManager::SetLogoP3Visibility(ESlateVisibility InVisibility) {
@@ -137,6 +133,9 @@ void USBZUIManager::OnStateMachineStateEntered(FName StateName) {
 void USBZUIManager::OnPopupControllerEndPlay(AActor* Actor, TEnumAsByte<EEndPlayReason::Type> EndPlayReason) {
 }
 
+void USBZUIManager::OnOptForSoloModePopupClosed(FName ClosingActionName) {
+}
+
 void USBZUIManager::OnHeistSelectionMenuSet() {
 }
 
@@ -180,11 +179,11 @@ USBZUIData* USBZUIManager::GetUIData(UObject* WorldContextObject) {
     return NULL;
 }
 
-UPaperSprite* USBZUIManager::GetSpriteForPlatform(ESBZPlatform InPlatform) {
+UPaperSprite* USBZUIManager::GetSpriteForPlatform(ESBZPlatform InPlatform, bool bUseCurrentPlatformIconIfUnknown) const {
     return NULL;
 }
 
-UPaperSprite* USBZUIManager::GetSpriteForNebula() {
+UPaperSprite* USBZUIManager::GetSpriteForNebula() const {
     return NULL;
 }
 
@@ -196,7 +195,7 @@ USBZBaseMenuWidget* USBZUIManager::GetMenuWidget(const UObject* WorldContextObje
     return NULL;
 }
 
-FText USBZUIManager::GetLocalizedPlayerNoName() {
+FText USBZUIManager::GetLocalizedPlayerNoName() const {
     return FText::GetEmpty();
 }
 

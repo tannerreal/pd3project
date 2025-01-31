@@ -7,17 +7,17 @@
 #include "SBZInteractableComponent.h"
 
 ASBZZipline::ASBZZipline(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->bSnapNavLinkEnd = false;
     this->bSnapNavLinkStart = false;
     this->ZiplineType = ESBZZiplineType::Horizontal;
     this->OverlapBox = CreateDefaultSubobject<UBoxComponent>(TEXT("OverlapBox"));
-    this->OverlapBox->SetupAttachment(SplineComponent);
     this->SplineComponent = CreateDefaultSubobject<USplineComponent>(TEXT("SplineComponent"));
-    this->SplineComponent->SetupAttachment(RootComponent);
     this->StartPointMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StartPointMesh"));
-    this->StartPointMesh->SetupAttachment(RootComponent);
     this->EndPointMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("EndPointMesh"));
-    this->EndPointMesh->SetupAttachment(RootComponent);
     this->InteractableComponent = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("SBZInteractableComponent"));
     this->NavLink = NULL;
     this->MaxDistanceSolverIterations = 2;
@@ -26,10 +26,12 @@ ASBZZipline::ASBZZipline(const FObjectInitializer& ObjectInitializer) : Super(Ob
     this->bZiplineEnabled = true;
     this->DistanceFromEndToStop = 50.00f;
     this->HalfExtentSizeToAdd = 15.00f;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->StartForcedDirectionThreshold = 0.20f;
+    this->EndForcedDirectionThreshold = 0.20f;
+    this->OverlapBox->SetupAttachment(SplineComponent);
+    this->SplineComponent->SetupAttachment(RootComponent);
+    this->StartPointMesh->SetupAttachment(RootComponent);
+    this->EndPointMesh->SetupAttachment(RootComponent);
 }
 
 void ASBZZipline::SetZiplineEnabled(bool bEnabled) {

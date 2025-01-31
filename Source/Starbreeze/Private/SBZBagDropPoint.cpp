@@ -2,8 +2,8 @@
 #include "Components/SceneComponent.h"
 
 ASBZBagDropPoint::ASBZBagDropPoint(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->bShouldActivateOnBeginPlay = true;
     this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->bShouldActivateOnBeginPlay = true;
 }
 
 void ASBZBagDropPoint::EnableAsBagDropPoint() {

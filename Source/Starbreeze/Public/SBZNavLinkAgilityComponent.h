@@ -66,7 +66,7 @@ protected:
     UObject* InterfaceObject;
     
 public:
-    USBZNavLinkAgilityComponent();
+    USBZNavLinkAgilityComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void ComputeTrajectories();

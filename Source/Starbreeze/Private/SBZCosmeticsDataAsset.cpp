@@ -2,8 +2,6 @@
 
 USBZCosmeticsDataAsset::USBZCosmeticsDataAsset() {
     this->Rarity = ESBZRarity::Common;
-    FProperty* p_NativeClass = GetClass()->FindPropertyByName("NativeClass");
-    *p_NativeClass->ContainerPtrToValuePtr<UClass*>(this) = USBZCosmeticsDataAsset::StaticClass();
 }
 
 bool USBZCosmeticsDataAsset::IsConsumable() const {

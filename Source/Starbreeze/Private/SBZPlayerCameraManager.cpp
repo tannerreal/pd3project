@@ -3,6 +3,7 @@
 #include "SBZPlayerCameraFeedbackComponent.h"
 
 ASBZPlayerCameraManager::ASBZPlayerCameraManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->DefaultModifiers.AddDefaulted(1);
     this->PlayerCameraFeedbackComponent = CreateDefaultSubobject<USBZPlayerCameraFeedbackComponent>(TEXT("PlayerCameraFeedbackComponent"));
     this->DepthOfFieldFstop = 4.00f;
     this->DepthOfFieldFocalDistance = 0.00f;
@@ -22,7 +23,6 @@ ASBZPlayerCameraManager::ASBZPlayerCameraManager(const FObjectInitializer& Objec
     this->ForwardTraceLength = 10000.00f;
     this->bUseDynFocalDistanceWhenUnequipped = true;
     this->AudioRaycasting = CreateDefaultSubobject<USBZAudioRaycasting>(TEXT("SBZAudioRaycasting"));
-    this->DefaultModifiers.AddDefaulted(1);
 }
 
 void ASBZPlayerCameraManager::UnlockCamera(int32& InOutId) {

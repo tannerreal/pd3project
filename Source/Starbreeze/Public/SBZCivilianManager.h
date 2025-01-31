@@ -36,9 +36,6 @@ protected:
     void OnPawnSpawned(USBZSpawnManager* SpawnManager, APawn* Pawn);
     
     UFUNCTION(BlueprintCallable)
-    void OnPawnKilled(APawn* Pawn);
-    
-    UFUNCTION(BlueprintCallable)
     void OnHeistStateChanged(EPD3HeistState OldState, EPD3HeistState NewState);
     
 public:

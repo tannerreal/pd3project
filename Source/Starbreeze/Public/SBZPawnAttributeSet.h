@@ -16,6 +16,9 @@ public:
     FGameplayAttributeData Damage;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData OverHealDamageMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData ArmorPenetration;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_Health, meta=(AllowPrivateAccess=true))
@@ -38,6 +41,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData DealtDamageMultiplier;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_OverHeal, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData OverHeal;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData OverHealMax;
     
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
@@ -62,10 +71,16 @@ public:
 
 protected:
     UFUNCTION(BlueprintCallable)
+    void OnRep_OverHeal(const FGameplayAttributeData& OldOverHeal);
+    
+    UFUNCTION(BlueprintCallable)
     void OnRep_Health(const FGameplayAttributeData& OldHealth);
     
     UFUNCTION(BlueprintCallable)
     void OnRep_Armor(const FGameplayAttributeData& OldArmor);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetOverHeal(float NewCurrentValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetHealth(float NewCurrentValue);

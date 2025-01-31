@@ -18,6 +18,11 @@ void USBZHUDChatWidget::OnTextCommited(const FText& Text, TEnumAsByte<ETextCommi
 }
 
 
+
+void USBZHUDChatWidget::OnPlayerDefeatStateChangedInternal(const FSBZPlayerDefeatStateChangedData& InData) {
+}
+
+
 void USBZHUDChatWidget::OnMessageReceived(const FSBZPlayerChatEvent& ChatEventData) {
 }
 

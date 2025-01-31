@@ -1,7 +1,7 @@
 #include "SBZAICloakerMeleeExecutionCalculation.h"
 
 USBZAICloakerMeleeExecutionCalculation::USBZAICloakerMeleeExecutionCalculation() {
-    this->RelevantAttributesToCapture.AddDefaulted(2);
+    this->RelevantAttributesToCapture.AddDefaulted(3);
 }
 
 

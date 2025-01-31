@@ -209,6 +209,9 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayAttributeData MinRespawnEquippableAmmo;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_HealthTrauma, meta=(AllowPrivateAccess=true))
+    FGameplayAttributeData HealthTrauma;
+    
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZArmorData* ArmorData;
@@ -277,6 +280,9 @@ protected:
     void OnRep_PrimaryEquippableAmmoInventory(const FGameplayAttributeData& OldData);
     
     UFUNCTION(BlueprintCallable)
+    void OnRep_HealthTrauma(const FGameplayAttributeData& OldArmorTrauma);
+    
+    UFUNCTION(BlueprintCallable)
     void OnRep_DownedCount(const FGameplayAttributeData& OldDownedCount);
     
     UFUNCTION(BlueprintCallable)
@@ -341,6 +347,9 @@ protected:
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetPrimaryEquippableAmmoInventory(float NewCurrentValue);
+    
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetHealthTrauma(float NewCurrentValue);
     
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetDownedCount(float NewCurrentValue);

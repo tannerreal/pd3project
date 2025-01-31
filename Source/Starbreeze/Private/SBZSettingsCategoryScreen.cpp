@@ -1,24 +1,19 @@
 #include "SBZSettingsCategoryScreen.h"
 
 USBZSettingsCategoryScreen::USBZSettingsCategoryScreen() {
+    this->StackValue = TEXT("Default__SBZSettingsCategoryScreen");
     this->ScrollBox_SettingsItems = NULL;
     this->SettingsGroupTitleClass = NULL;
-    this->SettingsGroupTitleClass = NULL;
-    this->SettingsButtonClassTwoChoice = NULL;
+    this->SettingsButtonClassActionClick = NULL;
     this->SettingsButtonClassTwoChoice = NULL;
     this->SettingsButtonClassMultipleChoice = NULL;
-    this->SettingsButtonClassMultipleChoice = NULL;
     this->SettingsButtonClassResolutionChoice = NULL;
-    this->SettingsButtonClassResolutionChoice = NULL;
-    this->SettingsButtonClassDLSSSRModeChoice = NULL;
-    this->SettingsButtonClassDLSSSRModeChoice = NULL;
-    this->SettingsButtonClassSlider = NULL;
+    this->SettingsButtonClassAntiAliasingModeChoice = NULL;
+    this->SettingsButtonClassUpscalerChoice = NULL;
+    this->SettingsButtonClassUpscalingModeChoice = NULL;
     this->SettingsButtonClassSlider = NULL;
     this->SettingsButtonClassKeyboardBinding = NULL;
-    this->SettingsButtonClassKeyboardBinding = NULL;
     this->SettingsButtonClassGamepadBinding = NULL;
-    this->SettingsButtonClassGamepadBinding = NULL;
-    this->StackValue = TEXT("Default__SBZSettingsCategoryScreen");
 }
 
 

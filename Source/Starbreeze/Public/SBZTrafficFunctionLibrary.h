@@ -6,13 +6,13 @@
 #include "Engine/LatentActionManager.h"
 #include "ESBZTrafficNodeExec.h"
 #include "ESBZTrafficNodeType.h"
+#include "Templates/SubclassOf.h"
 #include "SBZTrafficFunctionLibrary.generated.h"
 
 class ASBZAerialVehicle;
 class ASBZSpline;
 class ASBZTrafficSpline;
 class ASBZWheeledVehicle;
-class UClass;
 class UObject;
 class USBZTrafficManager;
 
@@ -23,10 +23,10 @@ public:
     USBZTrafficFunctionLibrary();
 
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, meta=(Latent, LatentInfo="LatentInfo", WorldContext="WorldContextObject"))
-    static void SpawnEscapeVanWithRoute(UObject* WorldContextObject, UClass* EscapeVanActorClass, ASBZTrafficSpline* StartSpline, ASBZTrafficSpline* DestinationSpline, ESBZTrafficNodeExec& Exec, FLatentActionInfo LatentInfo);
+    static void SpawnEscapeVanWithRoute(UObject* WorldContextObject, TSubclassOf<ASBZWheeledVehicle> EscapeVanActorClass, ASBZTrafficSpline* StartSpline, ASBZTrafficSpline* DestinationSpline, ESBZTrafficNodeExec& Exec, FLatentActionInfo LatentInfo);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, meta=(Latent, LatentInfo="LatentInfo", WorldContext="WorldContextObject"))
-    static void SpawnEscapeVan(UObject* WorldContextObject, UClass* EscapeVanActorClass, const FTransform& SpawnTransform, ESBZTrafficNodeExec& Exec, FLatentActionInfo LatentInfo);
+    static void SpawnEscapeVan(UObject* WorldContextObject, TSubclassOf<ASBZWheeledVehicle> EscapeVanActorClass, const FTransform& SpawnTransform, ESBZTrafficNodeExec& Exec, FLatentActionInfo LatentInfo);
     
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable, meta=(Latent, LatentInfo="LatentInfo", WorldContext="WorldContextObject"))
     static void SpawnAndDriveSwatVan(UObject* WorldContextObject, ASBZTrafficSpline* StartSpline, ASBZTrafficSpline* DestinationSpline, ESBZTrafficNodeExec& Exec, FLatentActionInfo LatentInfo);

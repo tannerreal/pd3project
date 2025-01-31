@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+#include "UObject/NoExportTypes.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "ArraySelectDelegateDelegate.h"
 #include "ArraySortDelegateDelegate.h"
@@ -18,6 +19,9 @@ public:
     
     UFUNCTION(BlueprintCallable)
     static int32 SelectArray(const TArray<UObject*>& Array, TArray<UObject*>& OutArray, const FArraySelectDelegate& SelectCallback, const int32 Limit);
+    
+    UFUNCTION(BlueprintCallable)
+    static void RandomizedSplitArray(const TArray<UObject*>& ObjectList, int32 Min, int32 Max, const FRandomStream& RandomStream, TArray<UObject*>& ChosenObjects, TArray<UObject*>& LeftoverObjects);
     
     UFUNCTION(BlueprintCallable)
     static UObject* FindArray(const TArray<UObject*>& Array, const FArraySelectDelegate& SelectCallback);

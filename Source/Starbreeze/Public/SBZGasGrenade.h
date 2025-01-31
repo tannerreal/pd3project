@@ -4,7 +4,7 @@
 #include "Engine/NetSerialization.h"
 #include "SBZFragGrenade.h"
 #include "SBZGasExplosionData.h"
-#include "SBZGasGrenadeTarget.h"
+#include "SBZGasVolumeTarget.h"
 #include "SBZVolumeDamageInterface.h"
 #include "SBZGasGrenade.generated.h"
 
@@ -40,7 +40,7 @@ protected:
     FSBZGasExplosionData GasExplosionRepData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    TArray<FSBZGasGrenadeTarget> TargetArray;
+    TArray<FSBZGasVolumeTarget> TargetArray;
     
 public:
     ASBZGasGrenade(const FObjectInitializer& ObjectInitializer);

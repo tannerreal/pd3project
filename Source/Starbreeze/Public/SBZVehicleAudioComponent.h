@@ -87,7 +87,7 @@ protected:
     float BladeSoundMultiplicationValue;
     
 public:
-    USBZVehicleAudioComponent();
+    USBZVehicleAudioComponent(const FObjectInitializer& ObjectInitializer);
 
 protected:
     UFUNCTION(BlueprintCallable)

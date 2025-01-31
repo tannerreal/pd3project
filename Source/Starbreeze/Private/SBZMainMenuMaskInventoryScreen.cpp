@@ -1,22 +1,23 @@
 #include "SBZMainMenuMaskInventoryScreen.h"
 
 USBZMainMenuMaskInventoryScreen::USBZMainMenuMaskInventoryScreen() {
-    this->MaskSlotButtonClass = NULL;
+    this->StackValue = TEXT("Default__SBZMainMenuMaskInventoryScreen");
     this->MaskSlotButtonClass = NULL;
     this->Panel_MaskSlotButtons = NULL;
     this->Button_BuySlots = NULL;
     this->Button_DefaultMask = NULL;
-    this->DiscardMaskPopUpBodyWidgetClass = NULL;
     this->DiscardMaskPopUpBodyWidgetClass = NULL;
     this->CustomizableMaskData = NULL;
     this->MaskMould = NULL;
     this->ActiveMaskSlotButton = NULL;
     this->MaskIndexToDiscard = -1;
     this->DiscardMaskPopUpBody = NULL;
-    this->StackValue = TEXT("Default__SBZMainMenuMaskInventoryScreen");
 }
 
 void USBZMainMenuMaskInventoryScreen::TryDiscardMaskInSlot(int32 InMaskIndex) {
+}
+
+void USBZMainMenuMaskInventoryScreen::RefreshWidgetVisuals() {
 }
 
 

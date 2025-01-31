@@ -1,6 +1,6 @@
 #include "SBZLifeActionSlot.h"
 
-USBZLifeActionSlot::USBZLifeActionSlot() {
+USBZLifeActionSlot::USBZLifeActionSlot(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bMustBeOccupied = true;
     this->bNeedOtherSlotsReadyToBeReserved = false;
     this->bOpenForRandomReservation = true;

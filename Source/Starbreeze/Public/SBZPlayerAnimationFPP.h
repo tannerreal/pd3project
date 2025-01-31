@@ -6,6 +6,8 @@
 #include "ESBZAdditiveMoveType.h"
 #include "ESBZPoseType.h"
 #include "SBZCharacterAnimation.h"
+#include "SBZTankingData.h"
+#include "SBZWallReactionData.h"
 #include "SBZPlayerAnimationFPP.generated.h"
 
 class ASBZPlayerCharacter;
@@ -93,6 +95,15 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float MoveGaitValue;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float RightHandOnlyRecoilBlendWeight;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZTankingData WeaponTankingData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZWallReactionData WeaponWallReactionData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     ESBZAdditiveMoveType AdditiveMoveType;

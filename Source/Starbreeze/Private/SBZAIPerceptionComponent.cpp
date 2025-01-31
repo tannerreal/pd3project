@@ -1,6 +1,6 @@
 #include "SBZAIPerceptionComponent.h"
 
-USBZAIPerceptionComponent::USBZAIPerceptionComponent() {
+USBZAIPerceptionComponent::USBZAIPerceptionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZAIPerceptionComponent::SetSenseConfig(ESBZSenseConfig ConfigID) {

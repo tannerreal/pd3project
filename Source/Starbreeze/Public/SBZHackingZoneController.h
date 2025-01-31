@@ -7,7 +7,6 @@
 #include "SBZHackingZoneController.generated.h"
 
 class ASBZHackingZone;
-class ASBZSabotagePoint;
 class USBZBaseInteractableComponent;
 class USBZInteractableComponent;
 class USBZInteractorComponent;
@@ -33,9 +32,6 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<ASBZHackingZone*> HackingZoneArray;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    ASBZSabotagePoint* SabotagePoint;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 NumberOfZonesActiveAtOnce;
@@ -64,9 +60,6 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<int32> AvailableZoneIndexes;
     
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    bool bIsSabotaged;
-    
 public:
     ASBZHackingZoneController(const FObjectInitializer& ObjectInitializer);
 
@@ -75,13 +68,10 @@ public:
     
 protected:
     UFUNCTION(BlueprintCallable)
-    void OnServerCompleteInteraction(USBZBaseInteractableComponent* InteractableComp, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled);
-    
-    UFUNCTION(BlueprintCallable)
-    void OnSabotaged(bool bNewSabotagedState);
-    
-    UFUNCTION(BlueprintCallable)
     void OnHeistGoneLoud();
+    
+    UFUNCTION(BlueprintCallable)
+    void OnAckCompleteInteraction(USBZBaseInteractableComponent* InteractableComp, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled);
     
 public:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)

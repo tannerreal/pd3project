@@ -1,22 +1,20 @@
 #include "SBZCarriedBag.h"
 #include "SkeletalMeshComponentBudgeted.h"
 #include "Components/SceneComponent.h"
-#include "SBZInteractableComponent.h"
+#include "SBZInteractableCarriedBagComponent.h"
 
 ASBZCarriedBag::ASBZCarriedBag(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->SkeletalMeshComponentBudgeted = CreateDefaultSubobject<USkeletalMeshComponentBudgeted>(TEXT("SkeletalMeshComponentBudgeted"));
-    this->SkeletalMeshComponentBudgeted->SetupAttachment(RootComponent);
     this->OwningCharacter = NULL;
     this->AIBagOutlineAsset = NULL;
-    this->InteractableComponent = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("SBZInteractableComponent"));
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->InteractableComponent = CreateDefaultSubobject<USBZInteractableCarriedBagComponent>(TEXT("SBZInteractableComponent"));
+    this->SkeletalMeshComponentBudgeted->SetupAttachment(RootComponent);
 }
 
-void ASBZCarriedBag::HandleServerComplete(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {
+void ASBZCarriedBag::OnInteractionComplete(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {
 }
 
-void ASBZCarriedBag::HandlePredictedEnd(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {
-}
 
 
 

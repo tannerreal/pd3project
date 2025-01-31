@@ -5,7 +5,7 @@ USBZBaseWeaponData::USBZBaseWeaponData() {
     this->HeadbobData = NULL;
     this->ItemProgression = NULL;
     this->bUseSprintMoveData = false;
-    this->TurnInPlaceAdditiveMoveFactor = 4.00f;
+    this->TurnInPlaceAdditiveMoveFactor = 0.10f;
     this->TurnInPlaceAdditiveMoveInterSpeed = 10.00f;
     this->JumpStartAlpha = 1.00f;
     this->JumpStartADSAlpha = 0.20f;
@@ -17,6 +17,8 @@ USBZBaseWeaponData::USBZBaseWeaponData() {
     this->UncrouchADSAlpha = 0.20f;
     this->VaultLandAlpha = 1.00f;
     this->VaultLandADSAlpha = 0.20f;
+    this->TankingData = NULL;
+    this->WallReactionData = NULL;
     this->OverkillProgressionProgress = 100.00f;
     this->TargetingData = NULL;
     this->PitchLookOffsetCurve = NULL;
@@ -24,9 +26,8 @@ USBZBaseWeaponData::USBZBaseWeaponData() {
     this->bIsInaccurateWeapon = false;
     this->WeaponSelectionScorer = NULL;
     this->WeaponDeselectionTimer = 0.00f;
+    this->bShouldApplyWeaponSwitchCooldown = true;
     this->bCanAttackWhileMoving = true;
-    FProperty* p_NativeClass = GetClass()->FindPropertyByName("NativeClass");
-    *p_NativeClass->ContainerPtrToValuePtr<UClass*>(this) = USBZBaseWeaponData::StaticClass();
 }
 
 int32 USBZBaseWeaponData::GetNbStickerPlacements() const {

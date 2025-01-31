@@ -5,7 +5,6 @@
 
 class AActor;
 class ASBZGate;
-class ASBZSoundEnvironment;
 
 UCLASS(Blueprintable)
 class STARBREEZE_API ASBZAkAcousticPortal : public AAkAcousticPortal {
@@ -13,12 +12,6 @@ class STARBREEZE_API ASBZAkAcousticPortal : public AAkAcousticPortal {
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<AActor*> AffectedActors;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    ASBZSoundEnvironment* FrontSoundEnvironment;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    ASBZSoundEnvironment* BackSoundEnvironment;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     ASBZGate* ConnectedGate;
@@ -37,10 +30,10 @@ public:
     
     ASBZAkAcousticPortal(const FObjectInitializer& ObjectInitializer);
 
-    UFUNCTION(BlueprintCallable)
+    UFUNCTION(BlueprintCallable, BlueprintCosmetic)
     void OnDebugLogging();
     
-    UFUNCTION(BlueprintCallable)
+    UFUNCTION(BlueprintCallable, BlueprintCosmetic)
     void OnActivateTick(bool bTick);
     
 };

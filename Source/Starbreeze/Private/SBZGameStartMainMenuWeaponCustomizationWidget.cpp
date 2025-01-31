@@ -1,9 +1,9 @@
 #include "SBZGameStartMainMenuWeaponCustomizationWidget.h"
 
 USBZGameStartMainMenuWeaponCustomizationWidget::USBZGameStartMainMenuWeaponCustomizationWidget() {
+    this->StackValue = TEXT("Default__SBZGameStartMainMenuWeaponCustomizationWidget");
     this->EquippableSlot = ESBZEquippableLoadoutSlot::PrimaryWeapon;
     this->WeaponSlotIndex = -1;
-    this->StackValue = TEXT("Default__SBZGameStartMainMenuWeaponCustomizationWidget");
 }
 
 void USBZGameStartMainMenuWeaponCustomizationWidget::UpdateEquippableConfig(ESBZEquippableLoadoutSlot InEquippableSlot, int32 InWeaponSlotIndex) {

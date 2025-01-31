@@ -7,12 +7,13 @@
 #include "NavLinkCustomInterface.h"
 #include "SBZBlockableNavlinkInterface.h"
 #include "SBZSmartLinkReachedSignatureDelegate.h"
+#include "Templates/SubclassOf.h"
 #include "SBZSmartNavLink.generated.h"
 
 class AController;
 class ASBZCharacter;
 class UBillboardComponent;
-class UClass;
+class UNavArea;
 
 UCLASS(Blueprintable)
 class ASBZSmartNavLink : public AActor, public INavRelevantInterface, public INavLinkCustomInterface, public ISBZBlockableNavlinkInterface {
@@ -66,7 +67,7 @@ public:
     ASBZSmartNavLink(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
-    void SetNavArea(UClass* AreaClass);
+    void SetNavArea(TSubclassOf<UNavArea> AreaClass);
     
     UFUNCTION(BlueprintCallable)
     void SetLinkEnabled(bool bInLinkEnabled);
@@ -75,7 +76,7 @@ public:
     bool IsLinkEnabled() const;
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    UClass* GetNavArea() const;
+    TSubclassOf<UNavArea> GetNavArea() const;
     
 
     // Fix for true pure virtual functions not being implemented

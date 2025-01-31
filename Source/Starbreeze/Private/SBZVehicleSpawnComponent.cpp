@@ -1,6 +1,6 @@
 #include "SBZVehicleSpawnComponent.h"
 
-USBZVehicleSpawnComponent::USBZVehicleSpawnComponent() {
+USBZVehicleSpawnComponent::USBZVehicleSpawnComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bEnableForAssault = false;
     this->MaxNumSpawn = -1;
     this->bInitialSpawnOnly = false;

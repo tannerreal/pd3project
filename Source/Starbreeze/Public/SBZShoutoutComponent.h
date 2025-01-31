@@ -4,11 +4,12 @@
 #include "Components/ActorComponent.h"
 #include "GameplayTagContainer.h"
 #include "ESBZShoutActionType.h"
+#include "Templates/SubclassOf.h"
 #include "SBZShoutoutComponent.generated.h"
 
 class AActor;
 class UAbilitySystemComponent;
-class UClass;
+class USBZAIAction;
 class USBZMarkerDataAsset;
 class USBZOutlineAsset;
 class USBZShoutTargetComponent;
@@ -62,13 +63,16 @@ protected:
     FGameplayTagContainer BlockGoDownTagContainer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FGameplayTagContainer BlockSurrenderOwnedTagContainer;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZMarkerDataAsset* PingMarkerAsset;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float PingTimer;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* CopSurrenderAction;
+    TSubclassOf<USBZAIAction> CopSurrenderAction;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     int32 PingIndex;
@@ -80,7 +84,7 @@ protected:
     TMap<ESBZShoutActionType, FGameplayTagContainer> ActivationBlockedTags;
     
 public:
-    USBZShoutoutComponent();
+    USBZShoutoutComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void SetMarkLimit(int32 NewLimit);

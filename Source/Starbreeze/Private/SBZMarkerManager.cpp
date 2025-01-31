@@ -1,8 +1,7 @@
 #include "SBZMarkerManager.h"
 #include "Net/UnrealNetwork.h"
 
-USBZMarkerManager::USBZMarkerManager() {
-    
+USBZMarkerManager::USBZMarkerManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZMarkerManager::OnRep_ReplicatedMarkers() {

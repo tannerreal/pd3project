@@ -8,15 +8,18 @@
 #include "SBZZiplineAudioController.h"
 
 ASBZBagItem::ASBZBagItem(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+    this->Tags.AddDefaulted(2);
     this->AudioComponent = CreateDefaultSubobject<UAkComponent>(TEXT("AkComponent"));
-    this->AudioComponent->SetupAttachment(BoxComponent);
     this->ZiplineAudioController = CreateDefaultSubobject<USBZZiplineAudioController>(TEXT("SBZZiplineAudioController"));
     this->OverrideImpactEvent = NULL;
     this->MinimumImpactVelocity = 5.00f;
     this->ZiplineMotorClass = NULL;
-    this->ZiplineMotorClass = NULL;
     this->CurrentZiplineMotor = NULL;
-    this->BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
+    this->BoxComponent = (UBoxComponent*)RootComponent;
     this->Interactable = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("PickupInteract"));
     this->PhysicsCorrector = CreateDefaultSubobject<USBZSimplePhysicsCorrector>(TEXT("SimplePhysicsCorrector"));
     this->ObjectiveComponent = CreateDefaultSubobject<USBZAIObjectiveComponent>(TEXT("SBZAIObjectiveComponent"));
@@ -27,11 +30,9 @@ ASBZBagItem::ASBZBagItem(const FObjectInitializer& ObjectInitializer) : Super(Ob
     this->InteractionDelay = 0.30f;
     this->ZiplineParams = NULL;
     this->bCanCrewAICarry = true;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = BoxComponent;
-    this->Tags.AddDefaulted(2);
+    this->bShouldBroadcastOnHitEvent = false;
+    this->MarkerID = -1;
+    this->AudioComponent->SetupAttachment(RootComponent);
 }
 
 bool ASBZBagItem::SecureBag(bool bDestroyOnSecured) {
@@ -39,6 +40,9 @@ bool ASBZBagItem::SecureBag(bool bDestroyOnSecured) {
 }
 
 void ASBZBagItem::OnRep_CurrentZipline() {
+}
+
+void ASBZBagItem::OnRep_BagId() {
 }
 
 void ASBZBagItem::OnPickup(USBZBaseInteractableComponent* NewInteractable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {

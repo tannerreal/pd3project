@@ -18,9 +18,6 @@ private:
     void OnUnblockPlayerComplete(bool bResult, FSBZFriendListEntry PlayerEntry);
     
     UFUNCTION(BlueprintCallable)
-    void OnQueryBlockedPlayersDone();
-    
-    UFUNCTION(BlueprintCallable)
     void OnPlatformUserInitialized();
     
     UFUNCTION(BlueprintCallable)
@@ -39,6 +36,11 @@ public:
     UFUNCTION(BlueprintCallable)
     void HandleUIStackChanged(FSBZUIStackChangedEvent Event);
     
+private:
+    UFUNCTION(BlueprintCallable)
+    void HandleStateEntered(FName StateName);
+    
+public:
     UFUNCTION(BlueprintCallable)
     TMap<FString, FSBZFriendListEntry> GetUserSearchEntries();
     

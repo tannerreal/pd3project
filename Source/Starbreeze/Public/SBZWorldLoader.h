@@ -1,9 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "Templates/SubclassOf.h"
 #include "SBZWorldLoader.generated.h"
 
-class UClass;
+class AGameModeBase;
+class AGameStateBase;
 class UWorld;
 
 UCLASS(Blueprintable)
@@ -18,10 +20,10 @@ private:
     TArray<UObject*> Observers;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    UClass* GameModeParamClass;
+    TSubclassOf<AGameModeBase> GameModeParamClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    UClass* GameStateClass;
+    TSubclassOf<AGameStateBase> GameStateClass;
     
 public:
     USBZWorldLoader();

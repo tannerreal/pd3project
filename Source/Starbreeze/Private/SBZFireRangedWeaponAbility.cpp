@@ -2,11 +2,11 @@
 #include "ESBZAbilityInput.h"
 
 USBZFireRangedWeaponAbility::USBZFireRangedWeaponAbility() {
-    this->Pawn = NULL;
-    this->bCancelAbilitiesOnFailedActivation = true;
-    this->Input = ESBZAbilityInput::Fire;
     this->InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
     this->NetExecutionPolicy = EGameplayAbilityNetExecutionPolicy::LocalPredicted;
+    this->bCancelAbilitiesOnFailedActivation = true;
+    this->Input = ESBZAbilityInput::Fire;
+    this->Pawn = NULL;
 }
 
 

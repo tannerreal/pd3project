@@ -1,11 +1,12 @@
 #include "SBZAICrewCharacter.h"
+#include "Engine/EngineTypes.h"
 #include "Net/UnrealNetwork.h"
 #include "SBZAICrewCharacterInteractableComponent.h"
 #include "SBZActivateReplenishHealthEffect.h"
 #include "SBZModularCharacterComponent.h"
-#include "Components/CapsuleComponent.h"
 
-ASBZAICrewCharacter::ASBZAICrewCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZAICrewCharacterInteractableComponent>(TEXT("SBZInteractableComponent")).SetDefaultSubobjectClass<USBZModularCharacterComponent>(TEXT("CharacterMesh0"))) {
+ASBZAICrewCharacter::ASBZAICrewCharacter(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USBZModularCharacterComponent>(TEXT("CharacterMesh0")).SetDefaultSubobjectClass<USBZAICrewCharacterInteractableComponent>(TEXT("SBZInteractableComponent"))) {
+    this->SpawnCollisionHandlingMethod = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     this->EquipmentData = NULL;
     this->HealthReplenishEffectClass = USBZActivateReplenishHealthEffect::StaticClass();
     this->CallComment = NULL;
@@ -35,9 +36,8 @@ ASBZAICrewCharacter::ASBZAICrewCharacter(const FObjectInitializer& ObjectInitial
     this->MarkingVoicePriority = ESBZVoicePriority::MediumPriority;
     this->MarkingDuration = 5.00f;
     this->CrewAIMarkerAsset = NULL;
-    FProperty* p_CapsuleComponent_Parent = GetClass()->FindPropertyByName("CapsuleComponent");
-    FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
-    p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent>(this)->SetupAttachment(*p_CapsuleComponent_Parent->ContainerPtrToValuePtr<UCapsuleComponent*>(this));
+    const FProperty* p_Mesh = GetClass()->FindPropertyByName("Mesh");
+    (*p_Mesh->ContainerPtrToValuePtr<USkeletalMeshComponent*>(this))->SetupAttachment(RootComponent);
 }
 
 void ASBZAICrewCharacter::OnServerStartInteraction(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* InInteractor, bool bInIsLocallyControlled) {

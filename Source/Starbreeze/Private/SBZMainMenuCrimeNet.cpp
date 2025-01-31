@@ -1,18 +1,17 @@
 #include "SBZMainMenuCrimeNet.h"
 
 USBZMainMenuCrimeNet::USBZMainMenuCrimeNet() {
+    this->StackValue = TEXT("Default__SBZMainMenuCrimeNet");
     this->HeistButtonClass = NULL;
-    this->HeistButtonClass = NULL;
-    this->StoryModeButtonClass = NULL;
     this->StoryModeButtonClass = NULL;
     this->HorizontalBox_HeistButtons = NULL;
     this->HeistMapIconClass = NULL;
-    this->HeistMapIconClass = NULL;
     this->CanvasPanel_HeistMapIcons = NULL;
     this->SelectedHeistButton = NULL;
-    this->bShowStoryModeButtons = true;
     this->ActiveHeistCollectionIndex = -1;
-    this->StackValue = TEXT("Default__SBZMainMenuCrimeNet");
+}
+
+void USBZMainMenuCrimeNet::UpdateHeistCollection() {
 }
 
 bool USBZMainMenuCrimeNet::ToggleStoryModeFilter() {
@@ -20,6 +19,9 @@ bool USBZMainMenuCrimeNet::ToggleStoryModeFilter() {
 }
 
 void USBZMainMenuCrimeNet::SetActiveHeistCollection(int32 NewIndex) {
+}
+
+void USBZMainMenuCrimeNet::RefreshCollections() {
 }
 
 

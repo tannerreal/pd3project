@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "GameFramework/OnlineReplStructs.h"
+#include "ESBZFirstPartyPlatform.h"
 #include "ESBZOnlineCode.h"
 #include "ESBZPlatform.h"
 #include "ESBZPreMatchLobbyStatus.h"
@@ -24,6 +25,11 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     bool bIsDsLobbyClient;
     
+private:
+    UPROPERTY(EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TMap<uint32, FPD3PlayerLoadout> PinnedLoadouts;
+    
+public:
     ASBZBeaconActionPhaseClient(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
@@ -32,10 +38,22 @@ public:
     void ServerVoteStayAsParty();
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
+    void ServerUpdateGameSession();
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void ServerTogglePlayerReady(const FUniqueNetIdRepl& InPlayerId);
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void ServerSetSlotStatus(const FUniqueNetIdRepl& InPlayerId, ESBZSlotStatus Status);
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
-    void ServerSetPlayerLoadout(const FUniqueNetIdRepl& InPlayerId, const FPD3PlayerLoadout& InLoadout, const ESBZPlatform InPlatform, const int32 InInfamyLevel, const FString& AccelByteUserName, const FString& AccelByteDisplayName, bool bCrossPlayEnabled);
+    void ServerSetPlayerUnready(const FUniqueNetIdRepl& InPlayerId);
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void ServerSetPlayerReady(const FUniqueNetIdRepl& InPlayerId);
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
+    void ServerSetPlayerLoadout(const FUniqueNetIdRepl& InPlayerId, const FPD3PlayerLoadout& InLoadout, const ESBZFirstPartyPlatform& FirstPartyPlatform, const ESBZPlatform InPlatform, const int32 InInfamyLevel, const FString& AccelByteUserName, const FString& AccelByteDisplayName, bool bCrossPlayEnabled);
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
     void ServerSetPlayerLoadingComplete(const FUniqueNetIdRepl& InPlayerId);
@@ -70,10 +88,22 @@ public:
     void ServerNotifyStartTravel(const FUniqueNetIdRepl& InPlayerIdStartTravel);
     
     UFUNCTION(BlueprintCallable, Reliable, Server)
+    void ServerGetGamePort();
+    
+    UFUNCTION(BlueprintCallable, Reliable, Server)
     void ServerAddPreplanningAsset(const FUniqueNetIdRepl& InPlayerId, const FString& AccelByteItemSku);
     
     UFUNCTION(BlueprintCallable)
+    void SendTogglePlayerReady();
+    
+    UFUNCTION(BlueprintCallable)
     void SendPreplanningAssets();
+    
+    UFUNCTION(BlueprintCallable)
+    void SendPlayerUnready();
+    
+    UFUNCTION(BlueprintCallable)
+    void SendPlayerReady();
     
     UFUNCTION(BlueprintCallable)
     void SendActiveLoadout(const FUniqueNetIdRepl& InPlayerId);
@@ -107,7 +137,10 @@ public:
     void ClientStartTravelAck(const ESBZOnlineCode& Result);
     
     UFUNCTION(BlueprintCallable, Client, Reliable)
-    void ClientSetPlayerLoadout(const FUniqueNetIdRepl& InPlayerId, const FPD3PlayerLoadout& InLoadout, const FSoftObjectPath InSelectedCharacter, const ESBZPlatform InPlatform, const int32 InInfamyLevel, const FString& AccelByteUserName, const FString& AccelByteDisplayName, bool bCrossPlayEnabled);
+    void ClientSetPlayerLoadout(const FUniqueNetIdRepl& InPlayerId, const FPD3PlayerLoadout& InLoadout, const FSoftObjectPath InSelectedCharacter, const ESBZFirstPartyPlatform FirstPartyPlatform, const ESBZPlatform InPlatform, const int32 InInfamyLevel, const FString& AccelByteUserName, const FString& AccelByteDisplayName, bool bCrossPlayEnabled);
+    
+    UFUNCTION(BlueprintCallable, Client, Reliable)
+    void ClientSetGamePort(int32 GamePort, const FString& ServerVersion, const FString& GameSessionId);
     
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void ClientRestartPreTravelTimer(float PreTravelTimeLimit);
@@ -134,6 +167,9 @@ public:
     
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void ClientPlayerToReadyAck();
+    
+    UFUNCTION(BlueprintCallable, Client, Reliable)
+    void ClientPlayerReadyAck(bool bIsReady);
     
     UFUNCTION(BlueprintCallable, Client, Reliable)
     void ClientJoinPartyByCode(const FString& PartyCode);

@@ -1,6 +1,6 @@
 #include "SBZPlayerInteractorComponent.h"
 
-USBZPlayerInteractorComponent::USBZPlayerInteractorComponent() {
+USBZPlayerInteractorComponent::USBZPlayerInteractorComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->DistancePitchCurve = NULL;
     this->bIsValidThisFrame = false;
     this->LocalPlayerController = NULL;

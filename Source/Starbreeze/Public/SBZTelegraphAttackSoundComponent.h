@@ -17,7 +17,7 @@ private:
     UAkAudioEvent* TelegraphStopEvent;
     
 public:
-    USBZTelegraphAttackSoundComponent();
+    USBZTelegraphAttackSoundComponent(const FObjectInitializer& ObjectInitializer);
 
 };
 

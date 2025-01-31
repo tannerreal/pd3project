@@ -18,8 +18,6 @@ ASBZDisplayCase::ASBZDisplayCase(const FObjectInitializer& ObjectInitializer) : 
     this->AlarmNotificationAsset = NULL;
     this->ShutterMesh = NULL;
     this->DefaultLock = NULL;
-    this->DefaultLock = NULL;
-    this->DefaultAlarm = NULL;
     this->DefaultAlarm = NULL;
     this->CurrentState = ESBZDisplayCaseState::Closed;
     this->PropDamage = CreateDefaultSubobject<USBZPropDamageComponent>(TEXT("SBZPropDamageComponent"));

@@ -9,12 +9,20 @@ class USBZPartyManagerABV2 : public USBZPartyManagerAB {
 public:
     USBZPartyManagerABV2();
 
+private:
+    UFUNCTION(BlueprintCallable)
+    void OnConfirmPartyLeaderLeft(FName ClosingActionName);
+    
+public:
     UFUNCTION(BlueprintCallable)
     void InvitePopUpCallbackV2(FName ActionName);
     
 protected:
     UFUNCTION(BlueprintCallable)
     void HandlePlatformUserChanged(int32 OldUserIndex);
+    
+    UFUNCTION(BlueprintCallable)
+    void HandleNotLoggedInEntered();
     
 };
 

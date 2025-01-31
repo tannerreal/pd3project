@@ -1,9 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
+#include "ESBZOnBreakableBrokenAction.h"
 #include "SBZBreakableInterface.generated.h"
 
-UINTERFACE()
+UINTERFACE(Blueprintable)
 class USBZBreakableInterface : public UInterface {
     GENERATED_BODY()
 };
@@ -11,5 +12,8 @@ class USBZBreakableInterface : public UInterface {
 class ISBZBreakableInterface : public IInterface {
     GENERATED_BODY()
 public:
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
+    void OnBroken(ESBZOnBreakableBrokenAction InBreakableBrokenAction);
+    
 };
 

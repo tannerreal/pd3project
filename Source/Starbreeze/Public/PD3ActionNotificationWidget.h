@@ -1,12 +1,12 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "SBZControlsReference.h"
-#include "SBZDamageEvent.h"
 #include "SBZHUDNotificationData.h"
 #include "SBZPawnWidget.h"
 #include "SBZReviveEvent.h"
 #include "PD3ActionNotificationWidget.generated.h"
 
+class ASBZCharacter;
 class UTextBlock;
 class UWidgetAnimation;
 
@@ -46,7 +46,7 @@ protected:
     
 private:
     UFUNCTION(BlueprintCallable)
-    void HandleTakenDamageEvent(const FSBZDamageEvent& DamageEventData);
+    void OnAICharacterKilled(ASBZCharacter* Character);
     
 protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)

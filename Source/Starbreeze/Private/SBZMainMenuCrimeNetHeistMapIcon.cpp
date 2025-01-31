@@ -2,10 +2,10 @@
 #include "Components/SlateWrapperTypes.h"
 
 USBZMainMenuCrimeNetHeistMapIcon::USBZMainMenuCrimeNetHeistMapIcon() {
-    this->HeistData = NULL;
     this->bOverride_Cursor = true;
     this->Cursor = EMouseCursor::Hand;
     this->Visibility = ESlateVisibility::Visible;
+    this->HeistData = NULL;
 }
 
 

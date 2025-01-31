@@ -3,6 +3,10 @@
 USBZMissionResultLibrary::USBZMissionResultLibrary() {
 }
 
+int32 USBZMissionResultLibrary::GetTotalNumberOfSecuredBags(const FSBZEndMissionResultData& Resultdata) {
+    return 0;
+}
+
 FSBZPlayerEndMissionResultData USBZMissionResultLibrary::GetPlayerData(const FSBZEndMissionResultData& ResultData, int32 PlayerId) {
     return FSBZPlayerEndMissionResultData{};
 }
@@ -24,6 +28,14 @@ int32 USBZMissionResultLibrary::GetAllPlayersHaveSpecialKilledCount(const FSBZEn
 }
 
 int32 USBZMissionResultLibrary::GetAllPlayersHaveKilledCount(const FSBZEndMissionResultData& ResultData) {
+    return 0;
+}
+
+int32 USBZMissionResultLibrary::GetAllPlayersHaveGuardKilledCount(const FSBZEndMissionResultData& ResultData) {
+    return 0;
+}
+
+int32 USBZMissionResultLibrary::GetAllPlayersHaveCivilianKilledCount(const FSBZEndMissionResultData& ResultData) {
     return 0;
 }
 

@@ -3,7 +3,6 @@
 USBZMainMenuInventoryCharacterPreferenceDisplay::USBZMainMenuInventoryCharacterPreferenceDisplay() {
     this->HorizontalBox_CharacterDisplays = NULL;
     this->CharacterDisplayWidgetClass = NULL;
-    this->CharacterDisplayWidgetClass = NULL;
     this->ActiveIndex = 0;
 }
 

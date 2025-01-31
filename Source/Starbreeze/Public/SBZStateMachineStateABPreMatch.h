@@ -19,6 +19,9 @@ public:
 
 protected:
     UFUNCTION(BlueprintCallable)
+    void OnPlayerReadyStatusUpdated(bool bIsReady);
+    
+    UFUNCTION(BlueprintCallable)
     void HandleReceivedPlayerReadyAck();
     
     UFUNCTION(BlueprintCallable)

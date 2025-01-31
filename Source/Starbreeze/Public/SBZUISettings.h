@@ -6,7 +6,7 @@
 #include "SBZUIDefaultSoundEvents.h"
 #include "SBZUISettings.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class USBZUISettings : public USBZDeveloperSettings {
     GENERATED_BODY()
 public:
@@ -24,6 +24,12 @@ public:
     
     UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<FName, int32> ShowActionInputGamepadMap;
+    
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FString ServersStatusMessageURL_Development;
+    
+    UPROPERTY(BlueprintReadWrite, Config, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FString ServersStatusMessageURL_Live;
     
     USBZUISettings();
 

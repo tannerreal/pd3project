@@ -1,8 +1,7 @@
 #include "SBZPropDamageComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZPropDamageComponent::USBZPropDamageComponent() {
-    
+USBZPropDamageComponent::USBZPropDamageComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZPropDamageComponent::OnRep_DamagePools() {

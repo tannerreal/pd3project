@@ -1,13 +1,13 @@
 #include "SBZMenuStackScreenWidgetWithTutorial.h"
 
 USBZMenuStackScreenWidgetWithTutorial::USBZMenuStackScreenWidgetWithTutorial() {
+    this->StackValue = TEXT("Default__SBZMenuStackScreenWidgetWithTutorial");
     this->TutorialDisplayAction = TEXT("UI_ShowTutorial");
     this->TutorialCloseAlternativeAction = TEXT("UI_Accept");
     this->CanvasPanel_Tutorial = NULL;
     this->Button_ToggleHelp = NULL;
-    this->TutorialType = ESBZTutorialType::None;
+    this->PopupType = ESBZPopupType::None;
     this->bIsTutorialShowing = false;
-    this->StackValue = TEXT("Default__SBZMenuStackScreenWidgetWithTutorial");
 }
 
 void USBZMenuStackScreenWidgetWithTutorial::ToggleShowingTutorial() {

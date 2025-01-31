@@ -9,4 +9,7 @@ USBZStateMachineStateGameError::USBZStateMachineStateGameError() {
 void USBZStateMachineStateGameError::SetNetworkConnected(ESBZServiceStatus ServiceStatus) {
 }
 
+void USBZStateMachineStateGameError::OnMissionEndPopupClosed(FName ClosingActionName) {
+}
+
 

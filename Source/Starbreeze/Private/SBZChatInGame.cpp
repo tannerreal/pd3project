@@ -2,9 +2,8 @@
 
 ASBZChatInGame::ASBZChatInGame(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    /*this->bEnableNetReadyEvent = true;*/
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
 }
 
 void ASBZChatInGame::ServerChatMessageReceived_Implementation(int32 PlayerId, const FSBZPlayerChatEvent& PlayerChatEvent) {

@@ -7,7 +7,7 @@
 class APlayerState;
 class UWorld;
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZStateMachineStateWaitingActionPhaseHost : public USBZStateMachineStateWaitingActionPhaseBase {
     GENERATED_BODY()
 public:

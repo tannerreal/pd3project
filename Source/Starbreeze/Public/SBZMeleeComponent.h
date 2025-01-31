@@ -24,8 +24,12 @@ private:
     bool bIsFriendlyFireAllowedOverride;
     
 public:
-    USBZMeleeComponent();
+    USBZMeleeComponent(const FObjectInitializer& ObjectInitializer);
 
+private:
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_SetEnforcerSolidNetIDArray(const TArray<int32>& InEnforcerSolidNetIDArray);
+    
 protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_ReplicateExplosion(const FSBZExplosionResult& Result);

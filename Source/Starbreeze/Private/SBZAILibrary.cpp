@@ -1,6 +1,10 @@
 #include "SBZAILibrary.h"
+#include "Templates/SubclassOf.h"
 
 USBZAILibrary::USBZAILibrary() {
+}
+
+void USBZAILibrary::TryEnableAirNavigation(const FVector& CenterLocation, const FVector& BoundsExtent, const FVector& ForwardVector, const AActor* ActorBlockingAirNav) {
 }
 
 void USBZAILibrary::TriggerAbility(ASBZAICharacter* Character, ESBZAbilityInput InAbility) {
@@ -28,7 +32,7 @@ float USBZAILibrary::GetNavAreaSmallestSideSqSize(const UObject* WorldContextObj
     return 0.0f;
 }
 
-float USBZAILibrary::FindDistance2DToWallAlongDir(const ASBZCharacter* Character, float MaxDistance, const FVector Direction, UClass* FilterClass, const bool bProjectStartLocation) {
+float USBZAILibrary::FindDistance2DToWallAlongDir(const ASBZCharacter* Character, float MaxDistance, const FVector Direction, TSubclassOf<UNavigationQueryFilter> FilterClass, const bool bProjectStartLocation) {
     return 0.0f;
 }
 
@@ -36,15 +40,18 @@ bool USBZAILibrary::DetectNavBottleNeckAndRelocate(const UObject* WorldContextOb
     return false;
 }
 
-USBZAIOrder_MoveTo* USBZAILibrary::CreateAIOrderMoveTo(UClass* OrderClass, FVector Location, ASBZAIController* AIController) {
+void USBZAILibrary::DespawnAICharacter(ASBZAICharacter* AICharacter, bool bPerformDespawnTagCheck) {
+}
+
+USBZAIOrder_MoveTo* USBZAILibrary::CreateAIOrderMoveTo(TSubclassOf<USBZAIOrder_MoveTo> OrderClass, FVector Location, ASBZAIController* AIController) {
     return NULL;
 }
 
-USBZAIOrder* USBZAILibrary::CreateAIOrder(UClass* OrderClass, ASBZAIController* AIController) {
+USBZAIOrder* USBZAILibrary::CreateAIOrder(TSubclassOf<USBZAIOrder> OrderClass, ASBZAIController* AIController) {
     return NULL;
 }
 
-USBZAIActionData* USBZAILibrary::CreateActionData(UClass* ObjectClass, UObject* Outer) {
+USBZAIActionData* USBZAILibrary::CreateActionData(TSubclassOf<USBZAIActionData> ObjectClass, UObject* Outer) {
     return NULL;
 }
 

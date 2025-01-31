@@ -11,12 +11,12 @@
 #include "SBZGateNavAgentInterface.h"
 #include "SBZOnPawnKilledDelegate.h"
 #include "SBZPathFocusHandler.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAIController.generated.h"
 
 class AActor;
 class APawn;
 class UBlackboardData;
-class UClass;
 class USBZAIAction;
 class USBZAIOrder;
 class USBZAIUtilityComponent;
@@ -73,7 +73,19 @@ protected:
     float MinDistFromTraversalNavLinkToFocus;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float SameRoomTargetFocusDistance;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsTargetFocusEnabled;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float FocusOnLastVisibleLocationDuration;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FName> DisabledReasonArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FName LastDisabledReason;
     
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -89,10 +101,13 @@ public:
     ASBZAIController(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
+    void SetAIEnabled(bool bIsEnabled, const FName& Reason);
+    
+    UFUNCTION(BlueprintCallable)
     bool PushOrder(USBZAIOrder* Order, ESBZAIOrderMode Mode);
     
     UFUNCTION(BlueprintCallable)
-    USBZAIAction* PushAction(UClass* ActionClass, AActor* TargetActor);
+    USBZAIAction* PushAction(TSubclassOf<USBZAIAction> ActionClass, AActor* TargetActor);
     
 protected:
     UFUNCTION(BlueprintCallable)

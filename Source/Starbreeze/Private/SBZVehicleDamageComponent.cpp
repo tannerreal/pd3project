@@ -1,6 +1,6 @@
 #include "SBZVehicleDamageComponent.h"
 
-USBZVehicleDamageComponent::USBZVehicleDamageComponent() {
+USBZVehicleDamageComponent::USBZVehicleDamageComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZVehicleDamageComponent::HandleTakeRadialDamage(AActor* DamagedActor, float DamageAmount, const FRadialDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser) {

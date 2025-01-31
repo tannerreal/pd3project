@@ -76,7 +76,7 @@ protected:
     float TyreSoundMultiplicationValue;
     
 public:
-    USBZWheeledVehicleAudioComponent();
+    USBZWheeledVehicleAudioComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void StopTyreFrictionSound();

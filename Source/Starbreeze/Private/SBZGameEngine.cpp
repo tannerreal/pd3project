@@ -14,4 +14,7 @@ USBZGameEngine::USBZGameEngine() {
     this->NetDriverDefinitions.AddDefaulted(3);
 }
 
+void USBZGameEngine::OnResumingGamePopupClosed(FName ActionName) {
+}
+
 

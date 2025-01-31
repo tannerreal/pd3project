@@ -1,7 +1,9 @@
 #include "SBZSmartNavLink.h"
 #include "Components/SceneComponent.h"
+#include "Templates/SubclassOf.h"
 
 ASBZSmartNavLink::ASBZSmartNavLink(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->bDisableNavLinkWhenUsed = true;
     this->bCanBeBlocked = true;
     this->NavLinkUserId = 0;
@@ -12,16 +14,9 @@ ASBZSmartNavLink::ASBZSmartNavLink(const FObjectInitializer& ObjectInitializer) 
     this->AllowedBlockingCharacter = NULL;
     this->AllowedBlockingController = NULL;
     this->SpriteComponent = NULL;
-    FProperty* p_bHidden = GetClass()->FindPropertyByName("bHidden");
-    *p_bHidden->ContainerPtrToValuePtr<uint8>(this) = true;
-    FProperty* p_bCanBeDamaged = GetClass()->FindPropertyByName("bCanBeDamaged");
-    *p_bCanBeDamaged->ContainerPtrToValuePtr<uint8>(this) = false;
-    FProperty* p_bActorEnableCollision = GetClass()->FindPropertyByName("bActorEnableCollision");
-    *p_bActorEnableCollision->ContainerPtrToValuePtr<uint8>(this) = false;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
 }
 
-void ASBZSmartNavLink::SetNavArea(UClass* AreaClass) {
+void ASBZSmartNavLink::SetNavArea(TSubclassOf<UNavArea> AreaClass) {
 }
 
 void ASBZSmartNavLink::SetLinkEnabled(bool bInLinkEnabled) {
@@ -31,7 +26,7 @@ bool ASBZSmartNavLink::IsLinkEnabled() const {
     return false;
 }
 
-UClass* ASBZSmartNavLink::GetNavArea() const {
+TSubclassOf<UNavArea> ASBZSmartNavLink::GetNavArea() const {
     return NULL;
 }
 

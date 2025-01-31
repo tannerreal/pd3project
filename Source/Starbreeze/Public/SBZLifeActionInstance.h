@@ -28,7 +28,7 @@ protected:
     TArray<USBZLifeActionSlot*> Slots;
     
 public:
-    USBZLifeActionInstance();
+    USBZLifeActionInstance(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void StopDialog(bool bReset);

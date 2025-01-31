@@ -6,8 +6,12 @@
 #include "SBZItemConfigInventorySaveData.h"
 #include "SBZMaskConfigInventorySaveData.h"
 #include "SBZPlayerCosmeticsConfig.h"
-#include "SBZPlayerLoadoutConfig.h"
+#include "SBZPlayerLoadoutConfigArray.h"
+#include "SBZPreferredPlayerCharacterArray.h"
+#include "SBZRecommendedChallengeBlock.h"
+#include "SBZSkipIntroSequenceData.h"
 #include "SBZSuitConfigInventorySaveData.h"
+#include "SBZWeaponPartAttachmentData.h"
 #include "SBZProgressionSaveGameData.generated.h"
 
 class USBZPlayerCharacterData;
@@ -20,13 +24,22 @@ public:
     FPD3PlayerLoadout Loadout;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    int32 ActiveLoadoutIndex;
+    TArray<int32> ActiveLoadoutIndexPlatformArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<FSBZPlayerLoadoutConfig> PlayerLoadoutConfigArray;
+    FSBZPlayerLoadoutConfigArray PlayerLoadoutConfigArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZPlayerLoadoutConfigArray> PlayerLoadoutConfigPerPlatformArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSBZPlayerCosmeticsConfig PlayerCosmeticsConfig;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZPlayerCosmeticsConfig> PlayerCosmeticsConfigPerPlatformArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZPreferredPlayerCharacterArray> PreferredPlayerCharacterPerPlatformArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<USBZPlayerCharacterData*> PlayerPreferredCharacterArray;
@@ -56,7 +69,16 @@ public:
     FSBZInfamySaveData InfamySaveData;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    int32 StoryProgression;
+    TArray<int32> StoryProgressionArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZSkipIntroSequenceData> SkipIntroSequenceArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZWeaponPartAttachmentData WeaponPartAttachmentData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TMap<FString, FSBZRecommendedChallengeBlock> RecommendedChallengeBlockMap;
     
     FSBZProgressionSaveGameData();
 };

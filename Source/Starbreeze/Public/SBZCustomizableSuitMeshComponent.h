@@ -27,7 +27,7 @@ protected:
     USBZCapsuleShadowingData* CapsuleShadowingData;
     
 public:
-    USBZCustomizableSuitMeshComponent();
+    USBZCustomizableSuitMeshComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void SetSuitConfig(const FSBZSuitConfig& Config);

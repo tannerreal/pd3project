@@ -68,7 +68,7 @@ private:
     TArray<ASBZSpline*> FullPath;
     
 public:
-    USBZVehicleSplineFollowingComponent();
+    USBZVehicleSplineFollowingComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

@@ -1,6 +1,6 @@
 #include "SBZAIVisibilityComponent.h"
 
-USBZAIVisibilityComponent::USBZAIVisibilityComponent() {
+USBZAIVisibilityComponent::USBZAIVisibilityComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bReadyForUse = true;
     this->bIsInRandomSublevel = false;
     this->CollisionChannel = ECC_GameTraceChannel1;

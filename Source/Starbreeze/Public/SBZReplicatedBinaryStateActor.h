@@ -1,10 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SBZBreakableInterface.h"
 #include "SBZReplicatedBinaryStateActor.generated.h"
 
 UCLASS(Blueprintable)
-class ASBZReplicatedBinaryStateActor : public AActor {
+class ASBZReplicatedBinaryStateActor : public AActor, public ISBZBreakableInterface {
     GENERATED_BODY()
 public:
 private:
@@ -39,5 +40,7 @@ private:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetState(bool bNewState);
     
+
+    // Fix for true pure virtual functions not being implemented
 };
 

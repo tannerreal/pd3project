@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-#include "ESBZStoreItemUICategory.h"
+#include "ESBZStoreItemDefaultUICategory.h"
 #include "SBZWidgetBase.h"
 #include "SBZBlackMarketCategoryWidget.generated.h"
 
@@ -19,7 +19,7 @@ public:
     void SetStoreCategoryName(const FText& InCategoryName);
     
     UFUNCTION(BlueprintCallable, BlueprintPure)
-    static FText GetCategoryStringTextFromCategoryEnum(ESBZStoreItemUICategory InCategory);
+    static FText GetCategoryStringTextFromCategoryEnum(ESBZStoreItemDefaultUICategory InCategory);
     
 };
 

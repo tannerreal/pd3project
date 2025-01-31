@@ -3,11 +3,11 @@
 #include "EnvironmentQuery/Items/EnvQueryItemType_Actor.h"
 
 USBZEnvQueryGenerator_PerceivedActors::USBZEnvQueryGenerator_PerceivedActors() {
+    this->ItemType = UEnvQueryItemType_Actor::StaticClass();
     this->PerceiverContext = UEnvQueryContext_Querier::StaticClass();
     this->bHostilesOnly = true;
     this->bOnlyVisualGenerators = false;
     this->bCurrentlySensed = true;
-    this->ItemType = UEnvQueryItemType_Actor::StaticClass();
 }
 
 

@@ -5,7 +5,7 @@
 #include "SBZPawnPlatformSpawnSettings.h"
 #include "SBZPawnSpawnSettings.generated.h"
 
-UCLASS(Blueprintable, Config=Engine, DefaultConfig, Config=Starbreeze)
+UCLASS(Blueprintable, DefaultConfig, Config=Starbreeze)
 class USBZPawnSpawnSettings : public UDeveloperSettings {
     GENERATED_BODY()
 public:

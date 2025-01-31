@@ -13,7 +13,7 @@ private:
     ESBZHackingState HackingState;
     
 public:
-    USBZHackingComponent();
+    USBZHackingComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

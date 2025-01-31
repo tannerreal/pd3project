@@ -14,13 +14,21 @@ ASBZWorldSettings::ASBZWorldSettings(const FObjectInitializer& ObjectInitializer
     this->bStartInCasing = true;
     this->bAICrewStartInCasing = true;
     this->bStartWithAICrew = true;
+    this->bCanCrewShootStreetCops = false;
     this->bIsInRandomSublevel = false;
+    this->AudioVolumetricCullingDepth = 1;
     this->AssaultManagerSettings = NULL;
     this->NegotiationManagerSettings = NULL;
     this->CivilianManagerSettings = NULL;
     this->TrafficManagerSettings = NULL;
     this->LifeActionSettings = NULL;
     this->SoloPlayerLoadoutOverride = NULL;
+    this->bOverrideAIDPS = false;
+    this->bIsUsingSystemicBagCount = false;
+    this->bIsUsingBagCountdown = true;
+    this->StartBagCountdownFrom = 5;
+    this->bIsUsingLastSecureBagVOOverride = false;
+    this->LastSecureBagVOOverride = NULL;
 }
 
 

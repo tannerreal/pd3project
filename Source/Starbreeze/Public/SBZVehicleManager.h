@@ -19,7 +19,7 @@ private:
     TArray<FSBZVehicleInfo> VehicleInfos;
     
 public:
-    USBZVehicleManager();
+    USBZVehicleManager(const FObjectInitializer& ObjectInitializer);
 
 private:
     UFUNCTION(BlueprintCallable)

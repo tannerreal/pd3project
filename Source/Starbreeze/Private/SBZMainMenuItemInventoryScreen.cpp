@@ -1,13 +1,12 @@
 #include "SBZMainMenuItemInventoryScreen.h"
 
 USBZMainMenuItemInventoryScreen::USBZMainMenuItemInventoryScreen() {
-    this->ItemSlotButtonClass = NULL;
+    this->StackValue = TEXT("Default__SBZMainMenuItemInventoryScreen");
     this->ItemSlotButtonClass = NULL;
     this->Panel_ItemSlotButtons = NULL;
     this->CurrentLoadoutIndex = -1;
     this->ItemSlotType = ESBZItemLoadoutSlot::Armour;
     this->SelectedItemButton = NULL;
-    this->StackValue = TEXT("Default__SBZMainMenuItemInventoryScreen");
 }
 
 

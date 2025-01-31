@@ -1,6 +1,6 @@
 #include "SBZCosmeticDestructionComponent.h"
 
-USBZCosmeticDestructionComponent::USBZCosmeticDestructionComponent() {
+USBZCosmeticDestructionComponent::USBZCosmeticDestructionComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->CoolDown = 0.00f;
     this->Chance = 1.00f;
     this->bUseExplosionCoolDown = false;

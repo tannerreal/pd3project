@@ -11,7 +11,7 @@ USBZLobby::USBZLobby() {
     this->ActionPhaseOnlineBeacon = NULL;
 }
 
-void USBZLobby::JoinLobbyComplete(const ESBZOnlineCode& Result) {
+void USBZLobby::JoinLobbyComplete(ESBZOnlineCode Result) {
 }
 
 void USBZLobby::InitLobbyHostComplete(const ESBZOnlineCode& Result) {
@@ -20,7 +20,7 @@ void USBZLobby::InitLobbyHostComplete(const ESBZOnlineCode& Result) {
 void USBZLobby::HostMigrationSession(int32 HostId) {
 }
 
-void USBZLobby::HostLobbyComplete(const ESBZOnlineCode& Result) {
+void USBZLobby::HostLobbyComplete(ESBZOnlineCode Result) {
 }
 
 void USBZLobby::HostLobby(const FSBZOnlineSessionParams& Params) {

@@ -2,6 +2,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "PD3PlayerLoadout.h"
+#include "SBZEquippableConfig.h"
 #include "SBZMaskConfig.h"
 #include "SBZMainMenuPlayerCharacter.generated.h"
 
@@ -38,6 +39,9 @@ private:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     USBZPlayerCharacterData* PlayerCharacterData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FSBZEquippableConfig AsyncEquippableConfig;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<UObject*> CachedWeaponObjects;

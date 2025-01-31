@@ -4,6 +4,7 @@
 #include "SBZClientStateMachineState.h"
 #include "SBZStateMachineStateJobOverviewDirectJoin.generated.h"
 
+class ASBZMissionState;
 class ASBZPlayerController;
 class USBZJobOverviewBaseWidget;
 
@@ -14,6 +15,9 @@ public:
 private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZJobOverviewBaseWidget* JobOverviewWidget;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    ASBZMissionState* MissionState;
     
 public:
     USBZStateMachineStateJobOverviewDirectJoin();

@@ -22,6 +22,11 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnChallengeDataInititalized(const FSBZChallengeData& InChallengeData);
     
+public:
+    UFUNCTION(BlueprintCallable)
+    void InitializeChallengeData(const FSBZChallengeData& InChallengeData);
+    
+protected:
     UFUNCTION(BlueprintCallable, BlueprintPure)
     static FVector2D GetPaperSpriteSourceSize(UPaperSprite* Sprite);
     

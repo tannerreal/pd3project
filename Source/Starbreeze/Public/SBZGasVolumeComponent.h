@@ -107,7 +107,7 @@ protected:
     TArray<FSBZGasCellHitData> CellHitData;
     
 public:
-    USBZGasVolumeComponent();
+    USBZGasVolumeComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 

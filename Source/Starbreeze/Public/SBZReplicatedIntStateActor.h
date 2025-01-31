@@ -1,10 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "SBZBreakableInterface.h"
 #include "SBZReplicatedIntStateActor.generated.h"
 
 UCLASS(Blueprintable)
-class ASBZReplicatedIntStateActor : public AActor {
+class ASBZReplicatedIntStateActor : public AActor, public ISBZBreakableInterface {
     GENERATED_BODY()
 public:
 private:
@@ -46,5 +47,7 @@ public:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)
     void DecreaseState(bool bDoCosmetics);
     
+
+    // Fix for true pure virtual functions not being implemented
 };
 

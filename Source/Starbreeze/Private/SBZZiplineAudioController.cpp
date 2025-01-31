@@ -1,6 +1,6 @@
 #include "SBZZiplineAudioController.h"
 
-USBZZiplineAudioController::USBZZiplineAudioController() {
+USBZZiplineAudioController::USBZZiplineAudioController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->ZiplineStartAudioEvent = NULL;
     this->ZiplineStopAudioEvent = NULL;
     this->ZiplineVelocityRtpc = NULL;

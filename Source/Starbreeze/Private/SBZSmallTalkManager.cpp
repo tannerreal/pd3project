@@ -1,6 +1,6 @@
 #include "SBZSmallTalkManager.h"
 
-USBZSmallTalkManager::USBZSmallTalkManager() {
+USBZSmallTalkManager::USBZSmallTalkManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->MaxIterationPerTick = 30;
     this->MaxSearchDistance = 1500.00f;
     this->CullingDistance = 2000.00f;

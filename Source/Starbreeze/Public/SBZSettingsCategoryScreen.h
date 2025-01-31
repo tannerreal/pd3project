@@ -1,13 +1,24 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "SBZMenuStackScreenWidget.h"
+#include "Templates/SubclassOf.h"
 #include "SBZSettingsCategoryScreen.generated.h"
 
-class UClass;
 class UPanelWidget;
 class USBZMenuButton;
 class USBZSettingHelperPanel;
 class USBZSettingsButton;
+class USBZSettingsButtonActionClick;
+class USBZSettingsButtonAntiAliasingModeChoice;
+class USBZSettingsButtonGamepadBinding;
+class USBZSettingsButtonKeyboardBinding;
+class USBZSettingsButtonMultipleChoice;
+class USBZSettingsButtonResolutionChoice;
+class USBZSettingsButtonSlider;
+class USBZSettingsButtonTwoChoice;
+class USBZSettingsButtonUpscalerChoice;
+class USBZSettingsButtonUpscalingModeChoice;
+class UTextBlock;
 
 UCLASS(Blueprintable, EditInlineNew)
 class USBZSettingsCategoryScreen : public USBZMenuStackScreenWidget {
@@ -21,28 +32,37 @@ protected:
     UPanelWidget* ScrollBox_SettingsItems;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsGroupTitleClass;
+    TSubclassOf<UTextBlock> SettingsGroupTitleClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassTwoChoice;
+    TSubclassOf<USBZSettingsButtonActionClick> SettingsButtonClassActionClick;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassMultipleChoice;
+    TSubclassOf<USBZSettingsButtonTwoChoice> SettingsButtonClassTwoChoice;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassResolutionChoice;
+    TSubclassOf<USBZSettingsButtonMultipleChoice> SettingsButtonClassMultipleChoice;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassDLSSSRModeChoice;
+    TSubclassOf<USBZSettingsButtonResolutionChoice> SettingsButtonClassResolutionChoice;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassSlider;
+    TSubclassOf<USBZSettingsButtonAntiAliasingModeChoice> SettingsButtonClassAntiAliasingModeChoice;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassKeyboardBinding;
+    TSubclassOf<USBZSettingsButtonUpscalerChoice> SettingsButtonClassUpscalerChoice;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* SettingsButtonClassGamepadBinding;
+    TSubclassOf<USBZSettingsButtonUpscalingModeChoice> SettingsButtonClassUpscalingModeChoice;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<USBZSettingsButtonSlider> SettingsButtonClassSlider;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<USBZSettingsButtonKeyboardBinding> SettingsButtonClassKeyboardBinding;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<USBZSettingsButtonGamepadBinding> SettingsButtonClassGamepadBinding;
     
 public:
     USBZSettingsCategoryScreen();

@@ -1,11 +1,9 @@
 #include "SBZDoorBoxComponent.h"
 #include "NavAreas/NavArea_Obstacle.h"
 
-USBZDoorBoxComponent::USBZDoorBoxComponent() {
-    this->OpenDirection = ESBZGateState::OpenForward;
+USBZDoorBoxComponent::USBZDoorBoxComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->AreaClass = UNavArea_Obstacle::StaticClass();
-    FProperty* p_bGenerateOverlapEvents = GetClass()->FindPropertyByName("bGenerateOverlapEvents");
-    *p_bGenerateOverlapEvents->ContainerPtrToValuePtr<uint8>(this) = true;
+    this->OpenDirection = ESBZGateState::OpenForward;
 }
 
 

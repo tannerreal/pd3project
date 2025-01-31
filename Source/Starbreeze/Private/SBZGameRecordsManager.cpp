@@ -11,8 +11,16 @@ FSBZNewsFeedList USBZGameRecordsManager::GetNewsFeed() {
     return FSBZNewsFeedList{};
 }
 
+TArray<ESBZMetaEventType> USBZGameRecordsManager::GetMetaEventsDataRunning() const {
+    return TArray<ESBZMetaEventType>();
+}
+
 TArray<FSBZMetaEventData> USBZGameRecordsManager::GetMetaEventsData() const {
     return TArray<FSBZMetaEventData>();
+}
+
+FSBZMatchmakingAndHostingData USBZGameRecordsManager::GetMatchmakingAndHostingData() {
+    return FSBZMatchmakingAndHostingData{};
 }
 
 TArray<FSBZDifficultyConfiguration> USBZGameRecordsManager::GetDifficultyConfiguration() {

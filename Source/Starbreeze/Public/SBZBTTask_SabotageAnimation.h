@@ -4,9 +4,6 @@
 #include "SBZSabotageAnimationData.h"
 #include "SBZBTTask_SabotageAnimation.generated.h"
 
-class UAnimMontage;
-class UBehaviorTreeComponent;
-
 UCLASS(Blueprintable)
 class USBZBTTask_SabotageAnimation : public UBTTask_BlackboardBase {
     GENERATED_BODY()
@@ -18,9 +15,5 @@ private:
 public:
     USBZBTTask_SabotageAnimation();
 
-private:
-    UFUNCTION(BlueprintCallable)
-    void OnMontageEnded(UAnimMontage* Montage, bool bIsInterrupted, UBehaviorTreeComponent* OwnerComp);
-    
 };
 

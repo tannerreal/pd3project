@@ -69,7 +69,7 @@ protected:
     float SkillWalkHumanShieldModifier;
     
 public:
-    USBZPlayerMovementComponent();
+    USBZPlayerMovementComponent(const FObjectInitializer& ObjectInitializer);
 
 protected:
     UFUNCTION(BlueprintCallable, Reliable, Server, WithValidation)

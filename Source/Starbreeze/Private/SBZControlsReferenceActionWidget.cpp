@@ -5,7 +5,6 @@ USBZControlsReferenceActionWidget::USBZControlsReferenceActionWidget() {
     this->Panel_ActionInputLists = NULL;
     this->MaxActionInputsDisplayed = 2;
     this->ActionInputWidgetClass = NULL;
-    this->ActionInputWidgetClass = NULL;
 }
 
 void USBZControlsReferenceActionWidget::PressControlsReferenceAction() {

@@ -52,6 +52,9 @@ protected:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FOnCircularWidgetSelected OnCircularWidgetSelected;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    float TimeToRememberActiveIndex;
+    
 public:
     USBZCircularInteractionWidget();
 

@@ -2,8 +2,8 @@
 #include "Components/SkeletalMeshComponent.h"
 
 ASBZSkeletalDebris::ASBZSkeletalDebris(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
-    this->RootComponent = SkeletalMeshComponent;
+    this->RootComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
+    this->SkeletalMeshComponent = (USkeletalMeshComponent*)RootComponent;
 }
 
 

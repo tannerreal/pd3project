@@ -20,11 +20,14 @@ private:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<USBZDialogDataAsset*, FSBZActiveDialogData> ActiveDialogs;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZDialogDataAsset* QueuedDialog;
+    
 public:
-    USBZDialogManager();
+    USBZDialogManager(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable, NetMulticast, Unreliable)
-    void Multicast_PlayDialog(const USBZDialogDataAsset* DialogDataAsset, const TArray<AActor*>& Performers, AActor* DialogInstigator);
+    void Multicast_PlayDialog(const USBZDialogDataAsset* DialogDataAsset, const TArray<AActor*>& Performers, AActor* DialogInstigator, bool bCanBeQueued);
     
 
     // Fix for true pure virtual functions not being implemented

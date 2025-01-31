@@ -3,7 +3,6 @@
 USBZCharacterEffectContainer::USBZCharacterEffectContainer() {
     this->Panel_CharacterEffectsContainer = NULL;
     this->CharacterEffectWidgetClass = NULL;
-    this->CharacterEffectWidgetClass = NULL;
 }
 
 void USBZCharacterEffectContainer::OnCharacterEffectRemoved(FSBZCharacterEffectRuntime& CharacterRuntime) {

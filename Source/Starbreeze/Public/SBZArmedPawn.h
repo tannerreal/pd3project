@@ -8,7 +8,6 @@
 #include "GameplayTagAssetInterface.h"
 #include "GameplayTagContainer.h"
 #include "ESBZAIVisibilityNodeComputationFrequency.h"
-#include "SBZAbilitySystemComponent.h"
 #include "SBZAIVisibilityRelevant.h"
 #include "SBZEquippableConfig.h"
 #include "SBZPawnInterface.h"
@@ -16,12 +15,14 @@
 #include "SBZProjectileInterface.h"
 #include "SBZRoomVolumeInterface.h"
 #include "SBZTypeInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZArmedPawn.generated.h"
 
 class ASBZEquippable;
 class ASBZRangedWeapon;
 class ASBZRoomVolume;
 class UAIPerceptionStimuliSourceComponent;
+class UGameplayEffect;
 class USBZAICharacterAbilityData;
 class USBZAbilitySystemComponent;
 class USBZOutlineComponent;
@@ -38,7 +39,7 @@ protected:
     TArray<ASBZEquippable*> EquippableArray;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
-    USBZAbilitySystemComponent* AbilitySystemComponent;
+    UAbilitySystemComponent* AbilitySystemComponent;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     USBZAICharacterAbilityData* AbilityData;
@@ -64,6 +65,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FName RangedWeaponAttachmentSocket;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TSubclassOf<UGameplayEffect> MarkedGameplayEffectClass;
+    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TArray<ASBZRoomVolume*> RoomVolumes;
     
@@ -72,8 +76,13 @@ public:
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
+protected:
+    UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
+    void Multicast_PredictedRagdollDenied(int32 HurtReactionIndex);
+    
 
     // Fix for true pure virtual functions not being implemented
+public:
     UFUNCTION(BlueprintCallable)
     bool HasMatchingGameplayTag(FGameplayTag TagToCheck) const override PURE_VIRTUAL(HasMatchingGameplayTag, return false;);
     

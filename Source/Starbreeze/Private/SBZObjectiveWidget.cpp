@@ -2,7 +2,6 @@
 
 USBZObjectiveWidget::USBZObjectiveWidget() {
     this->SubObjectiveWidgetClass = NULL;
-    this->SubObjectiveWidgetClass = NULL;
     this->Text_Objective = NULL;
     this->ProgressBar_Progress = NULL;
     this->Text_ProgressSpeed = NULL;

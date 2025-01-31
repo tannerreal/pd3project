@@ -3,10 +3,10 @@
 #include "SBZModularMeshComponent.h"
 
 ASBZModularWeaponDisplay::ASBZModularWeaponDisplay(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
     this->ModularMeshComponent = CreateDefaultSubobject<USBZModularMeshComponent>(TEXT("SBZModularMeshComponent"));
-    this->Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
+    this->Mesh = (UMeshComponent*)RootComponent;
     this->WeaponData = NULL;
-    this->RootComponent = Mesh;
 }
 
 void ASBZModularWeaponDisplay::SwapModPart(const USBZModularPartSlotBase* Slot, const USBZEquippablePartDataAsset* EquippablePart) {

@@ -3,27 +3,21 @@
 #include "SBZPlayerCameraManager.h"
 
 ASBZPlayerController::ASBZPlayerController(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->DefeatCameraFeedbackClass = NULL;
-    this->DefeatCameraFeedbackClass = NULL;
-    this->MinDefeatCameraFeedbackIntensity = 0.30f;
-    this->TasedCameraFeedbackClass = NULL;
-    this->TasedCameraFeedbackClass = NULL;
-    this->SubduedCameraFeedbackClass = NULL;
-    this->SubduedCameraFeedbackClass = NULL;
-    this->HealthDamageCameraFeedbackClass = NULL;
-    this->HealthDamageCameraFeedbackClass = NULL;
-    this->HealthDamageCameraFeedbackThreshold = 0.33f;
-    this->ViewTargetCameraFeedbackClass = NULL;
-    this->ViewTargetCameraFeedbackClass = NULL;
-    this->DestroyedViewTargetCameraFeedbackClass = NULL;
-    this->DestroyedViewTargetCameraFeedbackClass = NULL;
-    this->ChangedViewTargetCameraFeedbackClass = NULL;
-    this->ChangedViewTargetCameraFeedbackClass = NULL;
-    this->CurrentSpectateTargetPlayerID = 0;
-    this->AppliedDefeatState = EPD3DefeatState::None;
     this->PlayerCameraManagerClass = ASBZPlayerCameraManager::StaticClass();
     this->CheatClass = USBZCheatManager::StaticClass();
     this->ClickEventKeys.AddDefaulted(1);
+    this->bShouldPerformFullTickWhenPaused = true;
+    this->DefeatCameraFeedbackClass = NULL;
+    this->MinDefeatCameraFeedbackIntensity = 0.30f;
+    this->TasedCameraFeedbackClass = NULL;
+    this->SubduedCameraFeedbackClass = NULL;
+    this->HealthDamageCameraFeedbackClass = NULL;
+    this->HealthDamageCameraFeedbackThreshold = 0.33f;
+    this->ViewTargetCameraFeedbackClass = NULL;
+    this->DestroyedViewTargetCameraFeedbackClass = NULL;
+    this->ChangedViewTargetCameraFeedbackClass = NULL;
+    this->CurrentSpectateTargetPlayerID = 0;
+    this->AppliedDefeatState = EPD3DefeatState::None;
 }
 
 void ASBZPlayerController::SetViewTargetCollection(const TScriptInterface<ISBZViewTargetCollectionInterface>& InViewTargetCollection, int32 Offset) {
@@ -37,6 +31,9 @@ void ASBZPlayerController::Server_UnsetViewTargetCollection_Implementation() {
 }
 
 void ASBZPlayerController::Server_SetViewTargetCollection_Implementation(UObject* InViewTargetCollectionObject, int32 InViewTargetIndex) {
+}
+
+void ASBZPlayerController::Server_SetPartyCode_Implementation(const FString& PartyCode) {
 }
 
 void ASBZPlayerController::Server_SetCurrentViewTargetIndex_Implementation(int32 InViewTargetIndex) {
@@ -54,10 +51,16 @@ bool ASBZPlayerController::Server_RestartRequested_Validate(FUniqueNetIdRepl Pla
 void ASBZPlayerController::Server_RestartLevel_Implementation() {
 }
 
+void ASBZPlayerController::Server_RequestMergeParty_Implementation(bool bIsSelected, const TArray<FString>& PartyMemberPlayerIdArray) {
+}
+
 void ASBZPlayerController::Server_DebugTeleportTo_Implementation(const FVector& Location, const float Yaw) {
 }
 
 void ASBZPlayerController::Server_DebugPlayMontage_Implementation(AActor* Actor, UAnimMontage* Montage) {
+}
+
+void ASBZPlayerController::Server_CheckIfPartyLeader_Implementation(const bool bMergePartySelected, const bool bIsPartyLeader, const int32 NumberOfPartyMembers) {
 }
 
 bool ASBZPlayerController::RemoveCameraFeedback(int32 CameraFeedbackID) {
@@ -75,7 +78,13 @@ bool ASBZPlayerController::FadeOutCameraFeedback(int32 CameraFeedbackID, bool bI
     return false;
 }
 
+void ASBZPlayerController::ClientReceiveReward_Implementation(const FChallengeNotifPayload& ChallengeReward) {
+}
+
 void ASBZPlayerController::Client_UnsetViewTargetCollection_Implementation() {
+}
+
+void ASBZPlayerController::Client_SkipCreateMergeParty_Implementation() {
 }
 
 void ASBZPlayerController::Client_SetViewTargetCollection_Implementation(UObject* InViewTargetCollectionObject, int32 InViewTargetIndex) {
@@ -88,6 +97,9 @@ void ASBZPlayerController::Client_RestartInitiate_Implementation(float SecondsRe
 }
 
 void ASBZPlayerController::Client_RestartAccepted_Implementation(const FUniqueNetIdRepl& PlayerID) {
+}
+
+void ASBZPlayerController::Client_CheckIfPartyLeaderResponse_Implementation(bool bIsPartyLeader, const FString& PartyCode) {
 }
 
 int32 ASBZPlayerController::ApplyCameraFeedback(FSBZLocalPlayerFeedbackParameters& Parameters) {

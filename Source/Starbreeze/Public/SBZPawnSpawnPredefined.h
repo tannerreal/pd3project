@@ -10,7 +10,6 @@
 #include "SBZPawnSpawnPredefined.generated.h"
 
 class AActor;
-class APawn;
 
 UCLASS(Blueprintable)
 class ASBZPawnSpawnPredefined : public ASBZPawnSpawnBase {
@@ -50,9 +49,8 @@ public:
     UFUNCTION(BlueprintCallable)
     FSBZPawnSpawnRequestHandle SpawnPredefined();
     
-private:
-    UFUNCTION(BlueprintCallable)
-    void OnSpawnedPawnKilled(APawn* Pawn);
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnSelectedTick();
     
 };
 

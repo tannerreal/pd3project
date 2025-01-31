@@ -11,7 +11,7 @@
 
 class APlayerState;
 
-UCLASS(Blueprintable, NonTransient)
+UCLASS(Blueprintable, NonTransient, Config=Engine)
 class STARBREEZE_API ASBZPartyBeaconHost : public ASBZOnlineBeaconHostObject {
     GENERATED_BODY()
 public:

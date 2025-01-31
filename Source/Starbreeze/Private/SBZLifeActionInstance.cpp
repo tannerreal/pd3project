@@ -1,6 +1,6 @@
 #include "SBZLifeActionInstance.h"
 
-USBZLifeActionInstance::USBZLifeActionInstance() {
+USBZLifeActionInstance::USBZLifeActionInstance(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->DialogPlayer = NULL;
     this->OwningLifeActionComponent = NULL;
 }

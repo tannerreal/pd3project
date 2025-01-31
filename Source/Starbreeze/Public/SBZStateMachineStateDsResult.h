@@ -8,7 +8,7 @@
 class USBZWidgetBase;
 class UWorld;
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZStateMachineStateDsResult : public USBZDsStateMachineState {
     GENERATED_BODY()
 public:

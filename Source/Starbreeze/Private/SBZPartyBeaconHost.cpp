@@ -2,10 +2,10 @@
 #include "SBZPartyBeaconClient.h"
 
 ASBZPartyBeaconHost::ASBZPartyBeaconHost(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->PartyTravelTimeout = 20.00f;
-    this->PartyDisconnectTimeout = 20.00f;
     this->BeaconTypeName = TEXT("SBZPartyBeaconClient");
     this->ClientBeaconActorClass = ASBZPartyBeaconClient::StaticClass();
+    this->PartyTravelTimeout = 20.00f;
+    this->PartyDisconnectTimeout = 20.00f;
 }
 
 void ASBZPartyBeaconHost::NotifyClientLeftLobby(const FUniqueNetIdRepl& PartyMemberId) {

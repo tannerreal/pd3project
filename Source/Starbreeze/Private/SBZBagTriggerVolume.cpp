@@ -1,6 +1,7 @@
 #include "SBZBagTriggerVolume.h"
 
 ASBZBagTriggerVolume::ASBZBagTriggerVolume(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bNetLoadOnClient = false;
     this->bShouldStartEnabled = true;
     this->TriggerMode = ESBZBagTriggerMode::SecureAndDestroy;
     this->bDisableOnComplete = false;
@@ -9,7 +10,6 @@ ASBZBagTriggerVolume::ASBZBagTriggerVolume(const FObjectInitializer& ObjectIniti
     this->Target = -1;
     this->LocallySecured = 0;
     this->BagTeleportPoint = NULL;
-    this->bNetLoadOnClient = false;
 }
 
 void ASBZBagTriggerVolume::SetVolumeEnabled(bool bEnabled) {

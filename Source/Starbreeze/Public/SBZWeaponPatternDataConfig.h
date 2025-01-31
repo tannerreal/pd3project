@@ -1,5 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
+//CROSS-MODULE INCLUDE V2: -ModuleName=JsonUtilities -ObjectName=SBZJSonSerializeVariablesInterface -FallbackName=SBZJSonSerializeVariablesInterface
 #include "SBZEquippablePartConfig.h"
 #include "SBZWeaponPatternDataConfig.generated.h"
 
@@ -14,5 +15,7 @@ public:
     
     USBZWeaponPatternDataConfig();
 
+
+    // Fix for true pure virtual functions not being implemented
 };
 

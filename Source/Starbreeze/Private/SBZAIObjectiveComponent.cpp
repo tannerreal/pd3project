@@ -1,6 +1,6 @@
 #include "SBZAIObjectiveComponent.h"
 
-USBZAIObjectiveComponent::USBZAIObjectiveComponent() {
+USBZAIObjectiveComponent::USBZAIObjectiveComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bRegisterToWorldRuntime = true;
     this->bExcludeInteractableAfterUse = false;
     this->InteractionType = EAIObjectiveInteractionTypes::DirectInteraction;

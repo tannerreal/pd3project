@@ -1,6 +1,6 @@
 #include "SBZActorFilterComponent.h"
 
-USBZActorFilterComponent::USBZActorFilterComponent() {
+USBZActorFilterComponent::USBZActorFilterComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->PrimitiveComponent = NULL;
     this->CachedCollisionEnabledState = ECollisionEnabled::QueryOnly;
     this->bDisableWhenActorBeginsOverlapping = false;

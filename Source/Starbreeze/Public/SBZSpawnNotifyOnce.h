@@ -16,6 +16,9 @@ protected:
     ASBZPawnSpawnPredefined* Spawner;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<ASBZPawnSpawnPredefined*> SpawnerArray;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TArray<AActor*> SpawnNotifyReactors;
     
 public:

@@ -4,20 +4,19 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZEquippable::ASBZEquippable(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
     this->LocalDamageFeedback = NULL;
-    this->LocalDamageFeedback = NULL;
-    this->Mesh = CreateDefaultSubobject<UMeshComponent>(TEXT("Mesh"));
+    this->Mesh = (UMeshComponent*)RootComponent;
     this->EquippableIndex = -1;
     this->ModOverrideGripAnimData = NULL;
     this->bIsInventory = true;
     this->EquippableAkComponent = CreateDefaultSubobject<UAkComponent>(TEXT("EquippableAkComponent"));
-    this->EquippableAkComponent->SetupAttachment(Mesh);
     this->EquippingEvent = NULL;
     this->UnequippingEvent = NULL;
     this->EquippingEventRtpc = NULL;
     this->UnequippingEventRtpc = NULL;
     this->bReplicateRootAttachment = false;
-    this->RootComponent = Mesh;
+    this->EquippableAkComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZEquippable::OnRep_EquippableIndex() {

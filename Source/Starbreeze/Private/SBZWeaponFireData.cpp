@@ -3,15 +3,19 @@
 #include "SBZRangedWeaponEffect.h"
 
 USBZWeaponFireData::USBZWeaponFireData() {
+    this->DamageTypeClass = USBZBulletDamageType::StaticClass();
+    this->TargetEffectClass = USBZRangedWeaponEffect::StaticClass();
     this->CriticalDamageMultiplierDistanceArray.AddDefaulted(1);
     this->FireMode = ESBZFireMode::Single;
     this->FireType = ESBZFireType::Semi;
     this->ProjectilesPerFiredRound = 1;
+    this->BurstRoundCount = 3;
     this->MaximumPenetrationCount = 0;
     this->bCanHitEnvironmentAfterPenetration = false;
     this->bCanPenetrateBlocked = false;
     this->Range = 10000;
     this->AdditionalPlayerRange = 0.00f;
+    this->OverHealDamageMultiplier = 1.00f;
     this->ArmorPenetration = 0.00f;
     this->ImpactType = ESBZProjectileImpactType::Light;
     this->AmmoVisibilityType = ESBZWeaponAmmoVisibilityType::Never;
@@ -24,15 +28,17 @@ USBZWeaponFireData::USBZWeaponFireData() {
     this->AmmoLoadedMax = 10;
     this->AmmoPerReload = 10;
     this->AmmoVisibleMax = 10;
+    this->AmmoVisibleMaxPreviewOverride = -1;
     this->bIsEmptyAmmoEjected = false;
     this->bIsEquippedAmmoLoadedTracked = false;
     this->bIsChamberRotatedEachFiredRound = false;
     this->bIsChamberRotatedEachReloadedRound = false;
+    this->bIsUsingRemoveMagazineCycle = false;
+    this->bIsUsingInsertMagazine = false;
+    this->bIsUsingInsertMagazineCycle = false;
+    this->bIsUsingInsertAmmoCycle1 = false;
+    this->bIsUsingInsertAmmoCycle2 = false;
     this->RoundsPerMinute = 600.00f;
-    this->DamageTypeClass = USBZBulletDamageType::StaticClass();
-    this->TargetEffectClass = USBZRangedWeaponEffect::StaticClass();
-    FProperty* p_NativeClass = GetClass()->FindPropertyByName("NativeClass");
-    *p_NativeClass->ContainerPtrToValuePtr<UClass*>(this) = USBZWeaponFireData::StaticClass();
 }
 
 int32 USBZWeaponFireData::GetProjectilesPerFiredRound() const {

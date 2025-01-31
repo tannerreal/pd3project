@@ -2,8 +2,10 @@
 
 USBZMainMenuCrimeNetHeistButton::USBZMainMenuCrimeNetHeistButton() {
     this->HeistData = NULL;
+    this->HeistCollectionIndex = -1;
     this->HeistIndex = -1;
 }
+
 
 
 void USBZMainMenuCrimeNetHeistButton::InitializeHeistDataFromSoftObjectPath(const FSoftObjectPath& InHeistSoftObjectPath) {

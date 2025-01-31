@@ -5,7 +5,7 @@
 #include "SBZMatchmaking.h"
 #include "SBZSearchAndHostMatchmaking.generated.h"
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZSearchAndHostMatchmaking : public USBZMatchmaking {
     GENERATED_BODY()
 public:

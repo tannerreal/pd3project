@@ -6,12 +6,15 @@
 #include "ESBZAIAttractorPriority.h"
 #include "SBZAIAttractorInterface.h"
 #include "SBZActionMetaData.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAIAttractorComponent.generated.h"
 
 class AActor;
 class APawn;
-class UClass;
+class UAISense;
 class USBZAIAction;
+class USBZAttractorDataAsset;
+class USBZAttractorPredicate;
 
 UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
 class USBZAIAttractorComponent : public UActorComponent, public ISBZAIAttractorInterface {
@@ -19,19 +22,28 @@ class USBZAIAttractorComponent : public UActorComponent, public ISBZAIAttractorI
 public:
 protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    TArray<UClass*> RegisterAsSourceForSenses;
+    TArray<TSubclassOf<UAISense>> RegisterAsSourceForSenses;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* DefaultSense;
+    TSubclassOf<UAISense> DefaultSense;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     EPD3HeistState MaxHeistStateToBeEnabled;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    USBZAttractorDataAsset* AttractorDataAssetDefault;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    USBZAttractorDataAsset* AttractorDataAsset;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     ESBZAIAttractorPriority Priority;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float Radius;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bUseMaxConcurrentUsers;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     int32 MaxConcurrentUsers;
@@ -49,10 +61,13 @@ protected:
     FGameplayTagContainer Tags;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, NoClear, meta=(AllowPrivateAccess=true))
-    UClass* AttractorPredicate;
+    TSubclassOf<USBZAttractorPredicate> AttractorPredicate;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
+    TArray<USBZAttractorPredicate*> AttractorPredicates;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, NoClear, meta=(AllowPrivateAccess=true))
-    UClass* StealthAttractorPredicate;
+    TSubclassOf<USBZAttractorPredicate> StealthAttractorPredicate;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, meta=(AllowPrivateAccess=true))
     TArray<USBZAIAction*> Actions;
@@ -88,7 +103,7 @@ protected:
     bool bIsEnabled;
     
 public:
-    USBZAIAttractorComponent();
+    USBZAIAttractorComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void UnregisterFromPerceptionSystem();

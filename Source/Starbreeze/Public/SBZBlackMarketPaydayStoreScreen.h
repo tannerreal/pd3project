@@ -3,10 +3,11 @@
 #include "ESBZMetaRequestResult.h"
 #include "SBZMenuStackScreenWidget.h"
 #include "SBZPayDayCreditStoreItem.h"
+#include "Templates/SubclassOf.h"
 #include "SBZBlackMarketPaydayStoreScreen.generated.h"
 
-class UClass;
 class UPanelWidget;
+class USBZBlackMarketStoreRealMoneyItemButton;
 class USBZMenuButton;
 
 UCLASS(Blueprintable, EditInlineNew)
@@ -18,7 +19,7 @@ protected:
     UPanelWidget* Panel_ItemList;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UClass* RealMoneyStoreItemButtonClass;
+    TSubclassOf<USBZBlackMarketStoreRealMoneyItemButton> RealMoneyStoreItemButtonClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     TMap<FString, FSBZPayDayCreditStoreItem> PaydayCreditStoreItems;

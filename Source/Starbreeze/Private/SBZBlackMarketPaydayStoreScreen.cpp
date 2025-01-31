@@ -1,10 +1,9 @@
 #include "SBZBlackMarketPaydayStoreScreen.h"
 
 USBZBlackMarketPaydayStoreScreen::USBZBlackMarketPaydayStoreScreen() {
+    this->StackValue = TEXT("Default__SBZBlackMarketPaydayStoreScreen");
     this->Panel_ItemList = NULL;
     this->RealMoneyStoreItemButtonClass = NULL;
-    this->RealMoneyStoreItemButtonClass = NULL;
-    this->StackValue = TEXT("Default__SBZBlackMarketPaydayStoreScreen");
 }
 
 

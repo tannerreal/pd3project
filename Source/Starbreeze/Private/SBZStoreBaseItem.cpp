@@ -15,5 +15,9 @@ FSBZStoreBaseItem::FSBZStoreBaseItem() {
     this->CurrencyType = ESBZItemCurrencyType::NONE;
     this->VendorData = NULL;
     this->ItemRarity = ESBZItemRarity::NoRarity;
+    this->bIsPremiumItem = false;
+    this->bIsInexhaustibleItem = false;
+    this->ItemCategory = ESBZItemCategory::PrimaryWeapon;
+    this->bIsMaskOfTheWeek = false;
 }
 

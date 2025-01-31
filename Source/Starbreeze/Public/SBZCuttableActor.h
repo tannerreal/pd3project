@@ -60,6 +60,9 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSBZComponentSelector CuttableCollisionComponent;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsHinged;
+    
 public:
     ASBZCuttableActor(const FObjectInitializer& ObjectInitializer);
 

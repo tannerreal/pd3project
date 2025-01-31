@@ -1,10 +1,9 @@
 #include "SBZSocialPartyButtonContainer.h"
 
 USBZSocialPartyButtonContainer::USBZSocialPartyButtonContainer() {
+    this->StackValue = TEXT("Default__SBZSocialPartyButtonContainer");
     this->Panel_PartyMembers = NULL;
     this->PartyMemberButtonWidgetClass = NULL;
-    this->PartyMemberButtonWidgetClass = NULL;
-    this->StackValue = TEXT("Default__SBZSocialPartyButtonContainer");
 }
 
 void USBZSocialPartyButtonContainer::RequestPartyLeave() {

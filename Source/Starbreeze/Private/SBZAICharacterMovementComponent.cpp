@@ -1,6 +1,8 @@
 #include "SBZAICharacterMovementComponent.h"
 
-USBZAICharacterMovementComponent::USBZAICharacterMovementComponent() {
+USBZAICharacterMovementComponent::USBZAICharacterMovementComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bUseAccelerationForPaths = true;
+    this->bProjectNavMeshWalking = true;
     this->AgentManager = NULL;
     this->MaxSprintSpeed = 500.00f;
     this->MaxAccelerationRunning = 650.00f;
@@ -18,8 +20,7 @@ USBZAICharacterMovementComponent::USBZAICharacterMovementComponent() {
     this->NeighbourCollisionMaxDuration = 2.00f;
     this->bNeighbourCollisionEnabled = false;
     this->MaxStepHeightRootMotion = 20.00f;
-    this->bProjectNavMeshWalking = true;
-    this->bUseAccelerationForPaths = true;
+    this->SlowedSpeedReduction = 0.20f;
 }
 
 

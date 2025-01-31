@@ -18,6 +18,10 @@ ASBZRangedWeapon::ASBZRangedWeapon(const FObjectInitializer& ObjectInitializer) 
     this->FPEnterTargetingEvent = NULL;
     this->FPExitTargetingEvent = NULL;
     this->DryFireEvent = NULL;
+    this->CurrentAmmoData = NULL;
+    this->AmmoEquipped = 0;
+    this->AmmoLoaded = 0;
+    this->DroppedAmmoLoaded = 0;
 }
 
 

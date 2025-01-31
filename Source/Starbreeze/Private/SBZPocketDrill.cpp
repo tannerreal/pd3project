@@ -3,8 +3,8 @@
 #include "SBZInteractableComponent.h"
 
 ASBZPocketDrill::ASBZPocketDrill(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->Tags.AddDefaulted(1);
     this->DisassembleMarkerAsset = NULL;
-    this->bPauseProgressWhileAdjustingIsNeeded = false;
     this->NumberOfNeededAdjusts = 3;
     this->SliceOffset = 5.00f;
     this->AdjustTimeSeconds = 5.00f;
@@ -19,7 +19,6 @@ ASBZPocketDrill::ASBZPocketDrill(const FObjectInitializer& ObjectInitializer) : 
     this->DrillMesh = NULL;
     this->bIsEnabled = false;
     this->ProgressPerSecond = 0.00f;
-    this->Tags.AddDefaulted(1);
 }
 
 void ASBZPocketDrill::SetActive(bool bIsActive) {
@@ -41,9 +40,6 @@ void ASBZPocketDrill::OnAdjustInteraction(USBZBaseInteractableComponent* Interac
 }
 
 void ASBZPocketDrill::OnActivationComplete(USBZBaseInteractableComponent* Interactable, USBZInteractorComponent* Interactor, bool bInIsLocallyControlled) {
-}
-
-void ASBZPocketDrill::Multicast_SetEnabled_Implementation(bool bInIsEnabled) {
 }
 
 void ASBZPocketDrill::Multicast_ReduceDuration_Implementation() {

@@ -3,8 +3,8 @@
 ASBZChatReplicatedProxy::ASBZChatReplicatedProxy(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->bAlwaysRelevant = true;
     this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
     this->NetDormancy = DORM_Initial;
 }
 

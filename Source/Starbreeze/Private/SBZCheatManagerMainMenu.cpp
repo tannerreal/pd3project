@@ -24,10 +24,19 @@ void USBZCheatManagerMainMenu::UseDefaultMask() {
 void USBZCheatManagerMainMenu::UnlockCharacterForTutorial() {
 }
 
+void USBZCheatManagerMainMenu::SyncDLC() {
+}
+
+void USBZCheatManagerMainMenu::SimulateForeground() {
+}
+
 void USBZCheatManagerMainMenu::SetSecondaryWeaponLoadout(uint32 LoadoutIndex, uint32 ConfigSlotIndex) {
 }
 
 void USBZCheatManagerMainMenu::SetPrimaryWeaponLoadout(uint32 LoadoutIndex, uint32 ConfigSlotIndex) {
+}
+
+void USBZCheatManagerMainMenu::SetLoadoutName(const int32 LoadoutIndex, const FString& LoadoutName) {
 }
 
 void USBZCheatManagerMainMenu::SetEquippiedSuitInventoryIndex(uint32 ConfigSlotIndex) {
@@ -43,6 +52,9 @@ void USBZCheatManagerMainMenu::SetActiveLoadoutIndex(int32 ActiveLoadoutIndex) {
 }
 
 void USBZCheatManagerMainMenu::SendPartyMessage(const FString& Message) {
+}
+
+void USBZCheatManagerMainMenu::SendLobbyMessage(const FString& Message) {
 }
 
 void USBZCheatManagerMainMenu::SelectCharacterIntoSlot(int32 SelectedCharacterIndex, int32 SlotIndex) {
@@ -90,6 +102,9 @@ void USBZCheatManagerMainMenu::JoinPartyByCode(const FString& Code) {
 void USBZCheatManagerMainMenu::GetWeaponProgressionForBarrelSlot(const FString& WeaponEntitlementIdString) {
 }
 
+void USBZCheatManagerMainMenu::GetUserEntitlementsForAllItems() {
+}
+
 void USBZCheatManagerMainMenu::GetPartyCode() {
 }
 
@@ -117,6 +132,12 @@ void USBZCheatManagerMainMenu::DumpSteamItems() {
 void USBZCheatManagerMainMenu::DumpSelectablePlayerCharacters() {
 }
 
+void USBZCheatManagerMainMenu::DumpRecommendedChallenges() {
+}
+
+void USBZCheatManagerMainMenu::DumpReceipts() const {
+}
+
 void USBZCheatManagerMainMenu::DumpRealMoneyStoreItems() {
 }
 
@@ -129,13 +150,40 @@ void USBZCheatManagerMainMenu::DumpPlayerSkills() {
 void USBZCheatManagerMainMenu::DumpPlayerSkillPoints() {
 }
 
+void USBZCheatManagerMainMenu::DumpOwnedHeists() {
+}
+
 void USBZCheatManagerMainMenu::DumpNextResetTime() {
+}
+
+void USBZCheatManagerMainMenu::DumpMaskOfTheWeek() {
+}
+
+void USBZCheatManagerMainMenu::DumpLoadoutName(const int32 LoadoutIndex) {
 }
 
 void USBZCheatManagerMainMenu::DumpItemsProgressions() {
 }
 
+void USBZCheatManagerMainMenu::DumpIsQuickPlayEnabled() {
+}
+
 void USBZCheatManagerMainMenu::DumpInventoryItems() {
+}
+
+void USBZCheatManagerMainMenu::DumpGetProgressInfo() {
+}
+
+void USBZCheatManagerMainMenu::DumpEntitlementSkuFromDLCButNotOwnedArray() const {
+}
+
+void USBZCheatManagerMainMenu::DumpDLCRewards() const {
+}
+
+void USBZCheatManagerMainMenu::DumpDailyChallenges() {
+}
+
+void USBZCheatManagerMainMenu::DumpCurrentRenownLevel() {
 }
 
 void USBZCheatManagerMainMenu::DumpCosmeticsInventoryItemsForWeaponPatternSlot() {
@@ -169,9 +217,6 @@ void USBZCheatManagerMainMenu::DumpAllVendorItems() {
 }
 
 void USBZCheatManagerMainMenu::DumpAllSuitInventorySlots() {
-}
-
-void USBZCheatManagerMainMenu::DumpAllPlayerStatistics() {
 }
 
 void USBZCheatManagerMainMenu::DumpAllMaskInventorySlots() {
@@ -232,6 +277,9 @@ void USBZCheatManagerMainMenu::ApplyAsset(const FString& ItemSku) {
 }
 
 void USBZCheatManagerMainMenu::AddUniquePartToWeaponConfig(uint32 SlotIndex, const FString& SlotName, const FString& WeaponPartName) {
+}
+
+void USBZCheatManagerMainMenu::AddOwnedDLCAndPopulateEntitlementDisabledArray(const FString& DLCNameCommaList) {
 }
 
 

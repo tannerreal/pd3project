@@ -1,6 +1,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "SBZUserActivity.h"
 #include "SBZAccelByteUser.generated.h"
 
 UCLASS(Blueprintable)
@@ -13,6 +14,9 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     FString City;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FSBZUserActivity UserActivity;
     
 public:
     USBZAccelByteUser();

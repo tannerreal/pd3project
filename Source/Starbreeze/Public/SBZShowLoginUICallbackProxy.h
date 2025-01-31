@@ -18,10 +18,15 @@ public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FSBZOnlineShowLoginUIResult OnFailure;
     
+private:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    UObject* WorldContextObject;
+    
+public:
     USBZShowLoginUICallbackProxy();
 
     UFUNCTION(BlueprintCallable, meta=(WorldContext="WorldContextObject"))
-    static USBZShowLoginUICallbackProxy* SBZShowExternalLoginUI(UObject* WorldContextObject, APlayerController* InPlayerController);
+    static USBZShowLoginUICallbackProxy* SBZShowExternalLoginUI(UObject* NewWorldContextObject, APlayerController* InPlayerController);
     
 };
 

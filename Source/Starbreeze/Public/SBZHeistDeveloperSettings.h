@@ -7,7 +7,7 @@
 
 class UPD3HeistDataAsset;
 
-UCLASS(Blueprintable, Config=Engine, DefaultConfig, Config=Game)
+UCLASS(Blueprintable, DefaultConfig, Config=Game)
 class USBZHeistDeveloperSettings : public UDeveloperSettings {
     GENERATED_BODY()
 public:

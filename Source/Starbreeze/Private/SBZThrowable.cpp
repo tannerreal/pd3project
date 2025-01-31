@@ -4,6 +4,12 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZThrowable::ASBZThrowable(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->Tags.AddDefaulted(1);
+    this->bIsInventory = false;
+    this->bReplicateRootAttachment = true;
     this->MarkerAsset = NULL;
     this->MarkerActivationDelay = 0.50f;
     this->StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
@@ -20,12 +26,7 @@ ASBZThrowable::ASBZThrowable(const FObjectInitializer& ObjectInitializer) : Supe
     this->OverrideAudioEvent = NULL;
     this->OverrideAudioRTPC = NULL;
     this->AudioImpactForceModifierValue = 1.00f;
-    this->bIsInventory = false;
-    this->bReplicateRootAttachment = true;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->Tags.AddDefaulted(1);
+    this->DataType = NULL;
 }
 
 void ASBZThrowable::Server_SetThrowableState_Implementation(ESBZThrowableState NewThrowableState) {

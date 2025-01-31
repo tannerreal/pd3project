@@ -6,7 +6,7 @@
 
 class UEnvQuery;
 
-UCLASS(Blueprintable, Config=Engine, DefaultConfig, Config=Game)
+UCLASS(Blueprintable, DefaultConfig, Config=Game)
 class USBZAIObjectiveSettings : public UDeveloperSettings {
     GENERATED_BODY()
 public:

@@ -4,11 +4,11 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZPlaceableWeapon::ASBZPlaceableWeapon(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer.SetDefaultSubobjectClass<USceneComponent>(TEXT("RootComponent"))) {
+    this->bIsInventory = false;
     this->BaseMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponent"));
-    this->BaseMesh->SetupAttachment(RootComponent);
     this->WeaponMarker = NULL;
     this->bDestroyOnInteraction = false;
-    this->bIsInventory = false;
+    this->BaseMesh->SetupAttachment(RootComponent);
 }
 
 void ASBZPlaceableWeapon::OnServerCompleteInteraction(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor) {

@@ -3,6 +3,7 @@
 
 USBZAICloakerFlailAbility::USBZAICloakerFlailAbility() {
     this->Input = ESBZAbilityInput::None;
+    this->AbilityMontage = NULL;
 }
 
 

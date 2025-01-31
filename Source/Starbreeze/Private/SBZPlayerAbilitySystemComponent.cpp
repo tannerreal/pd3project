@@ -1,7 +1,7 @@
 #include "SBZPlayerAbilitySystemComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZPlayerAbilitySystemComponent::USBZPlayerAbilitySystemComponent() {
+USBZPlayerAbilitySystemComponent::USBZPlayerAbilitySystemComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->StaggeredTargetDamageIncrease = 0.10f;
     this->BuffTimeArray[0] = 0.00f;
     this->BuffTimeArray[1] = 0.00f;
@@ -17,23 +17,38 @@ USBZPlayerAbilitySystemComponent::USBZPlayerAbilitySystemComponent() {
     this->BuffDamageIncrease = 0.10f;
     this->PredictingBuffBitmask = 0;
     this->BuffTickCount = 0;
-    this->BuffBlockCountArray[0] = 0.00f;
-    this->BuffBlockCountArray[1] = 0.00f;
-    this->BuffBlockCountArray[2] = 0.00f;
+    this->BuffCooldownTickCount = 0;
+    this->BuffBlockCountArray[0] = 0;
+    this->BuffBlockCountArray[1] = 0;
+    this->BuffBlockCountArray[2] = 0;
     this->BuffGUIEffectDataArray[0] = NULL;
     this->BuffGUIEffectDataArray[1] = NULL;
     this->BuffGUIEffectDataArray[2] = NULL;
+    this->BlockedBuffGUIEffectDataArray[0] = NULL;
+    this->BlockedBuffGUIEffectDataArray[1] = NULL;
+    this->BlockedBuffGUIEffectDataArray[2] = NULL;
     this->TankLastManStandingImmuneGUIEffectData = NULL;
-    this->TankLastManStandingBlockingGUIEffectData = NULL;
+    this->AmmoSpecialistHighGrainGUIEffectData = NULL;
     this->BuffGUIEffectHandleArray[0] = 0;
     this->BuffGUIEffectHandleArray[1] = 0;
     this->BuffGUIEffectHandleArray[2] = 0;
+    this->BlockedBuffGUIEffectHandleArray[0] = 0;
+    this->BlockedBuffGUIEffectHandleArray[1] = 0;
+    this->BlockedBuffGUIEffectHandleArray[2] = 0;
     this->TankLastManStandingImmuneGUIEffectHandle = 0;
-    this->TankLastManStandingBlockingGUIEffectHandle = 0;
-    this->SkillTankLastManStandingImmuneTime = 0.00f;
+    this->AmmoSpecialistHighGrainGUIEffectHandle = 0;
     this->bIsSkillTankLastManStandingBlocking = false;
-    this->bIsAmmoSpecialistHighGrainSkillActive = false;
+    this->SkillTankLastManStandingImmuneTime = 0.00f;
     this->bCanTriggerCoupDeGraceSkill = false;
+    this->bIsAmmoSpecialistHighGrain = false;
+    this->AmmoSpecialistHighGrainDamage = 0.00f;
+    this->AmmoSpecialistHighGrainArmorPenetrationPoints = 0;
+    this->OverHealDegradationTickInterval = 2.00f;
+    this->OverHealDamagePauseTimer = 2.00f;
+    this->BuffBlockCooldownTimeArray[0] = 0.00f;
+    this->BuffBlockCooldownTimeArray[1] = 0.00f;
+    this->BuffBlockCooldownTimeArray[2] = 0.00f;
+    this->LastManStandingSkillData = NULL;
 }
 
 void USBZPlayerAbilitySystemComponent::Server_SetSpeedBuffTime_Implementation(const FGameplayTag& SkillTag, float Time) {
@@ -54,25 +69,28 @@ void USBZPlayerAbilitySystemComponent::Server_ResetMitigationBuffTime_Implementa
 void USBZPlayerAbilitySystemComponent::Server_ResetDamageBuffTime_Implementation() {
 }
 
-void USBZPlayerAbilitySystemComponent::Server_DeactivateAmmoSpecialistHighGrainSkill_Implementation() {
-}
-
 void USBZPlayerAbilitySystemComponent::OnSkillTankLastManStandingImmuneTimeChanged() {
 }
 
 void USBZPlayerAbilitySystemComponent::OnSkillTankLastManStandingBlockingChanged() {
 }
 
-void USBZPlayerAbilitySystemComponent::OnRep_BuffTimeArray() {
+void USBZPlayerAbilitySystemComponent::OnBuffTimeArrayChanged() {
+}
+
+void USBZPlayerAbilitySystemComponent::OnBuffBlockCountArrayChanged() {
+}
+
+void USBZPlayerAbilitySystemComponent::OnBuffBlockCooldownTimeArrayChanged() {
 }
 
 void USBZPlayerAbilitySystemComponent::Multicast_UnblockSkillTankLastManStanding_Implementation() {
 }
 
-void USBZPlayerAbilitySystemComponent::Multicast_SetSpeedBuffTime_Implementation(float Time) {
+void USBZPlayerAbilitySystemComponent::Multicast_SetTacticalDroneBuffBlockCooldown_Implementation(float Cooldown) {
 }
 
-void USBZPlayerAbilitySystemComponent::Multicast_SetSkillTankLastManStandingImmuneTime_Implementation(float ImmuneTime) {
+void USBZPlayerAbilitySystemComponent::Multicast_SetSpeedBuffTime_Implementation(float Time) {
 }
 
 void USBZPlayerAbilitySystemComponent::Multicast_SetMitigationBuffTime_Implementation(float Time) {
@@ -90,13 +108,13 @@ void USBZPlayerAbilitySystemComponent::Multicast_ResetMitigationBuffTime_Impleme
 void USBZPlayerAbilitySystemComponent::Multicast_ResetDamageBuffTime_Implementation() {
 }
 
+void USBZPlayerAbilitySystemComponent::Multicast_MarkTarget_Implementation(APawn* MarkedPawn, float InDuration) {
+}
+
 void USBZPlayerAbilitySystemComponent::Multicast_MarkedForDeath_Implementation(const TArray<ASBZAIBaseCharacter*>& AICharacters) {
 }
 
-void USBZPlayerAbilitySystemComponent::Multicast_DeactivateAmmoSpecialistHighGrainSkill_Implementation() {
-}
-
-void USBZPlayerAbilitySystemComponent::Multicast_ActivateAmmoSpecialistHighGrainSkill_Implementation() {
+void USBZPlayerAbilitySystemComponent::Multicast_BlockSkillTankLastManStanding_Implementation(float ImmuneTime) {
 }
 
 void USBZPlayerAbilitySystemComponent::Client_RejectBuffTime_Implementation(ESBZPlayerAbilityBuffType Type) {
@@ -106,9 +124,10 @@ void USBZPlayerAbilitySystemComponent::GetLifetimeReplicatedProps(TArray<FLifeti
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
     
     DOREPLIFETIME(USBZPlayerAbilitySystemComponent, BuffTimeArray);
-    DOREPLIFETIME(USBZPlayerAbilitySystemComponent, SkillTankLastManStandingImmuneTime);
+    DOREPLIFETIME(USBZPlayerAbilitySystemComponent, BuffBlockCountArray);
     DOREPLIFETIME(USBZPlayerAbilitySystemComponent, bIsSkillTankLastManStandingBlocking);
-    DOREPLIFETIME(USBZPlayerAbilitySystemComponent, bIsAmmoSpecialistHighGrainSkillActive);
+    DOREPLIFETIME(USBZPlayerAbilitySystemComponent, SkillTankLastManStandingImmuneTime);
+    DOREPLIFETIME(USBZPlayerAbilitySystemComponent, BuffBlockCooldownTimeArray);
 }
 
 

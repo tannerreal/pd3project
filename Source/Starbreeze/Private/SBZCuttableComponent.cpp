@@ -1,7 +1,7 @@
 #include "SBZCuttableComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZCuttableComponent::USBZCuttableComponent() {
+USBZCuttableComponent::USBZCuttableComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->FuelCost = 1;
     this->CuttableType = ESBZCuttableType::Circle;
     this->CuttableState = ESBZCuttableState::Whole;
@@ -11,7 +11,7 @@ USBZCuttableComponent::USBZCuttableComponent() {
     this->CoolSpeed = 50.00f;
     this->InitialCutAngle = 0.00f;
     this->NiagaraEffectVisibilityTime = 0.10f;
-    
+    this->bIsCuttingBlocked = false;
 }
 
 void USBZCuttableComponent::OnRep_InitialCutAngle() {
@@ -23,6 +23,9 @@ void USBZCuttableComponent::OnRep_CuttableState() {
 void USBZCuttableComponent::OnRep_CutProgressData() {
 }
 
+
+void USBZCuttableComponent::Multicast_SetCuttingBlocked_Implementation(bool bInIsBlocked) {
+}
 
 void USBZCuttableComponent::Multicast_SetCuttableState_Implementation(ESBZCuttableState NewCuttableState) {
 }
@@ -53,6 +56,7 @@ void USBZCuttableComponent::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
     DOREPLIFETIME(USBZCuttableComponent, CuttableState);
     DOREPLIFETIME(USBZCuttableComponent, CutProgressData);
     DOREPLIFETIME(USBZCuttableComponent, InitialCutAngle);
+    DOREPLIFETIME(USBZCuttableComponent, bIsCuttingBlocked);
 }
 
 

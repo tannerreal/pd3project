@@ -1,7 +1,10 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "SBZAnimatedInteractionInterface.h"
 #include "SBZBaseInteractableComponent.h"
+#include "SBZInteractableAudioData.h"
+#include "SBZInteractableLocalizedAnimatedInteractionData.h"
 #include "SBZOnInteractableStateChangedDelegateDelegate.h"
 #include "SBZOnInteractionDelegate.h"
 #include "SBZSharedKeyItemTagChangedEvent.h"
@@ -11,10 +14,9 @@ class UAkAudioEvent;
 class UAkComponent;
 class USBZGameplayAbilityQuery;
 class USBZInteractorComponent;
-class USBZVoiceCommentDataAsset;
 
 UCLASS(Blueprintable, ClassGroup=Custom, meta=(BlueprintSpawnableComponent))
-class USBZInteractableComponent : public USBZBaseInteractableComponent {
+class USBZInteractableComponent : public USBZBaseInteractableComponent, public ISBZAnimatedInteractionInterface {
     GENERATED_BODY()
 public:
     UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
@@ -54,24 +56,6 @@ public:
     FSBZOnInteractableStateChangedDelegate OnInteractionEnabledStateChange;
     
 protected:
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UAkAudioEvent* OnStart2DAudioEvent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UAkAudioEvent* OnFinish2DAudioEvent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UAkAudioEvent* OnCancel2DAudioEvent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UAkAudioEvent* OnStart3DAudioEvent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UAkAudioEvent* OnFinish3DAudioEvent;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    UAkAudioEvent* OnCancel3DAudioEvent;
-    
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     UAkComponent* LoopingAkComponent;
     
@@ -91,6 +75,9 @@ protected:
     float PredictionTimeoutSeconds;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    FSBZInteractableAudioData NextCancelAudioData;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     uint8 bCurrentlyInteracting: 1;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, ReplicatedUsing=OnRep_InteractionEnabled, meta=(AllowPrivateAccess=true))
@@ -99,15 +86,15 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
     uint8 bLocalEnabled: 1;
     
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    TArray<FSBZInteractableLocalizedAnimatedInteractionData> LocalizedAnimatedInteractionDatas;
+    
 public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     uint8 bPredictLocalEnd: 1;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     uint8 bSyncInteracting: 1;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    uint8 bSyncAbortEvent: 1;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     uint8 bRepeatable: 1;
@@ -122,12 +109,9 @@ public:
     uint8 bIsIllegal: 1;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
-    USBZVoiceCommentDataAsset* CompletedComment;
-    
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     FGameplayTagContainer SharedKeyItemTags;
     
-    USBZInteractableComponent();
+    USBZInteractableComponent(const FObjectInitializer& ObjectInitializer);
 
     virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 
@@ -159,5 +143,7 @@ protected:
     UFUNCTION(BlueprintCallable, NetMulticast, Reliable)
     void Multicast_SetInteractionEnabled(bool bEnabled);
     
+
+    // Fix for true pure virtual functions not being implemented
 };
 

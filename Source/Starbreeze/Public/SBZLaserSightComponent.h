@@ -33,7 +33,7 @@ protected:
     float PhaseShift;
     
 public:
-    USBZLaserSightComponent();
+    USBZLaserSightComponent(const FObjectInitializer& ObjectInitializer);
 
 protected:
     UFUNCTION(BlueprintCallable)

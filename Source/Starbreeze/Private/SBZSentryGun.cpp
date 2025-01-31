@@ -4,11 +4,13 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "Net/UnrealNetwork.h"
-#include "SBZInteractableComponent.h"
 #include "SBZSentryExplosionDamageType.h"
 #include "SBZSentryGunAttributeSet.h"
+#include "SBZSentryInteractableComponent.h"
 
 ASBZSentryGun::ASBZSentryGun(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
+    this->Tags.AddDefaulted(1);
     this->FireCooldown = 3.00f;
     this->FireTime = 3.00f;
     this->YawRotation = 170.00f;
@@ -21,22 +23,19 @@ ASBZSentryGun::ASBZSentryGun(const FObjectInitializer& ObjectInitializer) : Supe
     this->CurrentMarkedTarget = NULL;
     this->AttributeSet = CreateDefaultSubobject<USBZSentryGunAttributeSet>(TEXT("SBZSentryGunAttributeSet"));
     this->AudioComponent = CreateDefaultSubobject<UAkComponent>(TEXT("AkComponent"));
-    this->AudioComponent->SetupAttachment(SkeletalMeshComponent);
     this->RotationEvent = NULL;
     this->RotationStopEvent = NULL;
     this->OverheatEvent = NULL;
     this->DetonationEvent = NULL;
-    this->Interactable = CreateDefaultSubobject<USBZInteractableComponent>(TEXT("SBZInteractableComponent"));
+    this->Interactable = CreateDefaultSubobject<USBZSentryInteractableComponent>(TEXT("SBZInteractableComponent"));
     this->OwnerPlayerState = NULL;
     this->SkeletalMeshComponent = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponent"));
-    this->SkeletalMeshComponent->SetupAttachment(BoxComponent);
     this->CurrentSentryRotationCooldown = 0.00f;
+    this->LocallyControlledOutline = NULL;
     this->ExplosionRange = 500.00f;
     this->DetonationEffect = NULL;
     this->DamageGameplayEffectClass = NULL;
-    this->DamageGameplayEffectClass = NULL;
     this->DamageTypeClass = USBZSentryExplosionDamageType::StaticClass();
-    this->LocalplayerFeedback = NULL;
     this->LocalplayerFeedback = NULL;
     this->DamageDistanceArray.AddDefaulted(1);
     this->FriendlyPlayerDamageScale = 0.25f;
@@ -44,17 +43,18 @@ ASBZSentryGun::ASBZSentryGun(const FObjectInitializer& ObjectInitializer) : Supe
     this->InstigatorPlayerDamageScale = 1.00f;
     this->ExplosionArmorPenetration = 0.00f;
     this->OutOfBoundsBoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("OutOfBoundsBoxComp"));
-    this->OutOfBoundsBoxComponent->SetupAttachment(SkeletalMeshComponent);
-    this->BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComp"));
+    this->BoxComponent = (UBoxComponent*)RootComponent;
     this->ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
-    this->RootComponent = BoxComponent;
-    this->Tags.AddDefaulted(1);
+    this->HackingDrone = NULL;
+    this->OutOfBoundsBoxComponent->SetupAttachment(SkeletalMeshComponent);
+    this->SkeletalMeshComponent->SetupAttachment(RootComponent);
+    this->AudioComponent->SetupAttachment(SkeletalMeshComponent);
 }
 
 void ASBZSentryGun::OnServerCompleteInteraction(USBZBaseInteractableComponent* InInteractable, USBZInteractorComponent* Interactor, bool bIsLocallyControlledInteractor) {
 }
 
-void ASBZSentryGun::OnSentryEnemyMarked(ASBZCharacter* InCharacter, float InDuration) {
+void ASBZSentryGun::OnSentryEnemyMarked(APawn* InPawn, float InDuration) {
 }
 
 void ASBZSentryGun::OnRep_YawRotation() {
@@ -84,6 +84,9 @@ void ASBZSentryGun::Multicast_ReplicateExplosion_Implementation(const FSBZExplos
 }
 
 void ASBZSentryGun::Multicast_ReachedTargetLocation_Implementation(const FVector& InTargetLocation, const FRotator& InTargetRotation) {
+}
+
+void ASBZSentryGun::Multicast_Fall_Implementation(const FVector& InStartLocation, const FVector& InTargetLocation, const FQuat& InTargetQuat) {
 }
 
 void ASBZSentryGun::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const {

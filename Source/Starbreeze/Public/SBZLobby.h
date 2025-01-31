@@ -12,7 +12,7 @@ class ASBZLobbyBeaconClient;
 class ASBZLobbyBeaconHost;
 class USBZLobbyLocalState;
 
-UCLASS(Blueprintable, Config=Engine, DefaultConfig, NotPlaceable, Transient, Config=Starbreeze)
+UCLASS(Blueprintable, DefaultConfig, NotPlaceable, Transient, Config=Starbreeze)
 class STARBREEZE_API USBZLobby : public UObject {
     GENERATED_BODY()
 public:
@@ -48,7 +48,7 @@ public:
 
 private:
     UFUNCTION(BlueprintCallable)
-    void JoinLobbyComplete(const ESBZOnlineCode& Result);
+    void JoinLobbyComplete(ESBZOnlineCode Result);
     
     UFUNCTION(BlueprintCallable)
     void InitLobbyHostComplete(const ESBZOnlineCode& Result);
@@ -59,7 +59,7 @@ public:
     
 private:
     UFUNCTION(BlueprintCallable)
-    void HostLobbyComplete(const ESBZOnlineCode& Result);
+    void HostLobbyComplete(ESBZOnlineCode Result);
     
 public:
     UFUNCTION(BlueprintCallable)

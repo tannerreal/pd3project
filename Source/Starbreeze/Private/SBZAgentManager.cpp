@@ -1,6 +1,6 @@
 #include "SBZAgentManager.h"
 
-USBZAgentManager::USBZAgentManager() {
+USBZAgentManager::USBZAgentManager(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
 }
 
 void USBZAgentManager::ServerUnreliableRPC_Implementation(uint64 ClientId, const TArray<uint8>& Data) {

@@ -2,6 +2,7 @@
 #include "AkComponent.h"
 
 ASBZStaticVehicle::ASBZStaticVehicle(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bCanBeInCluster = false;
     this->ActiveLightsBitmask = 0;
     this->VariationData = NULL;
     this->Seed = -1;
@@ -9,11 +10,9 @@ ASBZStaticVehicle::ASBZStaticVehicle(const FObjectInitializer& ObjectInitializer
     this->bHasAlarm = false;
     this->bAlarmActivated = false;
     this->AkComponent = CreateDefaultSubobject<UAkComponent>(TEXT("AkComponent"));
-    FProperty* p_StaticMeshComponent_Parent = GetClass()->FindPropertyByName("StaticMeshComponent");
-    this->AkComponent->SetupAttachment(*p_StaticMeshComponent_Parent->ContainerPtrToValuePtr<UStaticMeshComponent*>(this));
     this->AlarmStartEvent = NULL;
     this->AlarmStopEvent = NULL;
-    this->bCanBeInCluster = false;
+    this->AkComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZStaticVehicle::TryActivateAlarm_Implementation() {

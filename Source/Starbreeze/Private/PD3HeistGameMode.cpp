@@ -11,6 +11,8 @@
 #include "SBZTrafficManager.h"
 
 APD3HeistGameMode::APD3HeistGameMode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->GameSessionClass = APD3HeistGameSession::StaticClass();
+    this->GameStateClass = APD3HeistGameState::StaticClass();
     this->NegotiationManager = CreateDefaultSubobject<USBZNegotiationManager>(TEXT("SBZNegotiationManager"));
     this->AssaultManager = CreateDefaultSubobject<UPD3AssaultManager>(TEXT("AssaultManager"));
     this->AISquadManager = CreateDefaultSubobject<USBZAISquadManager>(TEXT("SBZAISquadManager"));
@@ -20,8 +22,6 @@ APD3HeistGameMode::APD3HeistGameMode(const FObjectInitializer& ObjectInitializer
     this->TrafficManager = CreateDefaultSubobject<USBZTrafficManager>(TEXT("SBZTrafficManager"));
     this->SearchManager = CreateDefaultSubobject<USBZAISearchManager>(TEXT("SBZAISearchManager"));
     this->GlobalModifiers = CreateDefaultSubobject<USBZGlobalModifiers>(TEXT("SBZGlobalModifiers"));
-    this->GameSessionClass = APD3HeistGameSession::StaticClass();
-    this->GameStateClass = APD3HeistGameState::StaticClass();
 }
 
 USBZNegotiationManager* APD3HeistGameMode::GetNegotiationManager() const {

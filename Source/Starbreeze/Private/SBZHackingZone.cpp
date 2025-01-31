@@ -4,15 +4,15 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZHackingZone::ASBZHackingZone(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
     this->SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
-    this->SphereComponent->SetupAttachment(RootComponent);
     this->bEnabled = false;
     this->ZoneIndex = -1;
     this->ActiveTime = 0.00f;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->SphereComponent->SetupAttachment(RootComponent);
 }
 
 void ASBZHackingZone::OnRep_ZoneEnabled() {

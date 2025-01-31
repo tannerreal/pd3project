@@ -1,22 +1,23 @@
 #include "SBZMainMenuSuitInventoryScreen.h"
 
 USBZMainMenuSuitInventoryScreen::USBZMainMenuSuitInventoryScreen() {
-    this->SuitSlotButtonClass = NULL;
+    this->StackValue = TEXT("Default__SBZMainMenuSuitInventoryScreen");
     this->SuitSlotButtonClass = NULL;
     this->Panel_SuitSlotButtons = NULL;
     this->Button_BuySlots = NULL;
     this->Button_DefaultSuit = NULL;
     this->DiscardSuitPopUpBodyWidgetClass = NULL;
-    this->DiscardSuitPopUpBodyWidgetClass = NULL;
     this->SuitIndexToDiscard = -1;
     this->DiscardSuitPopUpBody = NULL;
     this->ActiveSuitSlotButton = NULL;
-    this->StackValue = TEXT("Default__SBZMainMenuSuitInventoryScreen");
 }
 
 void USBZMainMenuSuitInventoryScreen::TryDiscardSuitInSlot(int32 InSuitIndex) {
 }
 
+
+void USBZMainMenuSuitInventoryScreen::RefreshWidgetVisuals() {
+}
 
 
 

@@ -7,6 +7,11 @@ UCLASS(Blueprintable, EditInlineNew)
 class USBZReactionPredicate : public UObject {
     GENERATED_BODY()
 public:
+protected:
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    bool bIsInversed;
+    
+public:
     USBZReactionPredicate();
 
 };

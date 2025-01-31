@@ -49,7 +49,7 @@ private:
     TArray<ASBZAgilityPawnSpawnPredefined*> Spawners;
     
 public:
-    USBZVehicleSpawnComponent();
+    USBZVehicleSpawnComponent(const FObjectInitializer& ObjectInitializer);
 
 private:
     UFUNCTION(BlueprintAuthorityOnly, BlueprintCallable)

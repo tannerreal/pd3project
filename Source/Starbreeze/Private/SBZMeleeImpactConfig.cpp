@@ -2,7 +2,6 @@
 
 USBZMeleeImpactConfig::USBZMeleeImpactConfig() {
     this->ImpactFeedback = NULL;
-    this->ImpactFeedback = NULL;
 }
 
 

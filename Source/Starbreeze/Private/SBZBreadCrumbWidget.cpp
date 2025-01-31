@@ -2,7 +2,6 @@
 
 USBZBreadCrumbWidget::USBZBreadCrumbWidget() {
     this->BreadCrumbButtonClass = NULL;
-    this->BreadCrumbButtonClass = NULL;
     this->Panel_ButtonContainer = NULL;
 }
 

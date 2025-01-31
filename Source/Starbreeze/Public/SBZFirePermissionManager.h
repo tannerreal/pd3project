@@ -13,7 +13,7 @@ public:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     TMap<ESBZFireTokenType, int32> TokenLimits;
     
-    UDEPRECATED_SBZFirePermissionManager();
+    UDEPRECATED_SBZFirePermissionManager(const FObjectInitializer& ObjectInitializer);
 
 protected:
     UFUNCTION(BlueprintCallable)

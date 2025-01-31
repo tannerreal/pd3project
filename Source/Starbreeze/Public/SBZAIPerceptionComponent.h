@@ -21,7 +21,7 @@ private:
     TArray<UAISenseConfig*> DistractedSensesConfig;
     
 public:
-    USBZAIPerceptionComponent();
+    USBZAIPerceptionComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void SetSenseConfig(ESBZSenseConfig ConfigID);

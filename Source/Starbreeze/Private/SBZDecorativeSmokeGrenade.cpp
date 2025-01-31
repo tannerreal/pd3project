@@ -4,20 +4,18 @@
 #include "Net/UnrealNetwork.h"
 
 ASBZDecorativeSmokeGrenade::ASBZDecorativeSmokeGrenade(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->StaticMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComponent"));
+    this->StaticMesh = (UMeshComponent*)RootComponent;
     this->GasEffectComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
-    this->GasEffectComponent->SetupAttachment(StaticMesh);
     this->DetonationEvent = NULL;
     this->DurationSeconds = 15.00f;
     this->Range = 250.00f;
     this->DelayedExplosionTimer = -1.00f;
     this->SmokeState = ESBZDecorativeSmokeState::Spawned;
-    FProperty* p_bReplicateMovement = GetClass()->FindPropertyByName("bReplicateMovement");
-    *p_bReplicateMovement->ContainerPtrToValuePtr<uint8>(this) = true;
-    this->bReplicates = true;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = StaticMesh;
+    this->GasEffectComponent->SetupAttachment(RootComponent);
 }
 
 

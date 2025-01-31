@@ -1,6 +1,6 @@
 #include "SBZShoutoutComponent.h"
 
-USBZShoutoutComponent::USBZShoutoutComponent() {
+USBZShoutoutComponent::USBZShoutoutComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->ShoutOutRadius = 600.00f;
     this->MaxRoomPathDistanceFromInitialTarget = 1000.00f;
     this->HeightCutOffDistance = 400.00f;
@@ -14,7 +14,6 @@ USBZShoutoutComponent::USBZShoutoutComponent() {
     this->DefaultCopSurrenderComment = NULL;
     this->PingMarkerAsset = NULL;
     this->PingTimer = 5.00f;
-    this->CopSurrenderAction = NULL;
     this->CopSurrenderAction = NULL;
     this->PingIndex = -1;
     this->AbilitySystem = NULL;

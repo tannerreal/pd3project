@@ -7,6 +7,7 @@
 #include "ESBZThrowableState.h"
 #include "SBZEquippable.h"
 #include "SBZProjectileInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZThrowable.generated.h"
 
 class AActor;
@@ -75,6 +76,9 @@ protected:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
     float AudioImpactForceModifierValue;
+    
+    UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
+    TSubclassOf<USBZThrowableData> DataType;
     
 public:
     ASBZThrowable(const FObjectInitializer& ObjectInitializer);

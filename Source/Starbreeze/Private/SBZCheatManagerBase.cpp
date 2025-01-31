@@ -2,12 +2,16 @@
 #include "SBZDebugCameraController.h"
 
 USBZCheatManagerBase::USBZCheatManagerBase() {
+    this->DebugCameraControllerClass = ASBZDebugCameraController::StaticClass();
     this->InputComponent = NULL;
     this->AccelByteAdminHelper = NULL;
-    this->DebugCameraControllerClass = ASBZDebugCameraController::StaticClass();
+    this->SelectedEmulationType = ESBZDebugNetEmulationType::None;
 }
 
 void USBZCheatManagerBase::VoteRestartLevel() {
+}
+
+void USBZCheatManagerBase::VoteKickPlayer(int32 PlayerIndex) {
 }
 
 void USBZCheatManagerBase::UnselectSocket(int32 PlayerIndex) {
@@ -31,10 +35,40 @@ void USBZCheatManagerBase::ToggleDrawDebugSpread() {
 void USBZCheatManagerBase::ToggleCVar(const FString& CVar, int32 First, int32 Second) {
 }
 
+void USBZCheatManagerBase::SimulateLobbyConnectSuccess() {
+}
+
+void USBZCheatManagerBase::SimulateLobbyCloseConnection() {
+}
+
+void USBZCheatManagerBase::SetPreMatchInfamyExperience(int32 Experience, int32 PlayerIndex) {
+}
+
+void USBZCheatManagerBase::SetPaused(bool bIsPaused) {
+}
+
+void USBZCheatManagerBase::SetNetEmulationType(ESBZDebugNetEmulationType Type, ESBZDebugNetEmulationTarget Target) {
+}
+
+void USBZCheatManagerBase::SetListenerEnabled(bool bIsEnabled) {
+}
+
 void USBZCheatManagerBase::SetInputTypeOverride(int32 Override) {
 }
 
+void USBZCheatManagerBase::SetInfamyLevelExperience(int32 Level, int32 Experience) {
+}
+
+void USBZCheatManagerBase::SetInfamyLevel(int32 Amount, int32 PlayerIndex) {
+}
+
+void USBZCheatManagerBase::SetInfamyExperience(int32 Amount, int32 PlayerIndex) {
+}
+
 void USBZCheatManagerBase::SetDebugEarnedExperiencePoints(int32 EarnedExperiencePoints) {
+}
+
+void USBZCheatManagerBase::SetCurrency(ESBZCurrencyCode Type, int32 Amount, int32 PlayerIndex) {
 }
 
 void USBZCheatManagerBase::SetCulture(const FString& Name) {
@@ -103,7 +137,10 @@ void USBZCheatManagerBase::RequestSwitchUser() {
 void USBZCheatManagerBase::RequestGameError(ESBZGameMachineStateError State, int32 PlayerIndex) {
 }
 
-void USBZCheatManagerBase::PrintWarning(const FString& Text, bool bIsDecodingNeeded) {
+void USBZCheatManagerBase::RemoveCurrency(ESBZCurrencyCode Type, int32 Amount, int32 PlayerIndex) {
+}
+
+void USBZCheatManagerBase::PrintWarning(const FString& Text, bool bIsDecodingNeeded) const {
 }
 
 void USBZCheatManagerBase::PrintVersion() {
@@ -121,7 +158,7 @@ void USBZCheatManagerBase::PrintSelectionHierarchy(bool bIsChildActorIncluded, i
 void USBZCheatManagerBase::PrintSelection(int32 PlayerIndex) {
 }
 
-void USBZCheatManagerBase::PrintLog(const FString& Text, bool bIsDecodingNeeded) {
+void USBZCheatManagerBase::PrintLog(const FString& Text, bool bIsDecodingNeeded) const {
 }
 
 void USBZCheatManagerBase::PrintInputEnabledBothCurrent() {
@@ -130,7 +167,7 @@ void USBZCheatManagerBase::PrintInputEnabledBothCurrent() {
 void USBZCheatManagerBase::PrintInputEnabled(int32 PlayerIndex) {
 }
 
-void USBZCheatManagerBase::PrintError(const FString& Text, bool bIsDecodingNeeded) {
+void USBZCheatManagerBase::PrintError(const FString& Text, bool bIsDecodingNeeded) const {
 }
 
 void USBZCheatManagerBase::PrintAbilitySystemBothCurrent() {
@@ -143,6 +180,9 @@ void USBZCheatManagerBase::OnEndPlay(AActor* Actor, TEnumAsByte<EEndPlayReason::
 }
 
 void USBZCheatManagerBase::LoadProgressionSaveGame() {
+}
+
+void USBZCheatManagerBase::LoadProgressionSaveChallenges() {
 }
 
 void USBZCheatManagerBase::FetchAllVendorItems(int32 MaxCount) {
@@ -158,6 +198,15 @@ void USBZCheatManagerBase::DumpWeaponPresetAssets() {
 }
 
 void USBZCheatManagerBase::DumpAssetDatabase() {
+}
+
+void USBZCheatManagerBase::DumpAllPlayerStatistics(int32 PlayerIndex) {
+}
+
+void USBZCheatManagerBase::DumpAllPlayersInfamyAndPlatform() {
+}
+
+void USBZCheatManagerBase::DumpAllPlayersAccelByteDisplayName() {
 }
 
 void USBZCheatManagerBase::DumpActiveLoadout() {
@@ -196,7 +245,16 @@ void USBZCheatManagerBase::DebugIncrementPlayerStat(const FString& StatCode, int
 void USBZCheatManagerBase::DebugChallengeRecords(const FString& Tag, const FString& Status, int32 Offset, int32 Limit) {
 }
 
+void USBZCheatManagerBase::CompleteChallenge(int32 Count, int32 PlayerIndex) {
+}
+
 void USBZCheatManagerBase::ClearFriends() {
+}
+
+void USBZCheatManagerBase::ChangeStatCode(const FString& StatCode, int32 Count, int32 PlayerIndex) {
+}
+
+void USBZCheatManagerBase::AddCurrency(ESBZCurrencyCode Type, int32 Amount, int32 PlayerIndex) {
 }
 
 

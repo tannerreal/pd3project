@@ -1,6 +1,7 @@
 #include "SBZLoginScreenWidget.h"
 
 USBZLoginScreenWidget::USBZLoginScreenWidget() {
+    this->StackValue = TEXT("Default__SBZLoginScreenWidget");
     this->ProdAccountCreateURLGameSense = TEXT("https://t.paydaythegame.com/c/4k8d2q");
     this->DevAccountCreateURLGameSense = TEXT("https://t.paydaythegame.com/c/0jderb");
     this->ProdAccountCreateURL = TEXT("https://nebula.starbreeze.com/register/");
@@ -8,7 +9,8 @@ USBZLoginScreenWidget::USBZLoginScreenWidget() {
     this->bShouldHideCursor = false;
     this->bShowCloseButton = true;
     this->Button_CreateAccountWebBrowser = NULL;
-    this->StackValue = TEXT("Default__SBZLoginScreenWidget");
+    this->Text_PlatformName = NULL;
+    this->Image_PlatformSprite = NULL;
 }
 
 

@@ -2,8 +2,8 @@
 #include "SBZSplineComponent.h"
 
 ASBZSpline::ASBZSpline(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->SplineComponent = CreateDefaultSubobject<USBZSplineComponent>(TEXT("SBZSplineComponent"));
-    this->RootComponent = SplineComponent;
+    this->RootComponent = CreateDefaultSubobject<USBZSplineComponent>(TEXT("SBZSplineComponent"));
+    this->SplineComponent = (USBZSplineComponent*)RootComponent;
 }
 
 TArray<ASBZSpline*> ASBZSpline::GetOutputSplines() const {

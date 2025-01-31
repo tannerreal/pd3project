@@ -4,10 +4,10 @@
 #include "GameFramework/Info.h"
 #include "EPD3DefeatState.h"
 #include "SBZCrewStateInterface.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAICrewState.generated.h"
 
 class ASBZAICrewCharacter;
-class UClass;
 class UPaperSprite;
 
 UCLASS(Blueprintable, NotPlaceable)
@@ -19,7 +19,7 @@ private:
     ASBZAICrewCharacter* Character;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, meta=(AllowPrivateAccess=true))
-    UClass* CharacterClass;
+    TSubclassOf<ASBZAICrewCharacter> CharacterClass;
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Transient, ReplicatedUsing=OnRep_DefeatState, meta=(AllowPrivateAccess=true))
     EPD3DefeatState DefeatState;

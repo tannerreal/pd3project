@@ -2,10 +2,10 @@
 #include "Components/SceneComponent.h"
 
 ASBZPatrolPoint::ASBZPatrolPoint(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("PatrolRoot"));
     this->bRandomSet = false;
     this->bUsePointRotation = false;
     this->bIsTesting = false;
-    this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("PatrolRoot"));
 }
 
 bool ASBZPatrolPoint::IsTestingPoint() const {

@@ -3,7 +3,4 @@
 USBZPlayerOnlineStatusLibrary::USBZPlayerOnlineStatusLibrary() {
 }
 
-void USBZPlayerOnlineStatusLibrary::ResetPlayerActivity(const UObject* WorldContextObject) {
-}
-
 

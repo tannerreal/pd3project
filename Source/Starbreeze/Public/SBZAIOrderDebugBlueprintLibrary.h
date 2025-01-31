@@ -1,10 +1,11 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "Templates/SubclassOf.h"
 #include "SBZAIOrderDebugBlueprintLibrary.generated.h"
 
-class UClass;
 class UObject;
+class USBZAISquadOrder;
 
 UCLASS(Blueprintable)
 class USBZAIOrderDebugBlueprintLibrary : public UBlueprintFunctionLibrary {
@@ -13,7 +14,7 @@ public:
     USBZAIOrderDebugBlueprintLibrary();
 
     UFUNCTION(BlueprintCallable)
-    static void SetOrderToAllSquads(UObject* ContextObject, UClass* AIOrder);
+    static void SetOrderToAllSquads(UObject* ContextObject, TSubclassOf<USBZAISquadOrder> AIOrder);
     
 };
 

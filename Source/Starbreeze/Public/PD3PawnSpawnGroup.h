@@ -39,8 +39,5 @@ protected:
     UFUNCTION(BlueprintCallable)
     void OnSpawnFinished(const FSBZPawnSpawnRequestHandle& Handle, APawn* Pawn, ASBZPawnSpawnBase* Spawner);
     
-    UFUNCTION(BlueprintCallable)
-    void OnSpawnDie(APawn* Pawn);
-    
 };
 

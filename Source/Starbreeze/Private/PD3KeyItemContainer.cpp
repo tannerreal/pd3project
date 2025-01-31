@@ -5,7 +5,6 @@ UPD3KeyItemContainer::UPD3KeyItemContainer() {
     this->MaxDisplayedKeyItems = 5;
     this->bIsShared = false;
     this->KeyItemWidgetClass = NULL;
-    this->KeyItemWidgetClass = NULL;
 }
 
 void UPD3KeyItemContainer::OnSharedKeyItemCountChanged(const FSBZSharedKeyItemTagChangedEvent& SharedKeyItemTagChangedEventData) {

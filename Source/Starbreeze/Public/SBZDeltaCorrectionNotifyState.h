@@ -10,7 +10,7 @@ class STARBREEZE_API UAnimNotifyState_WarpingBase : public UAnimNotifyState {
 public:
     UAnimNotifyState_WarpingBase()
     {
-        
+
     }
 };
 

@@ -11,6 +11,7 @@
 #include "SBZLifeActionActorTagEvent.h"
 #include "SBZLifeActionRandomAnimationTagsPicker.h"
 #include "SBZLifeActionRequest.h"
+#include "SBZLifeActionTagEventDelegateDelegate.h"
 #include "SBZLifeActionSlot.generated.h"
 
 class ASBZCharacter;
@@ -140,8 +141,11 @@ protected:
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Instanced, Transient, meta=(AllowPrivateAccess=true))
     USBZLifeActionInstance* OwningLifeActionInstance;
     
+    UPROPERTY(BlueprintAssignable, BlueprintReadWrite, EditAnywhere, meta=(AllowPrivateAccess=true))
+    FSBZLifeActionTagEventDelegate OnTagEvent;
+    
 public:
-    USBZLifeActionSlot();
+    USBZLifeActionSlot(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void SwitchMontageSection(const FName& SectionName);

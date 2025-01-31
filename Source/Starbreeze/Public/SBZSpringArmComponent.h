@@ -14,7 +14,7 @@ protected:
     AActor* Target;
     
 public:
-    USBZSpringArmComponent();
+    USBZSpringArmComponent(const FObjectInitializer& ObjectInitializer);
 
 };
 

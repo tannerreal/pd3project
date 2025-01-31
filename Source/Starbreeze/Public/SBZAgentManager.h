@@ -16,7 +16,7 @@ private:
     FSBZAgentManagerPostPhysicsTickFunction PostPhysicsTickFunction;
     
 public:
-    USBZAgentManager();
+    USBZAgentManager(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(Server, Unreliable, WithValidation)
     void ServerUnreliableRPC(uint64 ClientId, const TArray<uint8>& Data);

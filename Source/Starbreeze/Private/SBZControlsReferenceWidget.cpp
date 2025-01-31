@@ -3,8 +3,6 @@
 USBZControlsReferenceWidget::USBZControlsReferenceWidget() {
     this->MaxActionsDisplayed = 6;
     this->ControlsReferenceActionWidgetClass = NULL;
-    this->ControlsReferenceActionWidgetClass = NULL;
-    this->ControlsReferenceAxisWidgetClass = NULL;
     this->ControlsReferenceAxisWidgetClass = NULL;
     this->Panel_ActionLists = NULL;
     this->Panel_AxisLists = NULL;

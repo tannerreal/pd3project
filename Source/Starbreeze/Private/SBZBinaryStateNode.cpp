@@ -2,8 +2,8 @@
 #include "Components/SceneComponent.h"
 
 ASBZBinaryStateNode::ASBZBinaryStateNode(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->bState = false;
     this->RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    this->bState = false;
 }
 
 void ASBZBinaryStateNode::SetState(bool bInState) {

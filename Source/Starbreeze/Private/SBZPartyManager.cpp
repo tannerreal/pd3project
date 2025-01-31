@@ -3,7 +3,7 @@
 USBZPartyManager::USBZPartyManager() {
 }
 
-void USBZPartyManager::SetLobbyType(ESBZOnlineJoinType InLobbyType) {
+void USBZPartyManager::SetLobbyType(ESBZOnlineJoinType InLobbyType, bool bIsSaved) {
 }
 
 FString USBZPartyManager::SendPublicMessage(const FString& Message) {
@@ -30,7 +30,7 @@ int32 USBZPartyManager::GetPartyPlayersNumber() const {
     return 0;
 }
 
-USBZPartyManager* USBZPartyManager::GetPartyManager(UObject* WorldContextObject) {
+USBZPartyManager* USBZPartyManager::GetPartyManager(const UObject* WorldContextObject) {
     return NULL;
 }
 

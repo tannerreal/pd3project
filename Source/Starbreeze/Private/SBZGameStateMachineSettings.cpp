@@ -5,7 +5,8 @@ USBZGameStateMachineSettings::USBZGameStateMachineSettings() {
     this->IntroSequenceSafetyTimeout = 30.00f;
     this->OutroSequenceSafetyTimeout = 10.00f;
     this->JobOveviewToActionPhaseDropInTime = 1.00f;
-    this->Levels.AddDefaulted(8);
+    this->HeistCollections.AddDefaulted(3);
+    this->Levels.AddDefaulted(12);
     this->LevelsTutorial.AddDefaulted(4);
 }
 
@@ -39,6 +40,10 @@ TArray<FSoftObjectPath> USBZGameStateMachineSettings::GetLevelsDev(const UObject
 
 TArray<FSoftObjectPath> USBZGameStateMachineSettings::GetLevels(const UObject* WorldContextObject) {
     return TArray<FSoftObjectPath>();
+}
+
+TArray<FSBZHeistCollection> USBZGameStateMachineSettings::GetHeistCollections(const UObject* WorldContextObject) {
+    return TArray<FSBZHeistCollection>();
 }
 
 

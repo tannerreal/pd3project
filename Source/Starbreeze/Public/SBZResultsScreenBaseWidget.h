@@ -19,5 +19,8 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
     void OnRestartAcceptTimerUpdated(float InNewTime);
     
+    UFUNCTION(BlueprintCallable, BlueprintImplementableEvent)
+    void OnMergePartyUpdated(const FString& PlayerDisplayName, const bool bIsMergePartySelected);
+    
 };
 

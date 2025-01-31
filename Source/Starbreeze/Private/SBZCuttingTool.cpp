@@ -2,6 +2,7 @@
 #include "NiagaraComponent.h"
 
 ASBZCuttingTool::ASBZCuttingTool(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
+    this->bReplicateRootAttachment = false;
     this->TorchEffectComponent = CreateDefaultSubobject<UNiagaraComponent>(TEXT("NiagaraComponent"));
     this->TorchMaxEffectVisibilityTime = 0.50f;
     this->ActivatedMaxRTPCValue = 50.00f;
@@ -10,7 +11,6 @@ ASBZCuttingTool::ASBZCuttingTool(const FObjectInitializer& ObjectInitializer) : 
     this->CuttingSoundMultiplicationValue = 1.00f;
     this->CuttingToolAutoCuttingTimer = 0.30f;
     this->OnCuttingToolStrengthRtpc = NULL;
-    this->bReplicateRootAttachment = false;
 }
 
 

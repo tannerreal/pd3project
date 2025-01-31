@@ -46,7 +46,7 @@ protected:
     bool bDynVerticesHavedBeenTransformed;
     
 public:
-    USBZAIVisibilityComponent();
+    USBZAIVisibilityComponent(const FObjectInitializer& ObjectInitializer);
 
 };
 

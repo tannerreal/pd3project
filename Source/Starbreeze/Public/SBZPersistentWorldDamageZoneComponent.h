@@ -33,7 +33,7 @@ private:
     bool bAffectOwnerOnly;
     
 public:
-    USBZPersistentWorldDamageZoneComponent();
+    USBZPersistentWorldDamageZoneComponent(const FObjectInitializer& ObjectInitializer);
 
     UFUNCTION(BlueprintCallable)
     void HandleTakeRadialDamage(AActor* DamagedActor, float DamageAmount, const FRadialDamageEvent& DamageEvent, AController* EventInstigator, AActor* DamageCauser);

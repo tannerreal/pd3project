@@ -1,7 +1,7 @@
 #include "SBZGasVolumeComponent.h"
 #include "Net/UnrealNetwork.h"
 
-USBZGasVolumeComponent::USBZGasVolumeComponent() {
+USBZGasVolumeComponent::USBZGasVolumeComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
     this->LineBatchComponent = NULL;
     this->bInitOnBeginPlay = false;
     this->Duration = 30.00f;
@@ -29,7 +29,6 @@ USBZGasVolumeComponent::USBZGasVolumeComponent() {
     this->UpdateParticleLocationsInterval = 0.30f;
     this->MaxUpdateLocationPerFrame = 2;
     this->OverdrawOptimisationPoolID = 2;
-    
 }
 
 bool USBZGasVolumeComponent::IsSegmentOverlapping(const FVector& Start, const FVector& End, bool bQuickOverlap, bool bUseLineTrace) const {

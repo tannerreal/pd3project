@@ -3,17 +3,13 @@
 #include "SBZToolSkeletalMeshComponent.h"
 
 ASBZPlayerMicroCamera::ASBZPlayerMicroCamera(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer) {
-    this->SkeletalMesh = CreateDefaultSubobject<USBZToolSkeletalMeshComponent>(TEXT("MeshComponent"));
+    this->bReplicates = true;
+    const FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
+    (*p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this)) = ROLE_SimulatedProxy;
+    this->RootComponent = CreateDefaultSubobject<USBZToolSkeletalMeshComponent>(TEXT("MeshComponent"));
+    this->SkeletalMesh = (USBZToolSkeletalMeshComponent*)RootComponent;
     this->RotationSpeed = 100.00f;
     this->InstigatorCharacter = NULL;
-    FProperty* p_bReplicateMovement = GetClass()->FindPropertyByName("bReplicateMovement");
-    *p_bReplicateMovement->ContainerPtrToValuePtr<uint8>(this) = true;
-    this->bReplicates = true;
-    FProperty* p_bActorEnableCollision = GetClass()->FindPropertyByName("bActorEnableCollision");
-    *p_bActorEnableCollision->ContainerPtrToValuePtr<uint8>(this) = false;
-    FProperty* p_RemoteRole = GetClass()->FindPropertyByName("RemoteRole");
-    *p_RemoteRole->ContainerPtrToValuePtr<TEnumAsByte<ENetRole>>(this) = ROLE_SimulatedProxy;
-    this->RootComponent = SkeletalMesh;
 }
 
 void ASBZPlayerMicroCamera::OnRep_ViewTargetPlayerStateIdArray(const TArray<int32>& OldViewTargetPlayerStateIdArray) {

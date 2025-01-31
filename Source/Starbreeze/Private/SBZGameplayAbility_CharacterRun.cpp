@@ -2,10 +2,11 @@
 #include "ESBZAbilityInput.h"
 
 USBZGameplayAbility_CharacterRun::USBZGameplayAbility_CharacterRun() {
-    this->bIsCancelOnInputReleased = true;
-    this->Input = ESBZAbilityInput::Run;
     this->InstancingPolicy = EGameplayAbilityInstancingPolicy::InstancedPerActor;
     this->AbilityTriggers.AddDefaulted(2);
+    this->bIsCancelToggleOnInputPressed = true;
+    this->bIsCancelOnInputReleased = true;
+    this->Input = ESBZAbilityInput::Run;
 }
 
 

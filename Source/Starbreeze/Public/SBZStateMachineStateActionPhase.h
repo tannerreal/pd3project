@@ -10,7 +10,7 @@ class ASBZPlayerController;
 class USBZActionPhaseBaseWidget;
 class USBZStateMachineDataActionPhase;
 
-UCLASS(Blueprintable)
+UCLASS(Blueprintable, Config=Engine)
 class STARBREEZE_API USBZStateMachineStateActionPhase : public USBZClientStateMachineState {
     GENERATED_BODY()
 public:
